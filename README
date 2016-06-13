@@ -4,10 +4,11 @@ Segueix una estructura de TODO, organitzat per punts.
 Probablement es bona idea posar "subpunts" a les coses mes complexes
 
 [ ] La ontologia es pot passar de owl a classes i de classes a owl sense problemes
-	AKA es representable en forma de les nostres classes i en forma de ontologia
+	AKA es representable en forma de les nostres classes i en forma de ontologia --> patri ho comenso a fer
+                
 	(Afegir subpunts si acabes / comences una part)
 
 [ ] Representacio de Depuradores:
 	Idea que tinc(M): Simplement tenen un seguit de aributs amount, amb unitat
 		(unitatPolucio)/temps que indica quantes unitats de polucio elimina per
-		unitat de temps. De moment nomes faria aixo
+		unitat de temps. De moment nomes faria aixo --> em sembla bé! :D
