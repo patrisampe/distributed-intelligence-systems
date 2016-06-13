@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 
 public class TreatmentPlant extends Localization{
 	LinkedHashMap<pollutantTypes,Double> pe = new LinkedHashMap<>(); //pollution eliminate per unit time
-
+	
 	public LinkedHashMap<pollutantTypes, Double> getPe() {
 		return pe;
 	}
