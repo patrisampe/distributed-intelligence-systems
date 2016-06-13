@@ -9,12 +9,12 @@ import practica.objects.*;
 public class Methods {
 	public WaterMass mergeWaterMasses( Vector<WaterMass> wms )
 	{
-		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
+		LinkedHashMap<pollutantTypes,Pollutant> lm = new LinkedHashMap<>();
 		double amount = 0.;
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
-				if( lm.get(p.getName()) == null ) lm.put(p.getName(),new Pollutant(p) );
-				lm.get(p.getName()).incAmount(p.getAmount());
+				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );
+				lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
 		}

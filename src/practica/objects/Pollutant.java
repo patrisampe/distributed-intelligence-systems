@@ -4,11 +4,20 @@ public class Pollutant {
 	private String unit;
 	private pollutantTypes type;
 	private double amount;
+	
 	public Pollutant(String unit, pollutantTypes type, double amount) {
 		this.unit = unit;
 		this.type = type;
 		this.amount = amount;
 	}
+	
+	public Pollutant(Pollutant p) {
+		this.unit = p.unit;
+		this.type = p.type;
+		this.amount = p.amount;
+	}
+	
+	
 	public String getUnit() {
 		return unit;
 	}
@@ -28,6 +37,10 @@ public class Pollutant {
 		this.amount = amount;
 	}
 	
+	public void incAmount(double amount){
+		
+		this.amount += amount;
+	}
 	
 
 }
