@@ -88,6 +88,87 @@ public class Methods {
 		return true;
 	}
 	
+	public Permisions whatpermision(WaterMass wm, Vector<Permisions> vp){
+		
+		for( Permisions p:vp){
+			
+		    if(permited(wm,p))return p;
+		    
+		}
+		return null;
+	}
+	
+	private LinkedHashMap<pollutantTypes,Pollutant> pollutantsCaused(WaterMass wm, Permisions p){
+		
+		LinkedHashMap<pollutantTypes,Pollutant> lm = new LinkedHashMap<>();
+
+		for( Pollutant po:wm.getPollutants() ){
+			
+		    Double allowed =p.amountPollutant(po.getType());
+		    
+		    if(allowed < po.getAmount())lm.put(po.getType(), po);
+		    
+		}
+		
+		return lm;
+		
+	}
+	
+	public boolean existsIrregulation(WaterMass aw, Permisions p, LinkedHashMap<pollutantTypes,Pollutant> whatPollutans){
+		
+		for(Pollutant po:aw.getPollutants()){
+			
+			if(whatPollutans.get(po.getType()) != null ){
+				Double allowed =p.amountPollutant(po.getType());	
+				if(allowed < po.getAmount())return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public Vector<WaterMass> needInspeccion(WaterMass wm, Permisions p){
+		
+		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
+		
+		LinkedHashMap<pollutantTypes,Pollutant> whatPollutans=pollutantsCaused(wm,p);
+		
+		Vector<WaterMass> wpaux = new Vector<WaterMass> ();
+		
+		for(WaterMass aw:wm.getOriginMass()){
+			if(existsIrregulation(aw,p,whatPollutans))wpaux.add(aw);
+		}
+		
+		return wpaux;
+	}
+	
+	
+	public WaterMass mostProbablyGuilted(WaterMass wm, Permisions p){
+		
+		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
+		
+		LinkedHashMap<pollutantTypes,Pollutant> whatPollutans=pollutantsCaused(wm,p);
+		
+		Double amountilegal=0.0;
+		WaterMass m= null;
+		
+		for(WaterMass aw:wm.getOriginMass()){
+			
+			Double auxamount = 0.0;
+			for(Pollutant po:aw.getPollutants()){
+				
+				if(whatPollutans.get(po.getType()) != null ){
+					Double allowed =p.amountPollutant(po.getType());	
+					if(allowed < po.getAmount())auxamount += (po.getAmount()-allowed);
+				}
+			}
+			
+			if(auxamount>amountilegal)m=aw;
+		}
+		
+		return m;
+	}
+	
 	
 	
 }
