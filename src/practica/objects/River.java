@@ -1,9 +1,13 @@
 package practica.objects;
 
+import java.util.LinkedHashMap;
+import java.util.Vector;
+
 public class River extends Localization {
-	String name;
-	int km;
-	public River(String name, int km) {
+	private String name;
+	private Integer km;
+	
+	public River(String name, Integer km) {
 		this.name = name;
 		this.km = km;
 	}
@@ -13,10 +17,10 @@ public class River extends Localization {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public int getKm() {
+	public Integer getKm() {
 		return km;
 	}
-	public void setKm(int km) {
+	public void setKm(Integer km) {
 		this.km = km;
 	}
 }

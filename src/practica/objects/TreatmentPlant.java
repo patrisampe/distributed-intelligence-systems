@@ -1,5 +1,9 @@
 package practica.objects;
 
-public class TreatmentPlant {
+import java.util.LinkedHashMap;
 
+public class TreatmentPlant {
+	LinkedHashMap<pollutantTypes,Integer> pe = new LinkedHashMap<>(); //pollution eliminate per unit time
+	
+	
 }
