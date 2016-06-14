@@ -34,60 +34,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#OWLObjectProperty_07e0feea_b1cb_486a_9bb5_13be8363d4db -->
-
-    <owl:ObjectProperty rdf:about="&riusSID;OWLObjectProperty_07e0feea_b1cb_486a_9bb5_13be8363d4db">
-        <rdfs:label xml:lang="en">existanceTime</rdfs:label>
-        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
-        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2006/time#TemporalEntity"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7 -->
-
-    <owl:ObjectProperty rdf:about="&riusSID;OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7">
-        <rdfs:label xml:lang="en">originMass</rdfs:label>
-        <rdfs:domain rdf:resource="&riusSID;LocalizedWaterMass"/>
-        <rdfs:range rdf:resource="&riusSID;LocalizedWaterMass"/>
-        <owl:inverseOf rdf:resource="&riusSID;OWLObjectProperty_69da710a_d315_401a_adb6_3bb284555378"/>
-        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#OWLObjectProperty_69da710a_d315_401a_adb6_3bb284555378 -->
-
-    <owl:ObjectProperty rdf:about="&riusSID;OWLObjectProperty_69da710a_d315_401a_adb6_3bb284555378">
-        <rdfs:label xml:lang="en">sonMass</rdfs:label>
-        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb -->
-
-    <owl:ObjectProperty rdf:about="&riusSID;OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb">
-        <rdfs:label xml:lang="en">hasLocalization</rdfs:label>
-        <rdfs:range rdf:resource="&riusSID;Localization"/>
-        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
-        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
-    </owl:ObjectProperty>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#OWLObjectProperty_b210c9ae_c1c2_4a33_95a7_46443436ba19 -->
-
-    <owl:ObjectProperty rdf:about="&riusSID;OWLObjectProperty_b210c9ae_c1c2_4a33_95a7_46443436ba19">
-        <rdfs:label xml:lang="en">hasPollutant</rdfs:label>
-        <rdfs:range rdf:resource="&riusSID;PollutantRelation"/>
-        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
-        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PermitProperties -->
 
     <owl:ObjectProperty rdf:about="&riusSID;PermitProperties"/>
@@ -130,6 +76,28 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#hasLocalization -->
+
+    <owl:ObjectProperty rdf:about="&riusSID;hasLocalization">
+        <rdfs:label xml:lang="en">hasLocalization</rdfs:label>
+        <rdfs:range rdf:resource="&riusSID;Localization"/>
+        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
+        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#hasPollutant -->
+
+    <owl:ObjectProperty rdf:about="&riusSID;hasPollutant">
+        <rdfs:label xml:lang="en">hasPollutant</rdfs:label>
+        <rdfs:range rdf:resource="&riusSID;PollutantRelation"/>
+        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
+        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#hasRule -->
 
     <owl:ObjectProperty rdf:about="&riusSID;hasRule">
@@ -140,12 +108,33 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#originMass -->
+
+    <owl:ObjectProperty rdf:about="&riusSID;originMass">
+        <rdfs:label xml:lang="en">originMass</rdfs:label>
+        <rdfs:domain rdf:resource="&riusSID;LocalizedWaterMass"/>
+        <rdfs:range rdf:resource="&riusSID;LocalizedWaterMass"/>
+        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
+        <owl:inverseOf rdf:resource="&riusSID;sonMass"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#pollutantType -->
 
     <owl:ObjectProperty rdf:about="&riusSID;pollutantType">
         <rdfs:range rdf:resource="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#Pollutant"/>
         <rdfs:domain rdf:resource="&riusSID;PollutantRelation"/>
         <rdfs:subPropertyOf rdf:resource="&riusSID;PollutantRelationProperties"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#sonMass -->
+
+    <owl:ObjectProperty rdf:about="&riusSID;sonMass">
+        <rdfs:label xml:lang="en">sonMass</rdfs:label>
+        <rdfs:subPropertyOf rdf:resource="&riusSID;WaterMassProperties"/>
     </owl:ObjectProperty>
     
 
@@ -351,6 +340,24 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#existanceTimeEnd -->
+
+    <owl:DatatypeProperty rdf:about="&riusSID;existanceTimeEnd">
+        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
+        <rdfs:range rdf:resource="&xsd;long"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#existanceTimeStart -->
+
+    <owl:DatatypeProperty rdf:about="&riusSID;existanceTimeStart">
+        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
+        <rdfs:range rdf:resource="&xsd;long"/>
+    </owl:DatatypeProperty>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#km -->
 
     <owl:DatatypeProperty rdf:about="&riusSID;km">
@@ -447,7 +454,7 @@
         <rdfs:label xml:lang="en">FactoryWaterMass</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&riusSID;OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+                <owl:onProperty rdf:resource="&riusSID;hasLocalization"/>
                 <owl:someValuesFrom rdf:resource="&riusSID;Factory"/>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -470,7 +477,7 @@
         <rdfs:label xml:lang="en">LocalizedWaterMass</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&riusSID;OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+                <owl:onProperty rdf:resource="&riusSID;hasLocalization"/>
                 <owl:someValuesFrom rdf:resource="&riusSID;Localization"/>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -494,7 +501,7 @@
         <rdfs:label xml:lang="en">MeteorogicalWaterMass</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&riusSID;OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+                <owl:onProperty rdf:resource="&riusSID;hasLocalization"/>
                 <owl:someValuesFrom rdf:resource="&riusSID;Meteorogical"/>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -553,7 +560,7 @@
         <rdfs:label xml:lang="en">RiverWaterMass</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&riusSID;OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+                <owl:onProperty rdf:resource="&riusSID;hasLocalization"/>
                 <owl:someValuesFrom rdf:resource="&riusSID;River"/>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -585,7 +592,7 @@
         <rdfs:label xml:lang="en">SewageWaterMass</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&riusSID;OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+                <owl:onProperty rdf:resource="&riusSID;hasLocalization"/>
                 <owl:someValuesFrom rdf:resource="&riusSID;Sewage"/>
             </owl:Restriction>
         </owl:equivalentClass>
@@ -608,7 +615,7 @@
         <rdfs:label xml:lang="en">TreatedWaterMass</rdfs:label>
         <owl:equivalentClass>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="&riusSID;OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+                <owl:onProperty rdf:resource="&riusSID;hasLocalization"/>
                 <owl:someValuesFrom rdf:resource="&riusSID;TreatmentPlant"/>
             </owl:Restriction>
         </owl:equivalentClass>
