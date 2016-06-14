@@ -1,4 +1,4 @@
-PRACTICA DE SID
+﻿PRACTICA DE SID
 ----------------
 Segueix una estructura de TODO, organitzat per punts.
 Probablement es bona idea posar "subpunts" a les coses mes complexes
@@ -15,6 +15,23 @@ Probablement es bona idea posar "subpunts" a les coses mes complexes
 
 [ ] Eficiencia: Com ja vam parlar amb el profe, costa de decidir, no recordo
 	si vam arribar a alguna conclusio. En qualsevol cas podem inventarnos
-	qualsevol mesura mes o menys logica i andando
+	qualsevol mesura mes o menys logica i andando---> fet
+
+
+COSES A FER:
+
+[ ] Control Errors:
+
+	- Una massa no pot tenir dos fills o bé fer una funció que divideixi una massa d'aigua en dos.
+	
+	- Una planta de tractament no pot tenir més una capacitat màxima en un instant de temps no pot tenir més litres que aixo
+
+	- En les funcions proof, informar a l'usuari on es produirà un error
+
+	- En les altres funcions, tirar excepcions.
+
+	- Evitar poder posar una massa d'aigua dins d'un lloc que ja té capacitat màxima (planta tractament)
+
+ 
 
 

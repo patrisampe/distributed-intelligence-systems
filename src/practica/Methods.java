@@ -100,9 +100,44 @@ public class Methods {
 		}
 		Vector<WaterMass> originMass = wm.getOriginMass();
 		originMass.add(wm);
-		return new WaterMass(poNew,originMass, wm.getLiters(),existanceTime,tp);
+		
+		System.out.println("USUARI VOLEM QUE SAPIGA QUE AQUESTA MASSA D'AIGUA JA ES PARE D'ALGUNA MASSA D'AIGUA");
+		
+		long end = (long) (existanceTime+time);
+		
+		return new WaterMass(poNew,originMass, wm.getLiters(),existanceTime,end,tp);
 	}
 	
+	
+	public static WaterMass depureMass(WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime) throws Exception{
+		
+		if(wm.getSonMass().isEmpty()){
+			 throw new Exception("HEU DE POSAR UNA MASSA QUE NO SIGUI PARE DE CAP MASSA");
+			
+		}
+		
+		Double time = calculateTime(wm,tp,p);	
+		
+		ArrayList<Pollutant> poNew = new ArrayList<>();
+
+		for( Pollutant po:wm.getPollutants() ){
+			
+		    Double unitpertime=tp.amountPollutant(po.getType());
+		    Double newAmount= po.getAmount() - unitpertime*time;
+		    
+		    Pollutant newPo = new Pollutant("pollutant"+UUID.randomUUID(),po.getUnit(),po.getType(),newAmount);
+		    poNew.add(newPo);
+		    
+		}
+		
+		Vector<WaterMass> originMass = wm.getOriginMass();
+		originMass.add(wm);
+		long end = (long) (existanceTime+time);
+		
+		
+		wm.setExistanceTimeEnd(end);
+		return new WaterMass(poNew,originMass, wm.getLiters(),existanceTime,end,tp);
+	}
 	
 	public static boolean permited(WaterMass wm, RuleTable p){
 		
@@ -208,6 +243,8 @@ public class Methods {
 		return mean/howmany;
 		
      }
+	
+	
 	
 	
 	

@@ -606,5 +606,19 @@ ont.loadWaterMasses();
 		
 	} 
 	
+	public void ontodepureMass(WaterMass w, TreatmentPlant tp, RuleTable p,long existanceTime) {
+	    
+		
+		try {
+			WaterMass mwnew=Methods.depureMass(w, tp, p, existanceTime);
+		    updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
+			addWaterMass(mwnew.getIdentificador(),mwnew);
+			waterMasses.put(mwnew.getIdentificador(), mwnew);
+			} catch (Exception e) {System.out.println(e.getMessage()).}
+		
+		
+		
+	} 
+	
 	
 }

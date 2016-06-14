@@ -3,8 +3,17 @@ package practica.objects;
 import java.util.LinkedHashMap;
 
 public class TreatmentPlant extends Localization{
-	LinkedHashMap<String,Double> pe = new LinkedHashMap<>(); //pollution eliminate per unit time per liter
+	private LinkedHashMap<String,Double> pe = new LinkedHashMap<>(); //pollution eliminate per unit time per liter
+	private Double maxWater;
 	
+	public Double getMaxWater() {
+		return maxWater;
+	}
+
+	public void setMaxWater(Double maxWater) {
+		this.maxWater = maxWater;
+	}
+
 	public LinkedHashMap<String, Double> getPe() {
 		return pe;
 	}
