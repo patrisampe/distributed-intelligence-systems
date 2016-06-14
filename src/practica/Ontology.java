@@ -88,11 +88,13 @@ System.out.println("A1 " );
 for(Pollutant p:mw.getPollutants()){
 	String rri = PREF+UUID.randomUUID();
 	Individual ipr = onti.createIndividual(rri,pr);
-	System.out.println("A2 " +rri + " maybe "+ ipr.getLocalName());
+	System.out.println("A2 " +rri + " maybe "+ ipr.getLocalName() + " class "+ ipr.getOntClass().getLocalName());
 	Individual rr = onti.getIndividual(PREF+p.getType());
 	System.out.println("A3 " +rr.getLocalName() +  " " + rr.getOntClass().getLocalName());
 	Property po = onti.getProperty(PREF+"pollutantType");
-	//System.out.println("A4" );
+	System.out.println("A4 "+ po.getLocalName() );
+	
+	
 	ipr.addLiteral(po, rr);			
 	//System.out.println("AA5" );
 	po = onti.getProperty(PREF+"pollutionAmount");
