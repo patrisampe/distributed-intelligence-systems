@@ -7,15 +7,25 @@ import java.util.Vector;
 
 
 public class WaterMass {
-	String identificador;
+	public String identificador;
 	private Localization place;
     private ArrayList<Pollutant> pollutants;
 	private Vector<WaterMass> originMass;
-	private Vector<WaterMass> sonMass;//Pot ser null (creada per nosaltres, no raonada)
+	private Vector<WaterMass> sonMass;//Pot ser null nomes creada per els raonadors, no en fem res
 	private Long existanceTimeStart;
 	private Long existanceTimeEnd;
 	private double liters;
 	
+	
+	
+	public WaterMass(String identificador) {
+		super();
+		this.identificador = identificador;
+		pollutants = new ArrayList<Pollutant>();
+		originMass = new Vector<WaterMass>();
+		sonMass = new Vector<WaterMass>();
+	}
+
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
 		super();
 		this.pollutants = pollutants;
@@ -97,6 +107,32 @@ public class WaterMass {
 	}
 	public void setLiters(double liters) {
 		this.liters = liters;
+	}
+
+	public String getIdentificador() {
+		return identificador;
+	}
+
+	public void setIdentificador(String identificador) {
+		this.identificador = identificador;
+	}
+
+	public void setExistanceTimeStart(Long existanceTimeStart) {
+		this.existanceTimeStart = existanceTimeStart;
+	}
+
+	public void setExistanceTimeEnd(Long existanceTimeEnd) {
+		this.existanceTimeEnd = existanceTimeEnd;
+	}
+	
+	public void pushOriginMass( WaterMass w ){
+		this.originMass.addElement(w);
+	}
+	public void pushSonMass( WaterMass w ){
+		this.sonMass.addElement(w);
+	}
+	public void pushPollutant( Pollutant p ){
+		this.pollutants.add(p);
 	}
 	
 }

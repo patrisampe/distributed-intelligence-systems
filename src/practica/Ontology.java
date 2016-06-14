@@ -9,12 +9,19 @@ import org.apache.jena.ontology.OntModel;
 import org.apache.jena.ontology.OntModelSpec;
 import org.apache.jena.ontology.OntResource;
 import org.apache.jena.rdf.model.ModelFactory;
+import org.apache.jena.rdf.model.Property;
+import org.apache.jena.rdf.model.RDFNode;
+import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.rdf.model.Statement;
+import org.apache.jena.rdf.model.StmtIterator;
+
 import practica.objects.*;
 import java.util.Vector;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.Scanner;
-
+import java.util.UUID;
 
 public class Ontology {
 	
@@ -25,7 +32,8 @@ public class Ontology {
 			Ontology ont = new Ontology();
 			ont.read("onto/rius.owl");
 			
-			ont.addWaterMass(null);
+			//ont.addWaterMass(null);
+			ont.loadWaterMasses();
 			
 			
 			
@@ -42,6 +50,8 @@ public class Ontology {
 	LinkedHashMap<String,WaterMass> waterMasses = new LinkedHashMap<String,WaterMass>();
 	LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
 
+	
+	
 	private OntClass getClassFromLabel(String label) {
 		Iterator<OntClass> it = ont.listClasses();
 		while(it.hasNext()) {
@@ -88,11 +98,9 @@ public class Ontology {
 	}
 	
 	public void addWaterMass(String id) {
-		OntClass waterMass = this.getClassFromLabel("WaterMass");
+		OntClass waterMass = ont.getOntClass(PREF + "WaterMass");
+		Individual i = ont.createIndividual(PREF+id,waterMass);
 		
-		//System.out.println(waterMass);
-		//Individual i = ont.createIndividual(PREF+id,waterMass);
-		System.out.println(ont.getOntClass(PREF + "WaterMass"));
 		
 		//OntClass oc = this.getClassFromLabel("WaterMass");
 		
@@ -102,11 +110,70 @@ public class Ontology {
 		return null;
 	}
 	
-	public void loadPollutants()
+	private String removePrefix(String s) {
+		return s.substring(PREF.length(),s.length());
+	}
+	
+	public void loadWaterMasses()
 	{
-		Individual instancia = ont.getIndividual(PREF+"Nitrogen");
-		OntClass classe = ont.getOntClass(PREF+"Pollutant");
-		System.out.println(instancia.getOntClass().equals(classe));
+		OntClass classe = ont.getOntClass(PREF + "WaterMass");
+		System.out.println(classe);
+		
+		Iterator<Individual> iter = ont.listIndividuals(classe);
+		
+		while( iter.hasNext() ) {
+			Individual i = iter.next();
+			String name = i.getLocalName();
+			System.out.println("Massa:"+name);
+			this.waterMasses.put(name, new WaterMass(name));
+		}
+		iter = ont.listIndividuals(classe);
+		while( iter.hasNext() ) {
+			//Afegint fills
+			Individual i = iter.next();
+			String name = i.getLocalName();
+			StmtIterator it = i.listProperties();
+			while ( it.hasNext() ) {
+				Statement s = it.next();
+				if( s.getPredicate().toString().equals(PREF+"originMass")) {
+					String ori = removePrefix(s.getObject().toString());
+					System.out.println(ori);
+					WaterMass wmo = waterMasses.get(ori);
+					waterMasses.get(name).pushOriginMass(wmo);
+					waterMasses.get(ori).pushSonMass(wmo);
+				} else if( s.getPredicate().toString().equals(PREF+"hasLocalization") ){
+					String loc = removePrefix(s.getObject().toString());
+					waterMasses.get(name).setPlace(this.places.get(loc));
+					System.out.println(loc);
+				} else if( s.getPredicate().toString().equals(PREF+"hasPollutant") ){
+					//Busquem tipus i quantiat
+					String rel = s.getObject().toString();
+					Individual polRel = ont.getIndividual(rel);
+					Property p = ont.getProperty(PREF+"pollutantType");
+					String poll = removePrefix(polRel.getProperty(p).getObject().toString());
+					System.out.println(poll);
+					p = ont.getProperty(PREF+"pollutionAmount");
+					Double d = polRel.getProperty(p).getDouble();
+					//Busquem unitat
+					Individual pi = ont.getIndividual(PREF+poll);
+					p = ont.getProperty(PREF+"pollutionUnit");
+					String unit = pi.getProperty(p).getString();
+					System.out.println(unit +" "+poll+" "+d);
+					waterMasses.get(name).getPollutants().add(new Pollutant(unit,poll,d));
+				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeStart") ){
+					
+				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeEnd") ){
+					
+				}
+			}
+			
+			
+		}
+		/*
+		for( WaterMass wm1:waterMasses.values()) {
+			String id = wm1.getIdentificador();
+		}*/
+		
 	}
 
 	
