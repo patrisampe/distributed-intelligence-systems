@@ -65,13 +65,13 @@ public class Ontology {
 
 Localization l = new Localization("Fact1");
 Pollutant a = new Pollutant("patri1","unit1", "Lead", 1);
-Pollutant b = new Pollutant("patri2","unit2", "polRel2", 1);
+
 Pollutant c = new Pollutant("patri3","unit3", "Nitrogen", 1);
 
 
 ArrayList<Pollutant> aux = new ArrayList<Pollutant>();
 aux.add(a);
-aux.add(b);
+
 aux.add(c);
 
 
@@ -88,18 +88,18 @@ System.out.println("A1 " );
 for(Pollutant p:mw.getPollutants()){
 	String rri = PREF+UUID.randomUUID();
 	Individual ipr = onti.createIndividual(rri,pr);
-	System.out.println("A2 " +rri);
+	System.out.println("A2 " +rri + " maybe "+ ipr.getLocalName());
 	Individual rr = onti.getIndividual(PREF+p.getType());
-	System.out.println("A3 " +rr.getLocalName());
+	System.out.println("A3 " +rr.getLocalName() +  " " + rr.getOntClass().getLocalName());
 	Property po = onti.getProperty(PREF+"pollutantType");
-	System.out.println("A4" );
+	//System.out.println("A4" );
 	ipr.addLiteral(po, rr);			
-	System.out.println("AA5" );
+	//System.out.println("AA5" );
 	po = onti.getProperty(PREF+"pollutionAmount");
-	System.out.println("A6" );
+	//System.out.println("A6" );
 	ipr.addLiteral(po, p.getAmount());
-	System.out.println("AA8 " );
-	ok.addLiteral(ok, ipr);
+	//System.out.println("AA8 " );
+	in2.addLiteral(ok, ipr);
 	
 	System.out.println("AA7 " );
 //	in.addLiteral(ok, );
@@ -257,6 +257,7 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 		//String rel = s.getObject().toString();
 		//Individual polRel = ont.getIndividual(rel);
 		Property p = ont.getProperty(PREF+"pollutantType");
+		//System.out.println("BABABAB" +polRel.getProperty(p).toString());
 		String poll = removePrefix(polRel.getProperty(p).getObject().toString());
 		System.out.println(poll);
 		p = ont.getProperty(PREF+"pollutionAmount");
