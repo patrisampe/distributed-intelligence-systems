@@ -6,7 +6,7 @@ public class RuleTable {
 
 	Integer id;
 	
-	LinkedHashMap<pollutantTypes,Double> maxAllowed = new LinkedHashMap<>();
+	LinkedHashMap<String,Double> maxAllowed = new LinkedHashMap<>();
 
 	public Integer getId() {
 		return id;
@@ -16,15 +16,15 @@ public class RuleTable {
 		this.id = id;
 	}
 
-	public LinkedHashMap<pollutantTypes, Double> getMaxAllowed() {
+	public LinkedHashMap<String, Double> getMaxAllowed() {
 		return maxAllowed;
 	}
 
-	public void setMaxAllowed(LinkedHashMap<pollutantTypes, Double> allowed) {
+	public void setMaxAllowed(LinkedHashMap<String, Double> allowed) {
 		this.maxAllowed = allowed;
 	}
 
-	public Double getMaxAmountPollutant(pollutantTypes pt){
+	public Double getMaxAmountPollutant(String pt){
 		
 		return maxAllowed.get(pt);		
 	}
@@ -36,8 +36,8 @@ public class RuleTable {
 		return false;
 	}
 	
-	public RuleTable(Integer id, LinkedHashMap<pollutantTypes, Double> maxAllowed,
-			LinkedHashMap<pollutantTypes, Double> minAllowed) {
+	public RuleTable(Integer id, LinkedHashMap<String, Double> maxAllowed,
+			LinkedHashMap<String, Double> minAllowed) {
 		this.id = id;
 		this.maxAllowed = maxAllowed;
 	} 
