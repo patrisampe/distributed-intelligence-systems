@@ -37,7 +37,7 @@ public class Ontology {
 			ont.loadLocalizations();
 			ont.loadWaterMasses();
 			
-<<<<<<< HEAD
+
 			OntModel onti= ont.aux();
 			
 			Individual i = onti.getIndividual(ont.aux2()+"wm2");
@@ -106,20 +106,21 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 			long ry=126;
 		i.addLiteral(ok, ry);
 
-=======
+
 			System.out.println("RULES:");
 			for( RuleTable r:ont.rules.values() ) {
 				System.out.println(r);
 			}
 			System.out.println("Localization");
-			for( Localization l:ont.places.values()) {
-				System.out.println(l);
+			
+			for( Localization lu:ont.places.values()) {
+				System.out.println(lu);
 			}
 			System.out.println("WaterMasses");
 			for( WaterMass wm:ont.waterMasses.values()) {
 				System.out.println(wm);
 			}
->>>>>>> 2cf703f16787a8496b6ba4ef984a83765993a531
+
 			
 			System.out.println("nameeee "+i.getProperty(ok));
 			
