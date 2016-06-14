@@ -26,6 +26,7 @@ public class Methods {
 			amount += wm.getLiters();
 		}
 		
+		
 		return new WaterMass(new ArrayList<Pollutant>(lm.values()),new Vector<WaterMass>(wms),amount);
 	}
 	
