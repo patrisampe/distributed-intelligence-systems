@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Vector;
 
-import practica.Pollutatnt;
+
 
 public class WaterMass {
 	String identificador;
@@ -34,7 +34,7 @@ public class WaterMass {
 		this.existanceTimeEnd = null;
 		this.liters = liters;
 	}
-	public WaterMass(Collection<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,
+	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,
 			long existanceTimeStart, long existanceTimeEnd) {
 		super();
 		this.pollutants = pollutants;
@@ -59,15 +59,15 @@ public class WaterMass {
 	}
 	public ArrayList<Pollutant> getPollutants() {
 		return pollutants;
-<<<<<<< HEAD
 	}
+
 	public void setPollutants(ArrayList<Pollutant> pollutants) {
-=======
-	}this.existanceTimeStart = java.lang.System.currentTimeMillis();
-	public void setPollutants(Collection<Pollutant> pollutants) {
->>>>>>> a2c6ed15b120ac0cd4a1f4081ce9d1ac9ae050c9
+
 		this.pollutants = pollutants;
 	}
+	
+	
+//this.existanceTimeStart = java.lang.System.currentTimeMillis();
 	public Vector<WaterMass> getOriginMass() {
 		return originMass;
 	}
