@@ -1,6 +1,6 @@
 package practica.objects;
 
 public enum pollutantTypes {
-	mercury,nitrogen,altres;
+	Mercury,Lead,Nitrogen,Phosphorus;
 
 }

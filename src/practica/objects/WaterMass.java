@@ -7,18 +7,21 @@ import java.util.Vector;
 import practica.Pollutatnt;
 
 public class WaterMass {
+	String identificador;
 	private Localization place;
     private ArrayList<Pollutant> pollutants;
 	private Vector<WaterMass> originMass;
 	private Vector<WaterMass> sonMass;//Pot ser null (creada per nosaltres, no raonada)
-	private long existanceTime;
+	private Long existanceTimeStart;
+	private Long existanceTimeEnd;
 	private double liters;
 	
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
 		super();
 		this.pollutants = pollutants;
 		this.originMass = originMass;
-		this.existanceTime = existanceTime;
+		this.existanceTimeStart = existanceTime;
+		this.existanceTimeEnd = null;
 		this.liters = liters;
 		this.place = l;
 	}	
@@ -27,7 +30,17 @@ public class WaterMass {
 		super();
 		this.pollutants = pollutants;
 		this.originMass = originMass;
-		this.existanceTime = existanceTime;
+		this.existanceTimeStart = existanceTime;
+		this.existanceTimeEnd = null;
+		this.liters = liters;
+	}
+	public WaterMass(Collection<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,
+			long existanceTimeStart, long existanceTimeEnd) {
+		super();
+		this.pollutants = pollutants;
+		this.originMass = originMass;
+		this.existanceTimeStart = existanceTimeStart;
+		this.existanceTimeEnd = existanceTimeEnd;
 		this.liters = liters;
 	}
 	public WaterMass(ArrayList<Pollutant> arrayList, Vector<WaterMass> originMass, double liters) {
@@ -35,7 +48,8 @@ public class WaterMass {
 		this.pollutants = arrayList;
 		this.originMass = originMass;
 		this.liters = liters;
-		this.existanceTime = java.lang.System.currentTimeMillis();
+		this.existanceTimeStart = java.lang.System.currentTimeMillis();
+		this.existanceTimeEnd = null;
 	}
 	public Localization getPlace() {
 		return place;
@@ -45,8 +59,13 @@ public class WaterMass {
 	}
 	public ArrayList<Pollutant> getPollutants() {
 		return pollutants;
+<<<<<<< HEAD
 	}
 	public void setPollutants(ArrayList<Pollutant> pollutants) {
+=======
+	}this.existanceTimeStart = java.lang.System.currentTimeMillis();
+	public void setPollutants(Collection<Pollutant> pollutants) {
+>>>>>>> a2c6ed15b120ac0cd4a1f4081ce9d1ac9ae050c9
 		this.pollutants = pollutants;
 	}
 	public Vector<WaterMass> getOriginMass() {
@@ -61,11 +80,17 @@ public class WaterMass {
 	public void setSonMass(Vector<WaterMass> sonMass) {
 		this.sonMass = sonMass;
 	}
-	public long getExistanceTime() {
-		return existanceTime;
+	public long getExistanceTimeStart() {
+		return existanceTimeStart;
 	}
-	public void setExistanceTime(long existanceTime) {
-		this.existanceTime = existanceTime;
+	public long getExistanceTimeEnd() {
+		return existanceTimeEnd;
+	}
+	public void setExistanceTimeStart(long existanceTime) {
+		this.existanceTimeStart = existanceTime;
+	}
+	public void setExistanceTimeEnd(long existanceTime) {
+		this.existanceTimeEnd = existanceTime;
 	}
 	public double getLiters() {
 		return liters;
