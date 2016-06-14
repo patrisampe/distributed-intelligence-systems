@@ -65,17 +65,14 @@ public class Methods {
 		
 		Double time = calculateTime(wm,tp,p);	
 		
-
 		ArrayList<Pollutant> poNew = new ArrayList<>();
 
 		for( Pollutant po:wm.getPollutants() ){
 			
-		    		
 		    Double unitpertime=tp.amountPollutant(po.getType());
 		    Double newAmount= po.getAmount() - unitpertime*time;
 		    
 		    Pollutant newPo = new Pollutant(po.getUnit(),po.getType(),newAmount);
-		    
 		    poNew.add(newPo);
 		    
 		}
