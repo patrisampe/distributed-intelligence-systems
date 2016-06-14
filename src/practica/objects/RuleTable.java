@@ -4,17 +4,10 @@ import java.util.LinkedHashMap;
 
 public class RuleTable {
 
-	Integer id;
+	String id;
 	
 	LinkedHashMap<String,Double> maxAllowed = new LinkedHashMap<>();
 
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public LinkedHashMap<String, Double> getMaxAllowed() {
 		return maxAllowed;
@@ -36,10 +29,8 @@ public class RuleTable {
 		return false;
 	}
 	
-	public RuleTable(Integer id, LinkedHashMap<String, Double> maxAllowed,
-			LinkedHashMap<String, Double> minAllowed) {
+	public RuleTable(String id) {
 		this.id = id;
-		this.maxAllowed = maxAllowed;
 	} 
 	
 	

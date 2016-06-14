@@ -115,22 +115,49 @@ public class Ontology {
 	}
 	
 	public Pollutant getPollutantRelation(Individual polRel) {
-		String rel = s.getObject().toString();
+		
+		//Busquem tipus i quantiat
+		//String rel = s.getObject().toString();
+		//Individual polRel = ont.getIndividual(rel);
+		Property p = ont.getProperty(PREF+"pollutantType");
+		String poll = removePrefix(polRel.getProperty(p).getObject().toString());
+		System.out.println(poll);
+		p = ont.getProperty(PREF+"pollutionAmount");
+		Double d = polRel.getProperty(p).getDouble();
+		//Busquem unitat
+		Individual pi = ont.getIndividual(PREF+poll);
+		p = ont.getProperty(PREF+"pollutionUnit");
+		String unit = pi.getProperty(p).getString();
+		String id = removePrefix(polRel.toString());
+		System.out.println(id +" "+unit +" "+poll+" "+d);
+		Pollutant polly = new Pollutant(id,unit,poll,d);
+		return polly;
+		//pollutants.put(id,polly);
+	}
+	
+	public void loadPermitsRegulations()
+	{
+		OntClass classe = ont.getOntClass(PREF + "Permit");
+		Iterator<Individual> iter = ont.listIndividuals(classe);
+		while( iter.hasNext() ) {
+			Individual i = iter.next();
+			String id = i.getLocalName();
+			Permit tp = new Permit(id);
+			
+			StmtIterator it = i.listProperties();
+			while ( it.hasNext() ) {
+				Statement s = it.next();
+				if( s.getPredicate().toString().equals(PREF+"reducesPollutant") ){
+					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
-					Property p = ont.getProperty(PREF+"pollutantType");
-					String poll = removePrefix(polRel.getProperty(p).getObject().toString());
-					System.out.println(poll);
-					p = ont.getProperty(PREF+"pollutionAmount");
-					Double d = polRel.getProperty(p).getDouble();
-					//Busquem unitat
-					Individual pi = ont.getIndividual(PREF+poll);
-					p = ont.getProperty(PREF+"pollutionUnit");
-					String unit = pi.getProperty(p).getString();
-					String id = removePrefix(polRel.toString());
-					System.out.println(id +" "+unit +" "+poll+" "+d);
-					Pollutant polly = new Pollutant(id,unit,poll,d);
-					pollutants.put(id,polly);
-					waterMasses.get(name).getPollutants().add(polly);
+					Pollutant polly = this.getPollutantRelation(polRel);
+					double amount = polly.getAmount();
+					String pollutant = polly.getId();
+					tp.getPe().put(pollutant, amount);
+				}
+			}
+		}
+		
 	}
 	
 	public void loadLocalizations()
@@ -155,16 +182,33 @@ public class Ontology {
 			this.places.put(id, new River(id,name,km));
 		}
 		/////////
-		classe = ont.getOntClass(PREF + "River");
+		classe = ont.getOntClass(PREF + "TreatmentPlant");
 		iter = ont.listIndividuals(classe);
 		while( iter.hasNext() ) {
 			Individual i = iter.next();
 			String id = i.getLocalName();
-			Property ok = ont.getProperty(PREF+"km");
-			Property on = ont.getProperty(PREF+"name");
-			Integer km = i.getProperty(ok).getInt();
-			String name = i.getProperty(on).getString();
-			this.places.put(id, new River(id,name,km));
+			TreatmentPlant tp = new TreatmentPlant(id);
+			
+			StmtIterator it = i.listProperties();
+			while ( it.hasNext() ) {
+				Statement s = it.next();
+				if( s.getPredicate().toString().equals(PREF+"reducesPollutant") ){
+					String rel = s.getObject().toString();
+					Individual polRel = ont.getIndividual(rel);
+					Pollutant polly = this.getPollutantRelation(polRel);
+					double amount = polly.getAmount();
+					String pollutant = polly.getId();
+					tp.getPe().put(pollutant, amount);
+				}
+			}
+		}
+		//////
+		classe = ont.getOntClass(PREF + "Sewage");
+		iter = ont.listIndividuals(classe);
+		while( iter.hasNext() ) {
+			Individual i = iter.next();
+			String id = i.getLocalName();
+			this.places.put(id, new Factory(id));
 		}
 		
 
@@ -205,6 +249,7 @@ public class Ontology {
 					//Busquem tipus i quantiat
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
+					/*
 					Property p = ont.getProperty(PREF+"pollutantType");
 					String poll = removePrefix(polRel.getProperty(p).getObject().toString());
 					System.out.println(poll);
@@ -217,6 +262,9 @@ public class Ontology {
 					String id = removePrefix(polRel.toString());
 					System.out.println(id +" "+unit +" "+poll+" "+d);
 					Pollutant polly = new Pollutant(id,unit,poll,d);
+					*/
+					Pollutant polly = this.getPollutantRelation(polRel);
+					String id = polly.getId();
 					pollutants.put(id,polly);
 					waterMasses.get(name).getPollutants().add(polly);
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeStart") ){

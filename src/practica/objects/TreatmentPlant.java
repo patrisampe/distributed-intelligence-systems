@@ -13,9 +13,8 @@ public class TreatmentPlant extends Localization{
 		this.pe = pe;
 	}
 
-	public TreatmentPlant(String id, LinkedHashMap<String, Double> pe) {
+	public TreatmentPlant(String id) {
 		super(id);
-		this.pe = pe;
 	}
 	
 	public void addType(String pt, Double i){
