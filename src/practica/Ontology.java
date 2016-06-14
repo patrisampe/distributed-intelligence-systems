@@ -37,6 +37,7 @@ public class Ontology {
 			ont.loadLocalizations();
 			ont.loadWaterMasses();
 			
+<<<<<<< HEAD
 			OntModel onti= ont.aux();
 			
 			Individual i = onti.getIndividual(ont.aux2()+"wm2");
@@ -105,6 +106,20 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 			long ry=126;
 		i.addLiteral(ok, ry);
 
+=======
+			System.out.println("RULES:");
+			for( RuleTable r:ont.rules.values() ) {
+				System.out.println(r);
+			}
+			System.out.println("Localization");
+			for( Localization l:ont.places.values()) {
+				System.out.println(l);
+			}
+			System.out.println("WaterMasses");
+			for( WaterMass wm:ont.waterMasses.values()) {
+				System.out.println(wm);
+			}
+>>>>>>> 2cf703f16787a8496b6ba4ef984a83765993a531
 			
 			System.out.println("nameeee "+i.getProperty(ok));
 			
@@ -117,10 +132,10 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 	private OntModel ont;
 	private String PREF = "http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#";
 	
-	LinkedHashMap<String,Pollutant> pollutants = new LinkedHashMap<String,Pollutant>();
-	LinkedHashMap<String,WaterMass> waterMasses = new LinkedHashMap<String,WaterMass>();
-	LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
-	LinkedHashMap<String,RuleTable> rules = new LinkedHashMap<String,RuleTable>();
+	public LinkedHashMap<String,Pollutant> pollutants = new LinkedHashMap<String,Pollutant>();
+	public LinkedHashMap<String,WaterMass> waterMasses = new LinkedHashMap<String,WaterMass>();
+	public LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
+	public LinkedHashMap<String,RuleTable> rules = new LinkedHashMap<String,RuleTable>();
 
 	
 	public OntModel aux(){
@@ -228,12 +243,12 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 			StmtIterator it = i.listProperties();
 			while ( it.hasNext() ) {
 				Statement s = it.next();
-				if( s.getPredicate().toString().equals(PREF+"reducesPollutant") ){
+				if( s.getPredicate().toString().equals(PREF+"hasRule") ){
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
-					String pollutant = polly.getId();
+					String pollutant = polly.getType();
 					p.getMaxAllowed().put(pollutant, amount);
 				}
 			}
@@ -251,12 +266,12 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 			StmtIterator it = i.listProperties();
 			while ( it.hasNext() ) {
 				Statement s = it.next();
-				if( s.getPredicate().toString().equals(PREF+"reducesPollutant") ){
+				if( s.getPredicate().toString().equals(PREF+"hasRule") ){
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
-					String pollutant = polly.getId();
+					String pollutant = polly.getType();
 					p.getMaxAllowed().put(pollutant, amount);
 				}
 			}
@@ -381,6 +396,9 @@ System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeEnd") ){
 					Long l = s.getLong();
 					waterMasses.get(name).setExistanceTimeEnd(l);
+				} else if( s.getPredicate().toString().equals(PREF+"hasLiters") ){
+					Double l = s.getDouble();
+					waterMasses.get(name).setLiters(l);
 				}
 			}
 			

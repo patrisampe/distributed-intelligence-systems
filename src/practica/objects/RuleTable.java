@@ -8,6 +8,10 @@ public class RuleTable {
 	
 	LinkedHashMap<String,Double> maxAllowed = new LinkedHashMap<>();
 
+	public String getId()
+	{
+		return id;
+	}
 
 	public LinkedHashMap<String, Double> getMaxAllowed() {
 		return maxAllowed;
@@ -33,5 +37,13 @@ public class RuleTable {
 		this.id = id;
 	} 
 	
+	public String toString()
+	{
+		String r = id+":";
+		for(String s:this.maxAllowed.keySet()) {
+			r+="{"+s+","+maxAllowed.get(s)+"},";
+		}
+		return r+"\n";
+	}
 	
 }
