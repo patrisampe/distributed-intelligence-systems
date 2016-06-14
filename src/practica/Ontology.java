@@ -30,16 +30,85 @@ public class Ontology {
 	public static void main(String[] args) throws Exception {
 		try {
 			Ontology ont = new Ontology();
-			ont.read("onto/rius.owl");
+			ont.read("sid/onto/rius.owl");
 			
 			//ont.addWaterMass(null);
 			ont.loadPermitsRegulations();
 			ont.loadLocalizations();
 			ont.loadWaterMasses();
 			
+			OntModel onti= ont.aux();
 			
+			Individual i = onti.getIndividual(ont.aux2()+"wm2");
+			String PREF = ont.aux2();
+			System.out.println("nameeee " +i.getLocalName() + "clase " + i.getOntClass().getLocalName());
+
+Localization l = new Localization("hola");
+Pollutant a = new Pollutant("patri1","unit1", "Lead", 1);
+Pollutant b = new Pollutant("patri2","unit2", "Lead", 1);
+Pollutant c = new Pollutant("patri3","unit3", "Lead", 1);
+Pollutant d = new Pollutant("patri4","unit4", "Lead", 1);
+
+ArrayList<Pollutant> aux = new ArrayList<Pollutant>();
+aux.add(a);
+aux.add(b);
+aux.add(c);
+aux.add(d);
+
+WaterMass mw= new  WaterMass(aux, new Vector<WaterMass>(), 20,345,l );
+OntClass waterMass = onti.getOntClass(PREF + "WaterMass");
+OntClass pr = onti.getOntClass(PREF + "PollutantRelation");
+Individual in2 = onti.createIndividual(PREF+"patriwm",waterMass);
+Property  L= onti.getProperty(PREF+"hasLocalization");
+in2.addLiteral(L, mw.getPlace().toString());
+Property ok = onti.getProperty(PREF+"hasPollutant");
+System.out.println("A1 " );
+for(Pollutant p:mw.getPollutants()){
+	Individual ipr = onti.createIndividual(PREF+UUID.randomUUID(),pr);
+	System.out.println("A2 " );
+	Individual rr = onti.getIndividual(PREF+p.getType());
+	System.out.println("A3 " +rr.getLocalName());
+	Property po = onti.getProperty(PREF+"pollutantType");
+	System.out.println("A4" );
+	ipr.addLiteral(po, rr);			
+	System.out.println("AA5" );
+	po = onti.getProperty(PREF+"pollutionAmount");
+	System.out.println("A6" );
+	ipr.addLiteral(po, p.getAmount());
+	System.out.println("AA8 " );
+	ok.addLiteral(ok, ipr);
+	
+	System.out.println("AA7 " );
+//	in.addLiteral(ok, );
+	
+}
+
+System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " );
+Ontology ont2 = new Ontology();
+
+
+ont.loadWaterMasses();
+
+System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " );
+
 			
-			ont.write("onto/prova.owl");
+			ok = onti.getProperty(PREF+"existanceTimeEnd");
+			i.addLiteral(ok, 123);
+
+			
+			System.out.println("nameeee "+i.getProperty(ok));
+			
+			i.addLiteral(ok, 125);
+
+			
+			System.out.println("nameeee "+i.getProperty(ok));
+			long ry=126;
+		i.addLiteral(ok, ry);
+
+			
+			System.out.println("nameeee "+i.getProperty(ok));
+			
+			ont.write("sid/onto/prova.owl");
 			//ont.loadPollutants();
 		}catch(Exception e) {System.out.println("Err");throw e;}
 	}
@@ -53,6 +122,15 @@ public class Ontology {
 	LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
 	LinkedHashMap<String,RuleTable> rules = new LinkedHashMap<String,RuleTable>();
 
+	
+	public OntModel aux(){
+		return ont;
+		
+	}
+	public String aux2(){
+		return PREF;
+		
+	}
 	
 	
 	private OntClass getClassFromLabel(String label) {

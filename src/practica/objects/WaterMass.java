@@ -2,6 +2,7 @@ package practica.objects;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.UUID;
 import java.util.Vector;
 
 
@@ -27,7 +28,9 @@ public class WaterMass {
 	}
 
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
-		super();
+		this.identificador= "wm" +UUID.randomUUID().toString();
+		
+		
 		this.pollutants = pollutants;
 		this.originMass = originMass;
 		this.existanceTimeStart = existanceTime;
@@ -37,7 +40,7 @@ public class WaterMass {
 	}	
 	
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime ) {
-		super();
+		this.identificador= "wm" +UUID.randomUUID().toString();
 		this.pollutants = pollutants;
 		this.originMass = originMass;
 		this.existanceTimeStart = existanceTime;
@@ -46,7 +49,7 @@ public class WaterMass {
 	}
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,
 			long existanceTimeStart, long existanceTimeEnd) {
-		super();
+		this.identificador= "wm" +UUID.randomUUID().toString();
 		this.pollutants = pollutants;
 		this.originMass = originMass;
 		this.existanceTimeStart = existanceTimeStart;
@@ -54,7 +57,7 @@ public class WaterMass {
 		this.liters = liters;
 	}
 	public WaterMass(ArrayList<Pollutant> arrayList, Vector<WaterMass> originMass, double liters) {
-		super();
+		this.identificador= "wm" +UUID.randomUUID().toString();
 		this.pollutants = arrayList;
 		this.originMass = originMass;
 		this.liters = liters;
