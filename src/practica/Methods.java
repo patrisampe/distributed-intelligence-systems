@@ -27,7 +27,7 @@ public class Methods {
 	}
 	
 	
-	public long calculateTime(WaterMass wm, TreatmentPlant tp, Permisions p){
+	public long calculateTime(WaterMass wm, TreatmentPlant tp, Permit p){
 		
 		long time = 0;		
 		for( Pollutant po:wm.getPollutants() ){
@@ -50,7 +50,7 @@ public class Methods {
 	}
 	
 	
-	public WaterMass depureMass(WaterMass wm, TreatmentPlant tp, Permisions p,long existanceTime){
+	public WaterMass depureMass(WaterMass wm, TreatmentPlant tp, Permit p,long existanceTime){
 		
 		
 		long time = calculateTime(wm,tp,p);	
@@ -74,7 +74,7 @@ public class Methods {
 	}
 	
 	
-	public boolean permited(WaterMass wm, Permisions p){
+	public boolean permited(WaterMass wm, Permit p){
 		
 		
 	
@@ -88,9 +88,9 @@ public class Methods {
 		return true;
 	}
 	
-	public Permisions whatpermision(WaterMass wm, Vector<Permisions> vp){
+	public Permit whatpermision(WaterMass wm, Vector<Permit> vp){
 		
-		for( Permisions p:vp){
+		for( Permit p:vp){
 			
 		    if(permited(wm,p))return p;
 		    
@@ -98,7 +98,7 @@ public class Methods {
 		return null;
 	}
 	
-	private LinkedHashMap<pollutantTypes,Pollutant> pollutantsCaused(WaterMass wm, Permisions p){
+	private LinkedHashMap<pollutantTypes,Pollutant> pollutantsCaused(WaterMass wm, Permit p){
 		
 		LinkedHashMap<pollutantTypes,Pollutant> lm = new LinkedHashMap<>();
 
@@ -114,7 +114,7 @@ public class Methods {
 		
 	}
 	
-	public boolean existsIrregulation(WaterMass aw, Permisions p, LinkedHashMap<pollutantTypes,Pollutant> whatPollutans){
+	public boolean existsIrregulation(WaterMass aw, Permit p, LinkedHashMap<pollutantTypes,Pollutant> whatPollutans){
 		
 		for(Pollutant po:aw.getPollutants()){
 			
@@ -127,7 +127,7 @@ public class Methods {
 		return false;
 	}
 	
-	public Vector<WaterMass> needInspeccion(WaterMass wm, Permisions p){
+	public Vector<WaterMass> needInspeccion(WaterMass wm, Permit p){
 		
 		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
 		
@@ -143,7 +143,7 @@ public class Methods {
 	}
 	
 	
-	public WaterMass mostProbablyGuilted(WaterMass wm, Permisions p){
+	public WaterMass mostProbablyGuilted(WaterMass wm, Permit p){
 		
 		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
 		

@@ -1,0 +1,618 @@
+<?xml version="1.0"?>
+<Ontology xmlns="http://www.w3.org/2002/07/owl#"
+     xml:base="http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     ontologyIRI="http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID">
+    <Prefix name="" IRI="http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID"/>
+    <Prefix name="owl" IRI="http://www.w3.org/2002/07/owl#"/>
+    <Prefix name="rdf" IRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#"/>
+    <Prefix name="xml" IRI="http://www.w3.org/XML/1998/namespace"/>
+    <Prefix name="xsd" IRI="http://www.w3.org/2001/XMLSchema#"/>
+    <Prefix name="rdfs" IRI="http://www.w3.org/2000/01/rdf-schema#"/>
+    <Import>http://www.w3.org/2006/time</Import>
+    <Import>http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl</Import>
+    <Declaration>
+        <ObjectProperty IRI="#OWLObjectProperty_69da710a_d315_401a_adb6_3bb284555378"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_26490a70_9e39_43b8_a15e_f3cecaa65640"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_d14da751_d4f9_46d3_a778_6bbcc2b02975"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_7e881189_0ef2_45b5_9447_a71f39eece40"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_16211ded_dc02_4f2b_93a1_5250211a31c5"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_ef9837c2_13c4_47e0_9257_2bcac7b76fa7"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#OWLObjectProperty_07e0feea_b1cb_486a_9bb5_13be8363d4db"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#riverData"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#OWLDataProperty_b0f6b9c9_3a68_4ae5_9c04_e8ec6ea94ed5"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_a08e8650_60c7_448a_a717_d7ba05eb32d9"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#LocalizationData"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#pollutionData"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasKm"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_976ccd9b_32d8_4224_a8a7_f852b73b6459"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#OWLDataProperty_678cbbf6_41cd_4221_bce8_737ebbdd392a"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OWLNamedIndividual_52033e70_33cd_4fca_83e1_cc9ee2edd51e"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_47eab066_ff15_4f4a_a3a9_1945abdb756a"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#OWLObjectProperty_b210c9ae_c1c2_4a33_95a7_46443436ba19"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_b479838f_ea59_4c96_87cb_ce1589fe6c2b"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_a19d2bde_d20c_46cb_8361_f84205a9ee8f"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_bd7df7ce_5d88_4af6_b29e_08430843bc1b"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_d918e317_5083_4f98_9fcb_13a1f833e88f"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#km"/>
+    </Declaration>
+    <Declaration>
+        <DataProperty IRI="#name"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="#OWLClass_414f5d18_4254_4159_8d07_70a7136aeb07"/>
+    </Declaration>
+    <Declaration>
+        <ObjectProperty IRI="#hasName"/>
+    </Declaration>
+    <Declaration>
+        <NamedIndividual IRI="#OWLNamedIndividual_9b9b3d92_df94_45a6_a284_66b7d541091a"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#HeavyMetals"/>
+    </Declaration>
+    <Declaration>
+        <Class IRI="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#Pollutant"/>
+    </Declaration>
+    <EquivalentClasses>
+        <Class IRI="#OWLClass_16211ded_dc02_4f2b_93a1_5250211a31c5"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+            <Class IRI="#OWLClass_a08e8650_60c7_448a_a717_d7ba05eb32d9"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OWLClass_26490a70_9e39_43b8_a15e_f3cecaa65640"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+            <Class IRI="#OWLClass_47eab066_ff15_4f4a_a3a9_1945abdb756a"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+            <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OWLClass_7e881189_0ef2_45b5_9447_a71f39eece40"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+            <Class IRI="#OWLClass_bd7df7ce_5d88_4af6_b29e_08430843bc1b"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OWLClass_976ccd9b_32d8_4224_a8a7_f852b73b6459"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+            <Class IRI="#OWLClass_a19d2bde_d20c_46cb_8361_f84205a9ee8f"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <EquivalentClasses>
+        <Class IRI="#OWLClass_ef9837c2_13c4_47e0_9257_2bcac7b76fa7"/>
+        <ObjectSomeValuesFrom>
+            <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+            <Class IRI="#OWLClass_d14da751_d4f9_46d3_a778_6bbcc2b02975"/>
+        </ObjectSomeValuesFrom>
+    </EquivalentClasses>
+    <SubClassOf>
+        <Class IRI="#OWLClass_16211ded_dc02_4f2b_93a1_5250211a31c5"/>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_26490a70_9e39_43b8_a15e_f3cecaa65640"/>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_47eab066_ff15_4f4a_a3a9_1945abdb756a"/>
+        <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+        <Class IRI="#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_7e881189_0ef2_45b5_9447_a71f39eece40"/>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_976ccd9b_32d8_4224_a8a7_f852b73b6459"/>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_a08e8650_60c7_448a_a717_d7ba05eb32d9"/>
+        <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_a19d2bde_d20c_46cb_8361_f84205a9ee8f"/>
+        <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_b479838f_ea59_4c96_87cb_ce1589fe6c2b"/>
+        <Class IRI="#OWLClass_414f5d18_4254_4159_8d07_70a7136aeb07"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_bd7df7ce_5d88_4af6_b29e_08430843bc1b"/>
+        <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_d14da751_d4f9_46d3_a778_6bbcc2b02975"/>
+        <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_d918e317_5083_4f98_9fcb_13a1f833e88f"/>
+        <Class IRI="#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="#OWLClass_ef9837c2_13c4_47e0_9257_2bcac7b76fa7"/>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.w3.org/2006/time#DateTimeDescription"/>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.w3.org/2006/time#DayOfWeek"/>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.w3.org/2006/time#DurationDescription"/>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.w3.org/2006/time#TemporalEntity"/>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.w3.org/2006/time#TemporalUnit"/>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </SubClassOf>
+    <SubClassOf>
+        <Class IRI="http://www.w3.org/2006/timezone#TimeZone"/>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </SubClassOf>
+    <DisjointClasses>
+        <Class IRI="#OWLClass_16211ded_dc02_4f2b_93a1_5250211a31c5"/>
+        <Class IRI="#OWLClass_26490a70_9e39_43b8_a15e_f3cecaa65640"/>
+        <Class IRI="#OWLClass_7e881189_0ef2_45b5_9447_a71f39eece40"/>
+        <Class IRI="#OWLClass_976ccd9b_32d8_4224_a8a7_f852b73b6459"/>
+        <Class IRI="#OWLClass_ef9837c2_13c4_47e0_9257_2bcac7b76fa7"/>
+    </DisjointClasses>
+    <ClassAssertion>
+        <Class IRI="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#Pollutant"/>
+        <NamedIndividual IRI="#OWLNamedIndividual_52033e70_33cd_4fca_83e1_cc9ee2edd51e"/>
+    </ClassAssertion>
+    <ClassAssertion>
+        <Class IRI="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#HeavyMetals"/>
+        <NamedIndividual IRI="#OWLNamedIndividual_9b9b3d92_df94_45a6_a284_66b7d541091a"/>
+    </ClassAssertion>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#OWLObjectProperty_07e0feea_b1cb_486a_9bb5_13be8363d4db"/>
+        <ObjectProperty IRI="#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7"/>
+        <ObjectProperty IRI="#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#OWLObjectProperty_69da710a_d315_401a_adb6_3bb284555378"/>
+        <ObjectProperty IRI="#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+        <ObjectProperty IRI="#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="#OWLObjectProperty_b210c9ae_c1c2_4a33_95a7_46443436ba19"/>
+        <ObjectProperty IRI="#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#after"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#before"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#dayOfWeek"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#hasBeginning"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#hasDateTimeDescription"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#hasDurationDescription"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#hasEnd"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#inDateTime"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#inside"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalAfter"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalContains"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalDuring"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalEquals"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalFinishedBy"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalFinishes"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalMeets"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalMetBy"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalOverlappedBy"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalOverlaps"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalStartedBy"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#intervalStarts"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#timeZone"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <SubObjectPropertyOf>
+        <ObjectProperty IRI="http://www.w3.org/2006/time#unitType"/>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+    </SubObjectPropertyOf>
+    <InverseObjectProperties>
+        <ObjectProperty IRI="#OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7"/>
+        <ObjectProperty IRI="#OWLObjectProperty_69da710a_d315_401a_adb6_3bb284555378"/>
+    </InverseObjectProperties>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#OWLObjectProperty_07e0feea_b1cb_486a_9bb5_13be8363d4db"/>
+        <Class IRI="#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7"/>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+        <Class IRI="#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#OWLObjectProperty_b210c9ae_c1c2_4a33_95a7_46443436ba19"/>
+        <Class IRI="#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab"/>
+        <Class IRI="#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722"/>
+        <Class IRI="#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyDomain>
+        <ObjectProperty IRI="#hasKm"/>
+        <Class IRI="#OWLClass_a19d2bde_d20c_46cb_8361_f84205a9ee8f"/>
+    </ObjectPropertyDomain>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#OWLObjectProperty_07e0feea_b1cb_486a_9bb5_13be8363d4db"/>
+        <Class IRI="http://www.w3.org/2006/time#TemporalEntity"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7"/>
+        <Class IRI="#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb"/>
+        <Class IRI="#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82"/>
+    </ObjectPropertyRange>
+    <ObjectPropertyRange>
+        <ObjectProperty IRI="#OWLObjectProperty_b210c9ae_c1c2_4a33_95a7_46443436ba19"/>
+        <Class IRI="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#Pollutant"/>
+    </ObjectPropertyRange>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#OWLDataProperty_678cbbf6_41cd_4221_bce8_737ebbdd392a"/>
+        <DataProperty IRI="#pollutionData"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#OWLDataProperty_b0f6b9c9_3a68_4ae5_9c04_e8ec6ea94ed5"/>
+        <DataProperty IRI="#pollutionData"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#km"/>
+        <DataProperty IRI="#riverData"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#name"/>
+        <DataProperty IRI="#riverData"/>
+    </SubDataPropertyOf>
+    <SubDataPropertyOf>
+        <DataProperty IRI="#riverData"/>
+        <DataProperty IRI="#LocalizationData"/>
+    </SubDataPropertyOf>
+    <DataPropertyDomain>
+        <DataProperty IRI="#OWLDataProperty_678cbbf6_41cd_4221_bce8_737ebbdd392a"/>
+        <Class IRI="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#Pollutant"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#OWLDataProperty_b0f6b9c9_3a68_4ae5_9c04_e8ec6ea94ed5"/>
+        <Class IRI="http://inwatersense.uni-pr.edu/ontologies/inws-pollutants.owl#Pollutant"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#km"/>
+        <Class IRI="#OWLClass_a19d2bde_d20c_46cb_8361_f84205a9ee8f"/>
+    </DataPropertyDomain>
+    <DataPropertyDomain>
+        <DataProperty IRI="#name"/>
+        <Class IRI="#OWLClass_a19d2bde_d20c_46cb_8361_f84205a9ee8f"/>
+    </DataPropertyDomain>
+    <DataPropertyRange>
+        <DataProperty IRI="#OWLDataProperty_678cbbf6_41cd_4221_bce8_737ebbdd392a"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#OWLDataProperty_b0f6b9c9_3a68_4ae5_9c04_e8ec6ea94ed5"/>
+        <Datatype abbreviatedIRI="xsd:double"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#km"/>
+        <Datatype abbreviatedIRI="xsd:integer"/>
+    </DataPropertyRange>
+    <DataPropertyRange>
+        <DataProperty IRI="#name"/>
+        <Datatype abbreviatedIRI="xsd:string"/>
+    </DataPropertyRange>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_16211ded_dc02_4f2b_93a1_5250211a31c5</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">MeteorogicalWaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_26490a70_9e39_43b8_a15e_f3cecaa65640</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">TreatedWaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_414f5d18_4254_4159_8d07_70a7136aeb07</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Regulation</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_47eab066_ff15_4f4a_a3a9_1945abdb756a</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">TreatmentPlant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_4c6fe5d6_5175_4a9f_b988_5045832779ee</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">LocalizedWaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_59e5192b_f41a_4806_8b19_021dc47b711b</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">WaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_5d402d3a_f55f_4a36_af7a_061236524a82</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Localization</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_7e881189_0ef2_45b5_9447_a71f39eece40</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">SewageWaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_976ccd9b_32d8_4224_a8a7_f852b73b6459</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">RiverWaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_a08e8650_60c7_448a_a717_d7ba05eb32d9</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Meteorological</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_a19d2bde_d20c_46cb_8361_f84205a9ee8f</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">River</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_b479838f_ea59_4c96_87cb_ce1589fe6c2b</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">WDF</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_b6b9f5be_31c0_4c3e_944a_db20775398a5</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">TimeConcept</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_bd7df7ce_5d88_4af6_b29e_08430843bc1b</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Sewage</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_d14da751_d4f9_46d3_a778_6bbcc2b02975</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Factory</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_d918e317_5083_4f98_9fcb_13a1f833e88f</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">RegulatedWaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLClass_ef9837c2_13c4_47e0_9257_2bcac7b76fa7</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">FactoryWaterMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLDataProperty_678cbbf6_41cd_4221_bce8_737ebbdd392a</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">pollutionUnit</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLDataProperty_b0f6b9c9_3a68_4ae5_9c04_e8ec6ea94ed5</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">pollutionAmount</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLNamedIndividual_52033e70_33cd_4fca_83e1_cc9ee2edd51e</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Phosphorus</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLNamedIndividual_9b9b3d92_df94_45a6_a284_66b7d541091a</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">Mercury</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLObjectProperty_07e0feea_b1cb_486a_9bb5_13be8363d4db</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">existanceTime</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLObjectProperty_66532b0d_6322_461c_91f1_3b0c7fe54cc7</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">originMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLObjectProperty_69da710a_d315_401a_adb6_3bb284555378</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">sonMass</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLObjectProperty_9ac7f40e_d72b_4752_99b2_8747c37888cb</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">hasLocalization</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLObjectProperty_b210c9ae_c1c2_4a33_95a7_46443436ba19</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">hasPollutant</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLObjectProperty_dfe13770_435b_446c_bfcc_811ceab67dab</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">WaterMassProperties</Literal>
+    </AnnotationAssertion>
+    <AnnotationAssertion>
+        <AnnotationProperty abbreviatedIRI="rdfs:label"/>
+        <IRI>#OWLObjectProperty_e391efcd_2c77_48c4_8034_814d236af722</IRI>
+        <Literal xml:lang="en" datatypeIRI="http://www.w3.org/1999/02/22-rdf-syntax-ns#PlainLiteral">TimeConceptProperty</Literal>
+    </AnnotationAssertion>
+</Ontology>
+
+
+
+<!-- Generated by the OWL API (version 4.2.5.20160517-0735) https://github.com/owlcs/owlapi -->
+

@@ -11,4 +11,10 @@ Probablement es bona idea posar "subpunts" a les coses mes complexes
 [ ] Representacio de Depuradores:
 	Idea que tinc(M): Simplement tenen un seguit de aributs amount, amb unitat
 		(unitatPolucio)/temps que indica quantes unitats de polucio elimina per
-		unitat de temps. De moment nomes faria aixo --> em sembla bé! :D--> patri ho comenso a fer
+		unitat de temps. De moment nomes faria aixo --> em sembla bï¿½! :D--> patri ho comenso a fer
+
+[ ] Eficiencia: Com ja vam parlar amb el profe, costa de decidir, no recordo
+	si vam arribar a alguna conclusio. En qualsevol cas podem inventarnos
+	qualsevol mesura mes o menys logica i andando
+
+
