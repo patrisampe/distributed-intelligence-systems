@@ -4,18 +4,19 @@ import java.util.LinkedHashMap;
 import java.util.Vector;
 
 public class River extends Localization {
-	private String name;
 	private Integer km;
+	private String name;
 	
-	public River(String name, Integer km) {
-		this.name = name;
+	public River(String id, String name, Integer km) {
+		super(id);
 		this.km = km;
+		this.name = name;
 	}
 	public String getName() {
-		return name;
+		return this.id;
 	}
 	public void setName(String name) {
-		this.name = name;
+		this.id= name;
 	}
 	public Integer getKm() {
 		return km;

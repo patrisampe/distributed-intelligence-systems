@@ -114,7 +114,48 @@ public class Ontology {
 		return s.substring(PREF.length(),s.length());
 	}
 	
-	public void loadWaterMasses()
+	public Pollutant getPollutantRelation(Individual polRel) {
+		return null;
+	}
+	
+	public void loadLocalizations()
+	{
+		OntClass classe = ont.getOntClass(PREF + "Factory");
+		Iterator<Individual> iter = ont.listIndividuals(classe);
+		while( iter.hasNext() ) {
+			Individual i = iter.next();
+			String id = i.getLocalName();
+			this.places.put(id, new Factory(id));
+		}
+		//////
+		classe = ont.getOntClass(PREF + "River");
+		iter = ont.listIndividuals(classe);
+		while( iter.hasNext() ) {
+			Individual i = iter.next();
+			String id = i.getLocalName();
+			Property ok = ont.getProperty(PREF+"km");
+			Property on = ont.getProperty(PREF+"name");
+			Integer km = i.getProperty(ok).getInt();
+			String name = i.getProperty(on).getString();
+			this.places.put(id, new River(id,name,km));
+		}
+		/////////
+		classe = ont.getOntClass(PREF + "River");
+		iter = ont.listIndividuals(classe);
+		while( iter.hasNext() ) {
+			Individual i = iter.next();
+			String id = i.getLocalName();
+			Property ok = ont.getProperty(PREF+"km");
+			Property on = ont.getProperty(PREF+"name");
+			Integer km = i.getProperty(ok).getInt();
+			String name = i.getProperty(on).getString();
+			this.places.put(id, new River(id,name,km));
+		}
+		
+
+	}
+	
+	public void loadWaterMasses()//I els pollutants
 	{
 		OntClass classe = ont.getOntClass(PREF + "WaterMass");
 		System.out.println(classe);
@@ -160,7 +201,9 @@ public class Ontology {
 					String unit = pi.getProperty(p).getString();
 					String id = removePrefix(polRel.toString());
 					System.out.println(id +" "+unit +" "+poll+" "+d);
-					waterMasses.get(name).getPollutants().add(new Pollutant(id,unit,poll,d));
+					Pollutant polly = new Pollutant(id,unit,poll,d);
+					pollutants.put(id,polly);
+					waterMasses.get(name).getPollutants().add(polly);
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeStart") ){
 					Long l = s.getLong();
 					waterMasses.get(name).setExistanceTimeStart(l);

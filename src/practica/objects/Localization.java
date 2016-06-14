@@ -1,5 +1,12 @@
 package practica.objects;
 
 public class Localization {
-	Place place;
+	String id;
+
+	public Localization(String id) {
+		super();
+		this.id = id;
+	}
+	
+	
 }

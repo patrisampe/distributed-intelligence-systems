@@ -13,7 +13,8 @@ public class TreatmentPlant extends Localization{
 		this.pe = pe;
 	}
 
-	public TreatmentPlant(LinkedHashMap<String, Double> pe) {
+	public TreatmentPlant(String id, LinkedHashMap<String, Double> pe) {
+		super(id);
 		this.pe = pe;
 	}
 	
