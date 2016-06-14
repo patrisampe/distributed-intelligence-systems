@@ -2,10 +2,10 @@ package practica.objects;
 
 public class Pollutant {
 	private String unit;
-	private pollutantTypes type;
+	private String type;
 	private double amount;
 	
-	public Pollutant(String unit, pollutantTypes type, double amount) {
+	public Pollutant(String unit, String type, double amount) {
 		this.unit = unit;
 		this.type = type;
 		this.amount = amount;
@@ -24,10 +24,10 @@ public class Pollutant {
 	public void setUnit(String unit) {
 		this.unit = unit;
 	}
-	public pollutantTypes getType() {
+	public String getType() {
 		return type;
 	}
-	public void setType(pollutantTypes type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 	public double getAmount() {

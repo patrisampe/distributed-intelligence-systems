@@ -2,6 +2,8 @@ package practica;
 
 import java.util.LinkedHashMap;
 import java.util.Vector;
+import java.util.AbstractCollection;
+import java.util.ArrayList;
 import java.util.Collection;
 
 import practica.objects.*;
@@ -9,7 +11,7 @@ import practica.objects.*;
 public class Methods {
 	public WaterMass mergeWaterMasses( Vector<WaterMass> wms )
 	{
-		LinkedHashMap<pollutantTypes,Pollutant> lm = new LinkedHashMap<>();
+		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
 		double amount = 0.;
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
@@ -19,15 +21,15 @@ public class Methods {
 			amount += wm.getLiters();
 		}
 		
-		return new WaterMass(lm.values(),new Vector<WaterMass>(wms),amount);
+		return new WaterMass(new ArrayList<Pollutant>(lm.values()),new Vector<WaterMass>(wms),amount);
 	}
 	
-	public WaterMass generateWaterMass( Collection<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
+	public WaterMass generateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
 		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
 	}
 	
 	
-	public long calculateTime(WaterMass wm, TreatmentPlant tp, Permit p){
+	public Double calculateTime(WaterMass wm, TreatmentPlant tp, Permit p){
 		
 		long time = 0;		
 		for( Pollutant po:wm.getPollutants() ){
@@ -36,7 +38,7 @@ public class Methods {
 		    		
 		    Double unitpertime=tp.amountPollutant(po.getType());
 		    
-		    Double diff= po.getAmount() - allowed;
+		    Double diff= (po.getAmount()/wm.getLiters()) - allowed;
 		    
 		    if(diff>0){
 		    	long timeaux=Math.round(diff/unitpertime);
@@ -46,16 +48,16 @@ public class Methods {
 		    	}
 		    }
 		}
-		return time;
+		return time*wm.getLiters();
 	}
 	
 	
 	public WaterMass depureMass(WaterMass wm, TreatmentPlant tp, Permit p,long existanceTime){
 		
 		
-		long time = calculateTime(wm,tp,p);	
+		Double time = calculateTime(wm,tp,p);	
 		
-		Collection<Pollutant> poNew = null;
+		ArrayList<Pollutant> poNew = new ArrayList<>();
 		
 		for( Pollutant po:wm.getPollutants() ){
 			
@@ -98,9 +100,9 @@ public class Methods {
 		return null;
 	}
 	
-	private LinkedHashMap<pollutantTypes,Pollutant> pollutantsCaused(WaterMass wm, Permit p){
+	private LinkedHashMap<String,Pollutant> pollutantsCaused(WaterMass wm, Permit p){
 		
-		LinkedHashMap<pollutantTypes,Pollutant> lm = new LinkedHashMap<>();
+		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
 
 		for( Pollutant po:wm.getPollutants() ){
 			
@@ -114,7 +116,7 @@ public class Methods {
 		
 	}
 	
-	public boolean existsIrregulation(WaterMass aw, Permit p, LinkedHashMap<pollutantTypes,Pollutant> whatPollutans){
+	public boolean existsIrregulation(WaterMass aw, Permit p, LinkedHashMap<String,Pollutant> whatPollutans){
 		
 		for(Pollutant po:aw.getPollutants()){
 			
@@ -131,7 +133,7 @@ public class Methods {
 		
 		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
 		
-		LinkedHashMap<pollutantTypes,Pollutant> whatPollutans=pollutantsCaused(wm,p);
+		LinkedHashMap<String,Pollutant> whatPollutans=pollutantsCaused(wm,p);
 		
 		Vector<WaterMass> wpaux = new Vector<WaterMass> ();
 		
@@ -145,9 +147,7 @@ public class Methods {
 	
 	public WaterMass mostProbablyGuilted(WaterMass wm, Permit p){
 		
-		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
-		
-		LinkedHashMap<pollutantTypes,Pollutant> whatPollutans=pollutantsCaused(wm,p);
+	    LinkedHashMap<String,Pollutant> whatPollutans=pollutantsCaused(wm,p);
 		
 		Double amountilegal=0.0;
 		WaterMass m= null;

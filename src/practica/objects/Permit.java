@@ -6,7 +6,7 @@ public class Permit {
 
 	Integer id;
 	
-	LinkedHashMap<pollutantTypes,Double> allowed = new LinkedHashMap<>();
+	LinkedHashMap<String,Double> allowed = new LinkedHashMap<>();
 
 	public Integer getId() {
 		return id;
@@ -16,21 +16,21 @@ public class Permit {
 		this.id = id;
 	}
 
-	public LinkedHashMap<pollutantTypes, Double> getAllowed() {
+	public LinkedHashMap<String, Double> getAllowed() {
 		return allowed;
 	}
 
-	public void setAllowed(LinkedHashMap<pollutantTypes, Double> allowed) {
+	public void setAllowed(LinkedHashMap<String, Double> allowed) {
 		this.allowed = allowed;
 	}
 
-	public Double amountPollutant(pollutantTypes pt){
+	public Double amountPollutant(String pt){
 		
 		return allowed.get(pt);		
 		
 	}
 	
-	public Permit(Integer id, LinkedHashMap<pollutantTypes, Double> allowed) {
+	public Permit(Integer id, LinkedHashMap<String, Double> allowed) {
 		this.id = id;
 		this.allowed = allowed;
 	} 
