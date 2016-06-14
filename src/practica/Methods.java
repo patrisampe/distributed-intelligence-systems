@@ -1,6 +1,7 @@
 package practica;
 
 import java.util.LinkedHashMap;
+import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.Collection;
 import java.util.Collection;
@@ -194,6 +195,19 @@ public class Methods {
 		
 		return m;
 	}
+	
+	public static Double efficiency(TreatmentPlant tp){
+		
+		Double mean=0.0;
+		Integer howmany=0;
+		for (Double p: tp.getPe().values() ) {
+		    // entry.getValue() is of type User now
+			mean+=p;
+			++howmany;
+		}
+		return mean/howmany;
+		
+     }
 	
 	
 	
