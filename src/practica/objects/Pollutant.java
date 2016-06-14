@@ -3,9 +3,11 @@ package practica.objects;
 public class Pollutant {
 	private String unit;
 	private String type;
+	private String id;
 	private double amount;
 	
-	public Pollutant(String unit, String type, double amount) {
+	public Pollutant(String id,String unit, String type, double amount) {
+		this.id = id;
 		this.unit = unit;
 		this.type = type;
 		this.amount = amount;
@@ -16,7 +18,9 @@ public class Pollutant {
 		this.type = p.type;
 		this.amount = p.amount;
 	}
-	
+	public String getId() {
+		return this.id;
+	}
 	
 	public String getUnit() {
 		return unit;
