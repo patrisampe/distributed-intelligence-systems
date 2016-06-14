@@ -1,10 +1,14 @@
 package practica;
 
 import java.util.LinkedHashMap;
+import java.util.Collection;
+import java.util.Collection;
 import java.util.Vector;
 import java.util.Collection;
 
 import practica.objects.*;
+import java.util.Vector;
+
 
 public class Methods {
 	public WaterMass mergeWaterMasses( Vector<WaterMass> wms )
@@ -27,18 +31,18 @@ public class Methods {
 	}
 	
 	
-	public long calculateTime(WaterMass wm, TreatmentPlant tp, Permit p){
+	public long calculateTime(WaterMass wm, TreatmentPlant tp, RuleTable p){
 		
 		long time = 0;		
 		for( Pollutant po:wm.getPollutants() ){
 			
-		    Double allowed =p.amountPollutant(po.getType());
+		    Double allowed = p.getMaxAmountPollutant( po.getType() );
 		    		
-		    Double unitpertime=tp.amountPollutant(po.getType());
+		    Double unitpertime = tp.amountPollutant(po.getType());
 		    
 		    Double diff= po.getAmount() - allowed;
 		    
-		    if(diff>0){
+		    if( !p.compliant(po) ){
 		    	long timeaux=Math.round(diff/unitpertime);
 		    	
 		    	if(timeaux>time){
@@ -50,12 +54,12 @@ public class Methods {
 	}
 	
 	
-	public WaterMass depureMass(WaterMass wm, TreatmentPlant tp, Permit p,long existanceTime){
+	public WaterMass depureMass(WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime){
 		
 		
 		long time = calculateTime(wm,tp,p);	
 		
-		Collection<Pollutant> poNew = null;
+		Collection<Pollutant> poNew = new Vector<Pollutant>();
 		
 		for( Pollutant po:wm.getPollutants() ){
 			
@@ -74,23 +78,23 @@ public class Methods {
 	}
 	
 	
-	public boolean permited(WaterMass wm, Permit p){
+	public boolean permited(WaterMass wm, RuleTable p){
 		
 		
 	
 		for( Pollutant po:wm.getPollutants() ){
 			
-		    Double allowed =p.amountPollutant(po.getType());
+		    Double allowed =p.getMaxAmountPollutant(po.getType());
 		    
-		    if(allowed < po.getAmount())return false;
+		    if(allowed < po.getAmount()) return false;
 		    
 		}
 		return true;
 	}
 	
-	public Permit whatpermision(WaterMass wm, Vector<Permit> vp){
+	public RuleTable whatpermision(WaterMass wm, Vector<RuleTable> vp){
 		
-		for( Permit p:vp){
+		for( RuleTable p:vp){
 			
 		    if(permited(wm,p))return p;
 		    
@@ -98,15 +102,13 @@ public class Methods {
 		return null;
 	}
 	
-	private LinkedHashMap<pollutantTypes,Pollutant> pollutantsCaused(WaterMass wm, Permit p){
+	private LinkedHashMap<pollutantTypes,Pollutant> pollutantsCaused(WaterMass wm, RuleTable r){
 		
 		LinkedHashMap<pollutantTypes,Pollutant> lm = new LinkedHashMap<>();
 
 		for( Pollutant po:wm.getPollutants() ){
-			
-		    Double allowed =p.amountPollutant(po.getType());
-		    
-		    if(allowed < po.getAmount())lm.put(po.getType(), po);
+		    //revisar, retorno els que no compleixen?
+		    if( !r.compliant( po )) lm.put(po.getType(), po);
 		    
 		}
 		
@@ -114,20 +116,18 @@ public class Methods {
 		
 	}
 	
-	public boolean existsIrregulation(WaterMass aw, Permit p, LinkedHashMap<pollutantTypes,Pollutant> whatPollutans){
+	public boolean breaksRegulation(WaterMass wm, RuleTable r, LinkedHashMap<pollutantTypes,Pollutant> whatPollutans){
 		
-		for(Pollutant po:aw.getPollutants()){
-			
+		for(Pollutant po:wm.getPollutants()){
 			if(whatPollutans.get(po.getType()) != null ){
-				Double allowed =p.amountPollutant(po.getType());	
-				if(allowed < po.getAmount())return true;
+				if(!r.compliant(po)) return true;
 			}
 		}
 		
 		return false;
 	}
 	
-	public Vector<WaterMass> needInspeccion(WaterMass wm, Permit p){
+	public Vector<WaterMass> needInspeccion(WaterMass wm, RuleTable p){
 		
 		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
 		
@@ -136,14 +136,14 @@ public class Methods {
 		Vector<WaterMass> wpaux = new Vector<WaterMass> ();
 		
 		for(WaterMass aw:wm.getOriginMass()){
-			if(existsIrregulation(aw,p,whatPollutans))wpaux.add(aw);
+			if(breaksRegulation(aw,p,whatPollutans)) wpaux.add(aw);
 		}
 		
 		return wpaux;
 	}
 	
 	
-	public WaterMass mostProbablyGuilted(WaterMass wm, Permit p){
+	public WaterMass mostProbablyGuilted(WaterMass wm, RuleTable p){
 		
 		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
 		
@@ -156,10 +156,10 @@ public class Methods {
 			
 			Double auxamount = 0.0;
 			for(Pollutant po:aw.getPollutants()){
+				Double allowed =p.getMaxAmountPollutant(po.getType());
 				
-				if(whatPollutans.get(po.getType()) != null ){
-					Double allowed =p.amountPollutant(po.getType());	
-					if(allowed < po.getAmount())auxamount += (po.getAmount()-allowed);
+				if(whatPollutans.get(po.getType()) != null ){	
+					if( p.compliant( po) ) auxamount += (po.getAmount()-allowed);
 				}
 			}
 			
