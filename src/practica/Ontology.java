@@ -1,6 +1,7 @@
 package practica;
 
 import java.io.FileReader;
+import java.io.FileWriter;
 
 import org.apache.jena.ontology.Individual;
 import org.apache.jena.ontology.OntClass;
@@ -23,11 +24,17 @@ public class Ontology {
 		try {
 			Ontology ont = new Ontology();
 			ont.read("onto/rius.owl");
+			
+			ont.addWaterMass(null);
+			
+			
+			
+			ont.write("onto/prova.owl");
 			//ont.loadPollutants();
 		}catch(Exception e) {System.out.println("Err");throw e;}
 	}
 	
-	
+	private String file;
 	private OntModel ont;
 	private String PREF = "http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#";
 	
@@ -47,18 +54,47 @@ public class Ontology {
 	
 	public void read(String dont) throws Exception{
 		try {
+			this.file = dont;
 			FileReader frd = new FileReader(dont);
 			this.ont = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
 			this.ont.read(frd,null,"RDF/XML");
-			
+			/*Codi per exemple
 			System.out.println(getClassFromLabel("WaterMass"));
 			Iterator<Individual> it = ont.listIndividuals();
 			while(it.hasNext()) {
 				System.out.println(it.next().getLocalName());
 			}
-			System.out.println(ont.getOntClass(PREF+"WaterMass@en"));
-			
+			*/
 			} catch (Exception e) {throw e;}
+	}
+	
+	public void writeBack() throws Exception {
+		FileWriter out = null;
+		try {
+		  out = new FileWriter( this.file );
+		  ont.write( out, "RDF/XML" );
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	public void write(String dont) throws Exception {
+		FileWriter out = null;
+		try {
+		  out = new FileWriter( dont );
+		  ont.write( out, "RDF/XML" );
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+	
+	public void addWaterMass(String id) {
+		OntClass waterMass = this.getClassFromLabel("WaterMass");
+		
+		System.out.println(waterMass);
+		Individual i = ont.createIndividual(PREF+id,waterMass);
+		
+		//OntClass oc = this.getClassFromLabel("WaterMass");
+		
 	}
 	
 	public Class getClass( String name ) {
