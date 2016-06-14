@@ -90,8 +90,9 @@ public class Ontology {
 	public void addWaterMass(String id) {
 		OntClass waterMass = this.getClassFromLabel("WaterMass");
 		
-		System.out.println(waterMass);
-		Individual i = ont.createIndividual(PREF+id,waterMass);
+		//System.out.println(waterMass);
+		//Individual i = ont.createIndividual(PREF+id,waterMass);
+		System.out.println(ont.getOntClass(PREF + "WaterMass"));
 		
 		//OntClass oc = this.getClassFromLabel("WaterMass");
 		
