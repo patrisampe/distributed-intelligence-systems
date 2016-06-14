@@ -37,7 +37,18 @@ public class Ontology {
 			ont.loadLocalizations();
 			ont.loadWaterMasses();
 			
-			
+			System.out.println("RULES:");
+			for( RuleTable r:ont.rules.values() ) {
+				System.out.println(r);
+			}
+			System.out.println("Localization");
+			for( Localization l:ont.places.values()) {
+				System.out.println(l);
+			}
+			System.out.println("WaterMasses");
+			for( WaterMass wm:ont.waterMasses.values()) {
+				System.out.println(wm);
+			}
 			
 			ont.write("onto/prova.owl");
 			//ont.loadPollutants();
@@ -48,10 +59,10 @@ public class Ontology {
 	private OntModel ont;
 	private String PREF = "http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#";
 	
-	LinkedHashMap<String,Pollutant> pollutants = new LinkedHashMap<String,Pollutant>();
-	LinkedHashMap<String,WaterMass> waterMasses = new LinkedHashMap<String,WaterMass>();
-	LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
-	LinkedHashMap<String,RuleTable> rules = new LinkedHashMap<String,RuleTable>();
+	public LinkedHashMap<String,Pollutant> pollutants = new LinkedHashMap<String,Pollutant>();
+	public LinkedHashMap<String,WaterMass> waterMasses = new LinkedHashMap<String,WaterMass>();
+	public LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
+	public LinkedHashMap<String,RuleTable> rules = new LinkedHashMap<String,RuleTable>();
 
 	
 	
@@ -150,12 +161,12 @@ public class Ontology {
 			StmtIterator it = i.listProperties();
 			while ( it.hasNext() ) {
 				Statement s = it.next();
-				if( s.getPredicate().toString().equals(PREF+"reducesPollutant") ){
+				if( s.getPredicate().toString().equals(PREF+"hasRule") ){
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
-					String pollutant = polly.getId();
+					String pollutant = polly.getType();
 					p.getMaxAllowed().put(pollutant, amount);
 				}
 			}
@@ -173,12 +184,12 @@ public class Ontology {
 			StmtIterator it = i.listProperties();
 			while ( it.hasNext() ) {
 				Statement s = it.next();
-				if( s.getPredicate().toString().equals(PREF+"reducesPollutant") ){
+				if( s.getPredicate().toString().equals(PREF+"hasRule") ){
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
-					String pollutant = polly.getId();
+					String pollutant = polly.getType();
 					p.getMaxAllowed().put(pollutant, amount);
 				}
 			}
@@ -303,6 +314,9 @@ public class Ontology {
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeEnd") ){
 					Long l = s.getLong();
 					waterMasses.get(name).setExistanceTimeEnd(l);
+				} else if( s.getPredicate().toString().equals(PREF+"hasLiters") ){
+					Double l = s.getDouble();
+					waterMasses.get(name).setLiters(l);
 				}
 			}
 			

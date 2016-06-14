@@ -32,21 +32,9 @@
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PermitProperties -->
-
-    <owl:ObjectProperty rdf:about="&riusSID;PermitProperties"/>
-    
-
-
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PollutantRelationProperties -->
 
     <owl:ObjectProperty rdf:about="&riusSID;PollutantRelationProperties"/>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#RegulationProperties -->
-
-    <owl:ObjectProperty rdf:about="&riusSID;RegulationProperties"/>
     
 
 
@@ -168,6 +156,15 @@
     <owl:DatatypeProperty rdf:about="&riusSID;existanceTimeStart">
         <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
         <rdfs:range rdf:resource="&xsd;long"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#hasLiters -->
+
+    <owl:DatatypeProperty rdf:about="&riusSID;hasLiters">
+        <rdfs:domain rdf:resource="&riusSID;WaterMass"/>
+        <rdfs:range rdf:resource="&xsd;double"/>
     </owl:DatatypeProperty>
     
 
@@ -469,6 +466,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Permit1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;Permit1">
+        <rdf:type rdf:resource="&riusSID;Permit"/>
+        <riusSID:hasRule rdf:resource="&riusSID;polRel2"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Phosphorus -->
 
     <owl:NamedIndividual rdf:about="&riusSID;Phosphorus">
@@ -487,10 +493,21 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#polRel2 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;polRel2">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount>64</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#wm1 -->
 
     <owl:NamedIndividual rdf:about="&riusSID;wm1">
         <rdf:type rdf:resource="&riusSID;WaterMass"/>
+        <riusSID:hasLiters>100.6</riusSID:hasLiters>
         <riusSID:existanceTimeStart>1234</riusSID:existanceTimeStart>
         <riusSID:hasLocalization rdf:resource="&riusSID;Fact1"/>
         <riusSID:hasPollutant rdf:resource="&riusSID;polRel1"/>

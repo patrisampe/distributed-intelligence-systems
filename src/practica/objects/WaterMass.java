@@ -18,6 +18,14 @@ public class WaterMass {
 	
 	
 	
+
+	@Override
+	public String toString() {
+		return "WaterMass [identificador=" + identificador + ", place=" + place + ", pollutants=" + pollutants
+				+ ", existanceTimeStart=" + existanceTimeStart + ", existanceTimeEnd=" + existanceTimeEnd + ", liters="
+				+ liters + "]";
+	}
+
 	public WaterMass(String identificador) {
 		super();
 		this.identificador = identificador;
