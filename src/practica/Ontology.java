@@ -33,6 +33,8 @@ public class Ontology {
 			ont.read("onto/rius.owl");
 			
 			//ont.addWaterMass(null);
+			ont.loadPermitsRegulations();
+			ont.loadLocalizations();
 			ont.loadWaterMasses();
 			
 			
@@ -49,6 +51,7 @@ public class Ontology {
 	LinkedHashMap<String,Pollutant> pollutants = new LinkedHashMap<String,Pollutant>();
 	LinkedHashMap<String,WaterMass> waterMasses = new LinkedHashMap<String,WaterMass>();
 	LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
+	LinkedHashMap<String,RuleTable> rules = new LinkedHashMap<String,RuleTable>();
 
 	
 	
@@ -136,13 +139,13 @@ public class Ontology {
 	}
 	
 	public void loadPermitsRegulations()
-	{
+	{	{
 		OntClass classe = ont.getOntClass(PREF + "Permit");
 		Iterator<Individual> iter = ont.listIndividuals(classe);
 		while( iter.hasNext() ) {
 			Individual i = iter.next();
 			String id = i.getLocalName();
-			Permit tp = new Permit(id);
+			Permit p = new Permit(id);
 			
 			StmtIterator it = i.listProperties();
 			while ( it.hasNext() ) {
@@ -153,9 +156,35 @@ public class Ontology {
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
 					String pollutant = polly.getId();
-					tp.getPe().put(pollutant, amount);
+					p.getMaxAllowed().put(pollutant, amount);
 				}
 			}
+			this.rules.put(id, p);
+		}
+		}	
+		{
+		OntClass classe = ont.getOntClass(PREF + "Regulation");
+		Iterator<Individual> iter = ont.listIndividuals(classe);
+		while( iter.hasNext() ) {
+			Individual i = iter.next();
+			String id = i.getLocalName();
+			Regulation p = new Regulation(id);
+			
+			StmtIterator it = i.listProperties();
+			while ( it.hasNext() ) {
+				Statement s = it.next();
+				if( s.getPredicate().toString().equals(PREF+"reducesPollutant") ){
+					String rel = s.getObject().toString();
+					Individual polRel = ont.getIndividual(rel);
+					Pollutant polly = this.getPollutantRelation(polRel);
+					double amount = polly.getAmount();
+					String pollutant = polly.getId();
+					p.getMaxAllowed().put(pollutant, amount);
+				}
+			}
+			this.rules.put(id, p);
+			
+		}
 		}
 		
 	}
