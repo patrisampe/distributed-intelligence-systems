@@ -30,7 +30,10 @@ public class Ontology {
 	
 	private OntModel ont;
 	private String PREF = "http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#";
+	
 	LinkedHashMap<String,Pollutant> pollutants = new LinkedHashMap<String,Pollutant>();
+	LinkedHashMap<String,WaterMass> waterMasses = new LinkedHashMap<String,WaterMass>();
+	LinkedHashMap<String,Localization> places = new LinkedHashMap<String,Localization>();
 
 	private OntClass getClassFromLabel(String label) {
 		Iterator<OntClass> it = ont.listClasses();

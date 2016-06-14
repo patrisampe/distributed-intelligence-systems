@@ -15,6 +15,7 @@ public class Methods {
 	{
 		LinkedHashMap<pollutantTypes,Pollutant> lm = new LinkedHashMap<>();
 		double amount = 0.;
+		long currTime = java.lang.System.currentTimeMillis();
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
 				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );
@@ -26,8 +27,8 @@ public class Methods {
 		return new WaterMass(lm.values(),new Vector<WaterMass>(wms),amount);
 	}
 	
-	public WaterMass generateWaterMass( Collection<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
-		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
+	public WaterMass generateWaterMass( Collection<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTimeStart, Localization l ) {
+		return new WaterMass( pollutants, originMass, liters, existanceTimeStart,l);
 	}
 	
 	
