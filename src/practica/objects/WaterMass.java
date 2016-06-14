@@ -90,18 +90,13 @@ public class WaterMass {
 	public void setSonMass(Vector<WaterMass> sonMass) {
 		this.sonMass = sonMass;
 	}
-	public long getExistanceTimeStart() {
+	public Long getExistanceTimeStart() {
 		return existanceTimeStart;
 	}
-	public long getExistanceTimeEnd() {
+	public Long getExistanceTimeEnd() {
 		return existanceTimeEnd;
 	}
-	public void setExistanceTimeStart(long existanceTime) {
-		this.existanceTimeStart = existanceTime;
-	}
-	public void setExistanceTimeEnd(long existanceTime) {
-		this.existanceTimeEnd = existanceTime;
-	}
+
 	public double getLiters() {
 		return liters;
 	}

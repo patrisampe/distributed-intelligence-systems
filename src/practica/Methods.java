@@ -14,7 +14,7 @@ import java.util.Vector;
 
 
 public class Methods {
-	public WaterMass mergeWaterMasses( Vector<WaterMass> wms )
+	public static WaterMass proofmergeWaterMasses( Vector<WaterMass> wms )
 	{
 		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
 		double amount = 0.;
@@ -31,14 +31,33 @@ public class Methods {
 		return new WaterMass(new ArrayList<Pollutant>(lm.values()),new Vector<WaterMass>(wms),amount);
 	}
 	
+	
+	public static WaterMass mergeWaterMasses( Vector<WaterMass> wms )
+	{
+		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
+		double amount = 0.;
+		Long currTime = java.lang.System.currentTimeMillis();
+		for( WaterMass wm:wms) {
+			for( Pollutant p:wm.getPollutants() ){
+				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );
+				lm.get(p.getType()).incAmount(p.getAmount());
+			}
+			amount += wm.getLiters();
+			wm.setExistanceTimeEnd(currTime);
+		}
+		
+		
+		return new WaterMass(new ArrayList<Pollutant>(lm.values()),new Vector<WaterMass>(wms),amount,currTime);
+	}
+	
 
-	public WaterMass generateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
+	public static WaterMass generateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
 		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
 	}
 	
 
 	
-	public Double calculateTime(WaterMass wm, TreatmentPlant tp, RuleTable p){
+	public static Double calculateTime(WaterMass wm, TreatmentPlant tp, RuleTable p){
 
 		
 		long time = 0;		
@@ -62,7 +81,7 @@ public class Methods {
 	}
 	
 	
-	public WaterMass depureMass(WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime){
+	public static WaterMass proofdepureMass(WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime){
 		
 		
 		Double time = calculateTime(wm,tp,p);	
@@ -84,7 +103,7 @@ public class Methods {
 	}
 	
 	
-	public boolean permited(WaterMass wm, RuleTable p){
+	public static boolean permited(WaterMass wm, RuleTable p){
 		
 		
 	
@@ -98,7 +117,7 @@ public class Methods {
 		return true;
 	}
 	
-	public RuleTable whatpermision(WaterMass wm, Vector<RuleTable> vp){
+	public static RuleTable whatpermision(WaterMass wm, Vector<RuleTable> vp){
 		
 		for( RuleTable p:vp){
 			
@@ -109,7 +128,7 @@ public class Methods {
 	}
 	
 
-	private LinkedHashMap<String,Pollutant> pollutantsCaused(WaterMass wm, RuleTable r){
+	private static LinkedHashMap<String,Pollutant> pollutantsCaused(WaterMass wm, RuleTable r){
 
 		
 		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
@@ -125,7 +144,7 @@ public class Methods {
 	}
 	
 
-	public boolean breaksRegulation(WaterMass wm, RuleTable r, LinkedHashMap<String,Pollutant> whatPollutans){
+	public static boolean breaksRegulation(WaterMass wm, RuleTable r, LinkedHashMap<String,Pollutant> whatPollutans){
 		
 		for(Pollutant po:wm.getPollutants()){
 			if(whatPollutans.get(po.getType()) != null ){
@@ -136,7 +155,7 @@ public class Methods {
 		return false;
 	}
 	
-	public Vector<WaterMass> needInspeccion(WaterMass wm, RuleTable p){
+	public static Vector<WaterMass> needInspeccion(WaterMass wm, RuleTable p){
 		
 		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
 		
@@ -152,7 +171,7 @@ public class Methods {
 	}
 	
 	
-	public WaterMass mostProbablyGuilted(WaterMass wm, RuleTable p){
+	public static WaterMass mostProbablyGuilted(WaterMass wm, RuleTable p){
 		
 	    LinkedHashMap<String,Pollutant> whatPollutans=pollutantsCaused(wm,p);
 		
