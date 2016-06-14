@@ -689,6 +689,7 @@
 
     <owl:NamedIndividual rdf:about="&riusSID;wm1">
         <rdf:type rdf:resource="&riusSID;WaterMass"/>
+        <riusSID:existanceTimeStart>1234</riusSID:existanceTimeStart>
         <riusSID:hasLocalization rdf:resource="&riusSID;Fact1"/>
         <riusSID:hasPollutant rdf:resource="&riusSID;polRel1"/>
         <riusSID:originMass rdf:resource="&riusSID;wm2"/>

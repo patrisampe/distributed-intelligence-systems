@@ -1,6 +1,7 @@
 package practica;
 
 import java.util.LinkedHashMap;
+import java.util.UUID;
 import java.util.Collection;
 import java.util.Collection;
 import java.util.Vector;
@@ -72,7 +73,7 @@ public class Methods {
 		    Double unitpertime=tp.amountPollutant(po.getType());
 		    Double newAmount= po.getAmount() - unitpertime*time;
 		    
-		    Pollutant newPo = new Pollutant(po.getUnit(),po.getType(),newAmount);
+		    Pollutant newPo = new Pollutant("pollutant"+UUID.randomUUID(),po.getUnit(),po.getType(),newAmount);
 		    poNew.add(newPo);
 		    
 		}

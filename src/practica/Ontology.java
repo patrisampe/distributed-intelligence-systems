@@ -158,12 +158,16 @@ public class Ontology {
 					Individual pi = ont.getIndividual(PREF+poll);
 					p = ont.getProperty(PREF+"pollutionUnit");
 					String unit = pi.getProperty(p).getString();
-					System.out.println(unit +" "+poll+" "+d);
-					waterMasses.get(name).getPollutants().add(new Pollutant(unit,poll,d));
+					String id = removePrefix(polRel.toString());
+					System.out.println(id +" "+unit +" "+poll+" "+d);
+					waterMasses.get(name).getPollutants().add(new Pollutant(id,unit,poll,d));
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeStart") ){
-					
+					Long l = s.getLong();
+					waterMasses.get(name).setExistanceTimeStart(l);
+					System.out.println(l);
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeEnd") ){
-					
+					Long l = s.getLong();
+					waterMasses.get(name).setExistanceTimeEnd(l);
 				}
 			}
 			
