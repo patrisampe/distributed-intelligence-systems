@@ -36,7 +36,7 @@ public class Methods {
 	
 
 	
-	public long calculateTime(WaterMass wm, TreatmentPlant tp, RuleTable p){
+	public Double calculateTime(WaterMass wm, TreatmentPlant tp, RuleTable p){
 
 		
 		long time = 0;		
@@ -110,7 +110,7 @@ public class Methods {
 	}
 	
 
-	private LinkedHashMap<String,Pollutant> pollutantsCaused(WaterMass wm, Permit p){
+	private LinkedHashMap<String,Pollutant> pollutantsCaused(WaterMass wm, RuleTable r){
 
 		
 		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
@@ -126,7 +126,7 @@ public class Methods {
 	}
 	
 
-	public boolean breaksRegulation(WaterMass wm, RuleTable r, LinkedHashMap<pollutantTypes,Pollutant> whatPollutans){
+	public boolean breaksRegulation(WaterMass wm, RuleTable r, LinkedHashMap<String,Pollutant> whatPollutans){
 		
 		for(Pollutant po:wm.getPollutants()){
 			if(whatPollutans.get(po.getType()) != null ){
