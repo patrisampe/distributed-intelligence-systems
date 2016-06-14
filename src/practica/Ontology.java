@@ -77,31 +77,31 @@ aux.add(c);
 
 WaterMass mw= new  WaterMass(aux, new Vector<WaterMass>(), 20,345,l );
 OntClass waterMass = onti.getOntClass(PREF + "WaterMass");
-OntClass pr = onti.getOntClass(PREF + "PollutantRelation");
-Individual in2 = onti.createIndividual(PREF+"patriwm",waterMass);
+OntClass classPolRelation = onti.getOntClass(PREF + "PollutantRelation");
+Individual instWaterMass = onti.createIndividual(PREF+"patriwm",waterMass);
 Property  L= onti.getProperty(PREF+"hasLocalization");
 
 
-in2.addLiteral(L, PREF + mw.getPlace().toString());
+instWaterMass.addLiteral(L, PREF + mw.getPlace().toString());
 Property ok = onti.getProperty(PREF+"hasPollutant");
 System.out.println("A1 " );
 for(Pollutant p:mw.getPollutants()){
-	String rri = PREF+UUID.randomUUID();
-	Individual ipr = onti.createIndividual(rri,pr);
-	System.out.println("A2 " +rri + " maybe "+ ipr.getLocalName() + " class "+ ipr.getOntClass().getLocalName());
-	Individual rr = onti.getIndividual(PREF+p.getType());
-	System.out.println("A3 " +rr.getLocalName() +  " " + rr.getOntClass().getLocalName());
+	String urirelation = PREF+UUID.randomUUID();
+	Individual instPolRelation = onti.createIndividual(urirelation,classPolRelation);
+	System.out.println("A2 " +urirelation + " maybe "+ instPolRelation.getLocalName() + " class "+ instPolRelation.getOntClass().getLocalName());
+	Individual instPollutant = onti.getIndividual(PREF+p.getType());
+	System.out.println("A3 " +instPollutant.getLocalName() +  " " + instPollutant.getOntClass().getLocalName());
 	Property po = onti.getProperty(PREF+"pollutantType");
 	System.out.println("A4 "+ po.getLocalName() );
 	
 	
-	ipr.addLiteral(po, rr);			
+	instPolRelation.addLiteral(po, instPollutant);			
 	//System.out.println("AA5" );
 	po = onti.getProperty(PREF+"pollutionAmount");
 	//System.out.println("A6" );
-	ipr.addLiteral(po, p.getAmount());
+	instPolRelation.addLiteral(po, p.getAmount());
 	//System.out.println("AA8 " );
-	in2.addLiteral(ok, ipr);
+	instWaterMass.addLiteral(ok, instPolRelation);
 	
 	System.out.println("AA7 " );
 //	in.addLiteral(ok, );
