@@ -115,7 +115,22 @@ public class Ontology {
 	}
 	
 	public Pollutant getPollutantRelation(Individual polRel) {
-		return null;
+		String rel = s.getObject().toString();
+					Individual polRel = ont.getIndividual(rel);
+					Property p = ont.getProperty(PREF+"pollutantType");
+					String poll = removePrefix(polRel.getProperty(p).getObject().toString());
+					System.out.println(poll);
+					p = ont.getProperty(PREF+"pollutionAmount");
+					Double d = polRel.getProperty(p).getDouble();
+					//Busquem unitat
+					Individual pi = ont.getIndividual(PREF+poll);
+					p = ont.getProperty(PREF+"pollutionUnit");
+					String unit = pi.getProperty(p).getString();
+					String id = removePrefix(polRel.toString());
+					System.out.println(id +" "+unit +" "+poll+" "+d);
+					Pollutant polly = new Pollutant(id,unit,poll,d);
+					pollutants.put(id,polly);
+					waterMasses.get(name).getPollutants().add(polly);
 	}
 	
 	public void loadLocalizations()
