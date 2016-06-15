@@ -30,7 +30,7 @@ public class Ontology {
 	public static void main(String[] args) throws Exception {
 		try {
 			Ontology ont = new Ontology();
-			ont.read("sid/onto/rius.owl");
+			ont.read("onto/rius.owl");
 			
 			//ont.addWaterMass(null);
 			ont.loadPermitsRegulations();
@@ -98,106 +98,106 @@ public class Ontology {
 			
 			*/
 
-			
-Localization l = new Localization("Fact1");
-Pollutant a = new Pollutant("patri1","unit1", "Lead", 1);
+						
+			Localization l = new Localization("Fact1");
+			Pollutant a = new Pollutant("patri1","unit1", "Lead", 1);
 
-Pollutant c = new Pollutant("patri3","unit3", "Nitrogen", 1);
-
-
-ArrayList<Pollutant> aux = new ArrayList<Pollutant>();
-aux.add(a);
-
-aux.add(c);
+			Pollutant c = new Pollutant("patri3","unit3", "Nitrogen", 1);
 
 
-WaterMass mw= new  WaterMass(aux, new Vector<WaterMass>(), 20,345,l );
+			ArrayList<Pollutant> aux = new ArrayList<Pollutant>();
+			aux.add(a);
+
+			aux.add(c);
 
 
-Pollutant a1 = new Pollutant("patri4","unit1", "Lead", 1);
-
-Pollutant c1 = new Pollutant("patri5","unit3", "Nitrogen", 1);
+			WaterMass mw= new  WaterMass(aux, new Vector<WaterMass>(), 20,345,l );
 
 
-ArrayList<Pollutant> aux2 = new ArrayList<Pollutant>();
-aux2.add(a1);
+			Pollutant a1 = new Pollutant("patri4","unit1", "Lead", 1);
 
-aux2.add(c1);
-
-
-WaterMass mw2= new  WaterMass(aux2, new Vector<WaterMass>(), 24,345,l );
-Vector<WaterMass> rr = new Vector<WaterMass>();
-rr.add(mw);
-rr.add(mw2);
-ont.addWaterMass(mw.getIdentificador(), mw);
-ont.addWaterMass(mw2.getIdentificador(), mw2);
-ont.ontoMergeWater(rr,l);
-
-/*
-OntClass waterMass = onti.getOntClass(PREF + "WaterMass");
-OntClass classPolRelation = onti.getOntClass(PREF + "PollutantRelation");
-Individual instWaterMass = onti.createIndividual(PREF+"patriwm",waterMass);
-Property  L= onti.getProperty(PREF+"hasLocalization");
-
-Individual instLocation = onti.getIndividual(PREF +mw.getPlace().getId());
-
-//System.out.println("HII fjsdilajflasjdilajfsldkjfdlkfsdjfadjfsdalkfsda "+ instLocation.getLocalName() );
-
-instWaterMass.addLiteral(L, instLocation.getURI());
-Property ok = onti.getProperty(PREF+"hasPollutant");
-//System.out.println("A1 " );
-
-for(Pollutant p:mw.getPollutants()){
-	String urirelation = PREF+UUID.randomUUID();
-	Individual instPolRelation = onti.createIndividual(urirelation,classPolRelation);
-	//System.out.println("A2 " +urirelation + " maybe "+ instPolRelation.getLocalName() + " class "+ instPolRelation.getOntClass().getLocalName());
-	
-	Individual instPollutant = onti.getIndividual(PREF+p.getType());
-	
-	//System.out.println("A3 " +instPollutant.getLocalName() +  " " + instPollutant.getOntClass().getLocalName());
-	
-	Property po = onti.getProperty(PREF+"pollutantType");
-	
-	//System.out.println("A4 "+ po.getLocalName() );
-	
-	instPolRelation.addLiteral(po,  instPollutant.getURI());			
-	
-	////System.out.println("AA5" );
-	
-	po = onti.getProperty(PREF+"pollutionAmount");
-	
-	////System.out.println("A6" );
-	
-	instPolRelation.addLiteral(po, p.getAmount());
-	
-	////System.out.println("AA8 " );
-	
-	instWaterMass.addLiteral(ok, instPolRelation.getURI());
-	
-	//System.out.println("AA7 " );
-//	in.addLiteral(ok, );
-	
-}
-Property po = onti.getProperty(PREF+"hasLiters");
-instWaterMass.addLiteral(po, mw.getLiters());
-po = onti.getProperty(PREF+"existanceTimeStart");
-instWaterMass.addLiteral(po, mw.getExistanceTimeStart());
-//po = onti.getProperty(PREF+"existanceTimeEnd");
-//instWaterMass.addLiteral(po, mw.getExistanceTimeEnd());
-
-*/
+			Pollutant c1 = new Pollutant("patri5","unit3", "Nitrogen", 1);
 
 
-//ont.addWaterMass(mw.getIdentificador(),mw);
-//System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " );
+			ArrayList<Pollutant> aux2 = new ArrayList<Pollutant>();
+			aux2.add(a1);
+
+			aux2.add(c1);
+
+
+			WaterMass mw2= new  WaterMass(aux2, new Vector<WaterMass>(), 24,345,l );
+			Vector<WaterMass> rr = new Vector<WaterMass>();
+			rr.add(mw);
+			rr.add(mw2);
+			ont.addWaterMass(mw.getIdentificador(), mw);
+			ont.addWaterMass(mw2.getIdentificador(), mw2);
+			ont.ontoMergeWater(rr,l);
+
+			/*
+			OntClass waterMass = onti.getOntClass(PREF + "WaterMass");
+			OntClass classPolRelation = onti.getOntClass(PREF + "PollutantRelation");
+			Individual instWaterMass = onti.createIndividual(PREF+"patriwm",waterMass);
+			Property  L= onti.getProperty(PREF+"hasLocalization");
+
+			Individual instLocation = onti.getIndividual(PREF +mw.getPlace().getId());
+
+			//System.out.println("HII fjsdilajflasjdilajfsldkjfdlkfsdjfadjfsdalkfsda "+ instLocation.getLocalName() );
+
+			instWaterMass.addLiteral(L, instLocation.getURI());
+			Property ok = onti.getProperty(PREF+"hasPollutant");
+			//System.out.println("A1 " );
+
+			for(Pollutant p:mw.getPollutants()){
+				String urirelation = PREF+UUID.randomUUID();
+				Individual instPolRelation = onti.createIndividual(urirelation,classPolRelation);
+				//System.out.println("A2 " +urirelation + " maybe "+ instPolRelation.getLocalName() + " class "+ instPolRelation.getOntClass().getLocalName());
+				
+				Individual instPollutant = onti.getIndividual(PREF+p.getType());
+				
+				//System.out.println("A3 " +instPollutant.getLocalName() +  " " + instPollutant.getOntClass().getLocalName());
+				
+				Property po = onti.getProperty(PREF+"pollutantType");
+				
+				//System.out.println("A4 "+ po.getLocalName() );
+				
+				instPolRelation.addLiteral(po,  instPollutant.getURI());			
+				
+				////System.out.println("AA5" );
+				
+				po = onti.getProperty(PREF+"pollutionAmount");
+				
+				////System.out.println("A6" );
+				
+				instPolRelation.addLiteral(po, p.getAmount());
+				
+				////System.out.println("AA8 " );
+				
+				instWaterMass.addLiteral(ok, instPolRelation.getURI());
+				
+				//System.out.println("AA7 " );
+			//	in.addLiteral(ok, );
+				
+			}
+			Property po = onti.getProperty(PREF+"hasLiters");
+			instWaterMass.addLiteral(po, mw.getLiters());
+			po = onti.getProperty(PREF+"existanceTimeStart");
+			instWaterMass.addLiteral(po, mw.getExistanceTimeStart());
+			//po = onti.getProperty(PREF+"existanceTimeEnd");
+			//instWaterMass.addLiteral(po, mw.getExistanceTimeEnd());
+
+			*/
+
+
+			//ont.addWaterMass(mw.getIdentificador(),mw);
+			//System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " );
 
 
 
-ont.loadWaterMasses();
+			ont.loadWaterMasses();
 
-//System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " );
+			//System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA " );
 
-		
+					
 			
 	
 			
@@ -228,7 +228,7 @@ ont.loadWaterMasses();
 
 			
 			
-			ont.write("sid/onto/prova.owl");
+			ont.write("onto/prova.owl");
 			//ont.loadPollutants();
 			
 			
@@ -522,7 +522,8 @@ ont.loadWaterMasses();
 	
 			//System.out.println("HII fjsdilajflasjdilajfsldkjfdlkfsdjfadjfsdalkfsda "+ instLocation.getLocalName() );
 	
-			instWaterMass.addLiteral(L, instLocation.getURI());
+			//instWaterMass.addLiteral(L, instLocation.getURI());
+			instWaterMass.addProperty(L, instLocation);
 		}
 		Property prHasPollutant = ont.getProperty(PREF+"hasPollutant");
 		//System.out.println("A1 " );
@@ -540,17 +541,22 @@ ont.loadWaterMasses();
 			
 			//System.out.println("A4 "+ prPollutantType.getLocalName() );
 			
-			instPolRelation.addLiteral(prPollutantType,  instPollutant.getURI());			
+			//instPolRelation.addLiteral(prPollutantType,  instPollutant.getURI());
+			instPolRelation.addProperty(prPollutantType,  instPollutant);
 
 			
 			Property prPollutantAmount = ont.getProperty(PREF+"pollutionAmount");
 			
 			
+			//instPolRelation.addLiteral(prPollutantAmount, p.getAmount());
 			instPolRelation.addLiteral(prPollutantAmount, p.getAmount());
 			
 
 			
-			instWaterMass.addLiteral(prHasPollutant, instPolRelation.getURI());
+			//instWaterMass.addLiteral(prHasPollutant, instPolRelation.getURI());
+			//
+			instWaterMass.addProperty(prHasPollutant, instPolRelation);
+			//
 
 			
 		}
@@ -643,4 +649,4 @@ ont.loadWaterMasses();
 	} 
 	
 	
-}
+	}
