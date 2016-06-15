@@ -22,15 +22,15 @@ COSES A FER:
 
 [ ] Control Errors:
 
-	- Una massa no pot tenir dos fills o bé fer una funció que divideixi una massa d'aigua en dos.
+	- Una massa no pot tenir dos fills o bé fer una funció que divideixi una massa d'aigua en dos.--> de moment he fet primera opcio (X)
 	
-	- Una planta de tractament no pot tenir més una capacitat màxima en un instant de temps no pot tenir més litres que aixo
+	- Una planta de tractament no pot tenir més una capacitat màxima en un instant de temps no pot tenir més litres que aixo (X)
 
-	- En les funcions proof, informar a l'usuari on es produirà un error
+	- En les funcions proof, informar a l'usuari on es produirà un error (X)
 
-	- En les altres funcions, tirar excepcions.
+	- En les altres funcions, tirar excepcions. (X)
 
-	- Evitar poder posar una massa d'aigua dins d'un lloc que ja té capacitat màxima (planta tractament)
+	- Evitar poder posar una massa d'aigua dins d'un lloc que ja té capacitat màxima (planta tractament) (X)
 
  
 

@@ -36,7 +36,7 @@ public class Ontology {
 			ont.loadPermitsRegulations();
 			ont.loadLocalizations();
 			ont.loadWaterMasses();
-			
+			ont.validateTreatmentPlants();
 
 
 
@@ -437,8 +437,9 @@ ont.loadWaterMasses();
 			this.places.put(id, new Factory(id));
 		}
 		
-
 	}
+	
+	
 	
 	public void loadWaterMasses()//I els pollutants
 	{
@@ -470,7 +471,7 @@ ont.loadWaterMasses();
 					//System.out.println(ori);
 					WaterMass wmo = waterMasses.get(ori);
 					waterMasses.get(name).pushOriginMass(wmo);
-					waterMasses.get(ori).pushSonMass(wmo);
+					waterMasses.get(ori).setSonMass(wmo);
 				} else if( s.getPredicate().toString().equals(PREF+"hasLocalization") ){
 					
 					String loc = removePrefix(s.getObject().toString());
@@ -585,36 +586,57 @@ ont.loadWaterMasses();
 	//	ont.get
 	}
 	
-	public void ontoMergeWater(Vector<WaterMass> wms,Localization l ){
-		WaterMass mw=Methods.mergeWaterMasses(wms);
-		mw.setPlace(l);
-		for(WaterMass w: wms){
-			updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
-		}
-		
-		addWaterMass(mw.getIdentificador(),mw);	
-		waterMasses.put(mw.getIdentificador(), mw);
+	public void ontoMergeWater(Vector<WaterMass> wms,Localization l ) {
+		try{
+			WaterMass mw=Methods.mergeWaterMasses(wms);
+			mw.setPlace(l);
+			for(WaterMass w: wms){
+				updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
+			}
+			
+			addWaterMass(mw.getIdentificador(),mw);	
+			waterMasses.put(mw.getIdentificador(), mw);
+		}catch (Exception e) {System.out.println(e.getMessage());}
 		
 		
 	}
 	
 	
 	public void ontogenerateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ){
-		WaterMass mw=Methods.generateWaterMass(pollutants, originMass, liters, existanceTime, l);
-		addWaterMass(mw.getIdentificador(),mw);
-		waterMasses.put(mw.getIdentificador(), mw);
+		try{
+			WaterMass mw=Methods.generateWaterMass(pollutants, originMass, liters, existanceTime, l);
+			addWaterMass(mw.getIdentificador(),mw);
+			waterMasses.put(mw.getIdentificador(), mw);
+		}
+		catch (Exception e) {System.out.println(e.getMessage());}
 		
 	} 
+	
+	public void validateTreatmentPlants(){
+		
+		for(Localization l:places.values()){
+			
+			if(l.getClass().equals(TreatmentPlant.class)){
+				try{
+					Methods.validTreatmentPlant(waterMasses, (TreatmentPlant) l);
+				}
+				catch (Exception e) {System.out.println(e.getMessage());System.exit(1);}
+			}
+			
+		}
+		
+	}
 	
 	public void ontodepureMass(WaterMass w, TreatmentPlant tp, RuleTable p,long existanceTime) {
 	    
 		
 		try {
-			WaterMass mwnew=Methods.depureMass(w, tp, p, existanceTime);
+			WaterMass mwnew=Methods.depureMass(waterMasses,w, tp, p, existanceTime);
 		    updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
 			addWaterMass(mwnew.getIdentificador(),mwnew);
 			waterMasses.put(mwnew.getIdentificador(), mwnew);
-			} catch (Exception e) {System.out.println(e.getMessage()).}
+		} 
+		catch (Exception e) {System.out.println(e.getMessage());}
 		
 		
 		

@@ -15,17 +15,20 @@ import java.util.Vector;
 
 
 public class Methods {
-	public static WaterMass proofmergeWaterMasses( Vector<WaterMass> wms )
+	public static WaterMass proofmergeWaterMasses( Vector<WaterMass> wms, Long currTime )
 	{
 		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
 		double amount = 0.;
-		long currTime = java.lang.System.currentTimeMillis();
+		//long currTime = java.lang.System.currentTimeMillis();
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
 				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );
 				lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
+			if(wm.getSonMass().equals(null)){
+				 System.out.println("La massa d'aigua amb id "+ wm.getIdentificador() + " ja té fills ");
+					
 		}
 		
 		
@@ -33,17 +36,28 @@ public class Methods {
 	}
 	
 	
-	public static WaterMass mergeWaterMasses( Vector<WaterMass> wms )
+	public static WaterMass mergeWaterMasses( Vector<WaterMass> wms ) throws Exception
+	{
+
+	     return mergeWaterMasses(wms,java.lang.System.currentTimeMillis());
+	}
+	
+	
+	
+	public static WaterMass mergeWaterMasses( Vector<WaterMass> wms, Long currTime ) throws Exception
 	{
 		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
 		double amount = 0.;
-		Long currTime = java.lang.System.currentTimeMillis();
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
 				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );
 				lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
+			if(wm.getSonMass().equals(null)){
+				 throw new Exception("La massa d'aigua amb id "+ wm.getIdentificador() + " ja té fills ");
+					
+			}
 			wm.setExistanceTimeEnd(currTime);
 		}
 		
@@ -52,7 +66,12 @@ public class Methods {
 	}
 	
 
-	public static WaterMass generateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
+	public static WaterMass generateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) throws Exception {
+		if(l.getClass().equals(TreatmentPlant.class)){
+			throw new Exception("si vols generara una massa d'aigua d'una depuradora utilitzar la funcio de depure");
+			
+		}
+		
 		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
 	}
 	
@@ -82,9 +101,17 @@ public class Methods {
 	}
 	
 	
-	public static WaterMass proofdepureMass(WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime){
+	public static WaterMass proofdepureMass(LinkedHashMap<String,WaterMass> waterMasses,WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime){
 		
-		
+		if(wm.getSonMass().equals(null)){
+			System.out.println("USUARI VOLEM QUE SAPIGA QUE AQUESTA MASSA D'AIGUA JA ES PARE D'ALGUNA MASSA D'AIGUA");
+			
+		}
+		Double hml = howmanyliters(waterMasses,existanceTime,tp);
+		if(hml+wm.getLiters()>tp.getMaxWater()){
+			System.out.println("NO PODEM AFEGIR AQUESTA NOVA MASSA D'AIGUA PERQUE LA DEPURADORA ESTA AL SEU NIVELL MAXIM");
+			
+		}
 		Double time = calculateTime(wm,tp,p);	
 		
 		ArrayList<Pollutant> poNew = new ArrayList<>();
@@ -101,7 +128,6 @@ public class Methods {
 		Vector<WaterMass> originMass = wm.getOriginMass();
 		originMass.add(wm);
 		
-		System.out.println("USUARI VOLEM QUE SAPIGA QUE AQUESTA MASSA D'AIGUA JA ES PARE D'ALGUNA MASSA D'AIGUA");
 		
 		long end = (long) (existanceTime+time);
 		
@@ -109,12 +135,56 @@ public class Methods {
 	}
 	
 	
-	public static WaterMass depureMass(WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime) throws Exception{
+	public static Double howmanyliters(LinkedHashMap<String,WaterMass> waterMasses, Long time, Localization t){
 		
-		if(wm.getSonMass().isEmpty()){
+		Double amout=0.0;
+		for(WaterMass w: waterMasses.values()){
+			
+			if(w.getPlace().equals(t)){
+				if(!w.getExistanceTimeStart().equals(null)){
+					if(w.getExistanceTimeStart().compareTo(time)<=0){
+						
+						if(!w.getExistanceTimeStart().equals(null)){
+							if(w.getExistanceTimeStart().compareTo(time)>=0){
+								amout+=w.getLiters();
+							}
+						}
+						else amout+=w.getLiters();
+					}
+					
+				}
+				
+			}
+		}
+		
+		return amout;
+		
+	}
+	
+	public static void validTreatmentPlant(LinkedHashMap<String,WaterMass> waterMasses, TreatmentPlant tp) throws Exception{
+		for(WaterMass w: waterMasses.values()){
+			if(!w.getExistanceTimeEnd().equals(null)){
+				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha més aigua a la depuradora de la permesa ");};
+			}
+		}
+		
+		
+		
+	}
+		
+	
+	public static WaterMass depureMass(LinkedHashMap<String,WaterMass> waterMasses,WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime) throws Exception{
+		
+		if(wm.getSonMass().equals(null)){
 			 throw new Exception("HEU DE POSAR UNA MASSA QUE NO SIGUI PARE DE CAP MASSA");
 			
 		}
+		Double hml = howmanyliters(waterMasses,existanceTime,tp);
+		if(hml+wm.getLiters()>tp.getMaxWater()){
+			throw new Exception("NO PODEM AFEGIR AQUESTA NOVA MASSA D'AIGUA PERQUE LA DEPURADORA ESTA AL SEU NIVELL MAXIM");
+			
+		}
+		
 		
 		Double time = calculateTime(wm,tp,p);	
 		

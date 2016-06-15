@@ -12,7 +12,7 @@ public class WaterMass {
 	private Localization place;
     private ArrayList<Pollutant> pollutants;
 	private Vector<WaterMass> originMass;
-	private Vector<WaterMass> sonMass;//Pot ser null nomes creada per els raonadors, no en fem res
+	private WaterMass sonMass;//Pot ser null nomes creada per els raonadors, no en fem res
 	private Long existanceTimeStart;
 	private Long existanceTimeEnd;
 	private double liters;
@@ -32,7 +32,7 @@ public class WaterMass {
 		this.identificador = identificador;
 		pollutants = new ArrayList<Pollutant>();
 		originMass = new Vector<WaterMass>();
-		sonMass = new Vector<WaterMass>();
+		sonMass = null;
 	}
 
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
@@ -113,10 +113,10 @@ public class WaterMass {
 	public void setOriginMass(Vector<WaterMass> originMass) {
 		this.originMass = originMass;
 	}
-	public Vector<WaterMass> getSonMass() {
+	public WaterMass getSonMass() {
 		return sonMass;
 	}
-	public void setSonMass(Vector<WaterMass> sonMass) {
+	public void setSonMass(WaterMass sonMass) {
 		this.sonMass = sonMass;
 	}
 	public Long getExistanceTimeStart() {
@@ -152,9 +152,7 @@ public class WaterMass {
 	public void pushOriginMass( WaterMass w ){
 		this.originMass.addElement(w);
 	}
-	public void pushSonMass( WaterMass w ){
-		this.sonMass.addElement(w);
-	}
+
 	public void pushPollutant( Pollutant p ){
 		this.pollutants.add(p);
 	}
