@@ -29,11 +29,13 @@ public class Methods {
 			if(wm.getSonMass().equals(null)){
 				 System.out.println("La massa d'aigua amb id "+ wm.getIdentificador() + " ja té fills ");
 					
+			}
 		}
 		
 		
-		return new WaterMass(new ArrayList<Pollutant>(lm.values()),new Vector<WaterMass>(wms),amount);
-	}
+			return new WaterMass(new ArrayList<Pollutant>(lm.values()),new Vector<WaterMass>(wms),amount,currTime);
+	
+		}
 	
 	
 	public static WaterMass mergeWaterMasses( Vector<WaterMass> wms ) throws Exception
