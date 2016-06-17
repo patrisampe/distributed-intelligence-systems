@@ -28,7 +28,7 @@ public class Methods {
 			}
 			amount += wm.getLiters();
 			if(wm.getSonMass().equals(null)){
-				 System.out.println("La massa d'aigua amb id "+ wm.getIdentificador() + " ja té fills ");
+				 System.out.println("La massa d'aigua amb id "+ wm.getIdentificador() + " ja tï¿½ fills ");
 					
 			}
 		}
@@ -58,7 +58,7 @@ public class Methods {
 			}
 			amount += wm.getLiters();
 			if(!wm.getSonMass().equals(null)){
-				 throw new Exception("La massa d'aigua amb id "+ wm.getIdentificador() + " ja té fills ");
+				 throw new Exception("La massa d'aigua amb id "+ wm.getIdentificador() + " ja tï¿½ fills ");
 					
 			}
 			wm.setExistanceTimeEnd(currTime);
@@ -173,7 +173,7 @@ public class Methods {
 	public static void validTreatmentPlant(LinkedHashMap<String,WaterMass> waterMasses, TreatmentPlant tp) throws Exception{
 		for(WaterMass w: waterMasses.values()){
 			if(!w.getExistanceTimeEnd().equals(null)){
-				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha més aigua a la depuradora de la permesa ");};
+				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha mï¿½s aigua a la depuradora de la permesa ");};
 			}
 		}
 		
@@ -249,31 +249,27 @@ public class Methods {
 		return false;
 	}
 	
-	public static Vector<WaterMass> needInspeccion(WaterMass wm, RuleTable p){
-		
-		//wm se suposo que esta regulada per permission p pero no ho esta per algun motiu, hem de trobar quin es
-		
-		LinkedHashMap<String,Pollutant> whatPollutans=pollutantsCaused(wm,p);
-		
-		Vector<WaterMass> wpaux = new Vector<WaterMass> ();
-		
-		for(WaterMass aw:wm.getOriginMass()){
-			if(breaksRegulation(aw,p,whatPollutans)) wpaux.add(aw);
+
+	//Retorna true si ell esta net, fals en cas contrari
+	public static boolean needInspection(WaterMass wm, HashSet<WaterMass> swm, Regulation r){
+		boolean net = true;
+		for( Pollutant p: wm.getPollutants()) {
+			if(!r.compliant(p)) {
+				net = false;
+				break;
+			}
 		}
 		
-		return wpaux;
-	}
-	//Pre: wm esta brut
-	//Retorna true si tots els seus pares estan nets, fals en cas contrari
-	public static boolean needInspeccionrec(WaterMass wm, HashSet<WaterMass> swm, Regulation r){
-		boolean ret = true;
-		
-				for(WaterMass fm:wm.getOriginMass()) {
-					if( needInspeccionrec(fm,swm,r) ) {
-				swm.add(wm);
+		if(!net) {
+			boolean guilty = true;
+			for(WaterMass fm:wm.getOriginMass()) {
+				if(!needInspection(fm,swm,r)) {
+					guilty = false;
+				}
+			}
+			if(guilty) swm.add(wm);
 		}
-		return false;
-		
+		return net;
 	}
 	
 	
