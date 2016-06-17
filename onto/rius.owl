@@ -448,6 +448,14 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Fact2 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;Fact2">
+        <rdf:type rdf:resource="&riusSID;Factory"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Lead -->
 
     <owl:NamedIndividual rdf:about="&riusSID;Lead">

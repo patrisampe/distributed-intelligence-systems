@@ -36,6 +36,8 @@ public class TreatmentPlant extends Localization{
 		return pe.get(pt).getAmount();		
 		
 	}
-	
+	public String toString() {
+		return super.toString() +" "+ pe.toString();
+	}
 	
 }

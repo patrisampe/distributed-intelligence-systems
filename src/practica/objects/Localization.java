@@ -18,7 +18,10 @@ public class Localization {
 	
 	
 	
-	
+	public String toString() 
+	{
+		return id;
+	}
 	
 	
 }

@@ -26,105 +26,6 @@ import java.util.UUID;
 public class Ontology {
 	
 	
-	/*
-	public static void main(String[] args) throws Exception {
-		try {
-			Ontology ont = new Ontology();
-			ont.read("onto/rius.owl");
-			
-			ont.loadPermitsRegulations();
-			ont.loadLocalizations();
-			ont.loadWaterMasses();
-			ont.validateTreatmentPlants();
-
-
-
-			System.out.println("RULES:");
-			for( RuleTable r:ont.rules.values() ) {
-				System.out.println(r);
-			}
-			System.out.println("Localization");
-			
-			for( Localization lu:ont.places.values()) {
-				System.out.println(lu);
-			}
-			System.out.println("WaterMasses");
-			for( WaterMass wm:ont.waterMasses.values()) {
-				System.out.println(wm);
-			}
-
-			
-	
-
-						
-			Localization l = new Localization("Fact1");
-			Pollutant a = new Pollutant("patri1","unit1", "Lead", 1);
-
-			Pollutant c = new Pollutant("patri3","unit3", "Nitrogen", 1);
-
-
-			ArrayList<Pollutant> aux = new ArrayList<Pollutant>();
-			aux.add(a);
-
-			aux.add(c);
-
-
-			WaterMass mw= new  WaterMass(aux, new Vector<WaterMass>(), 20,345,l );
-
-
-			Pollutant a1 = new Pollutant("patri4","unit1", "Lead", 1);
-
-			Pollutant c1 = new Pollutant("patri5","unit3", "Nitrogen", 1);
-
-
-			ArrayList<Pollutant> aux2 = new ArrayList<Pollutant>();
-			aux2.add(a1);
-
-			aux2.add(c1);
-
-
-			WaterMass mw2= new  WaterMass(aux2, new Vector<WaterMass>(), 24,345,l );
-			Vector<WaterMass> rr = new Vector<WaterMass>();
-			rr.add(mw);
-			rr.add(mw2);
-			ont.addWaterMass(mw.getIdentificador(), mw);
-			ont.addWaterMass(mw2.getIdentificador(), mw2);
-			ont.ontoMergeWater(rr,l);			
-			
-			
-			ont.loadPermitsRegulations();
-			ont.loadLocalizations();
-			ont.loadWaterMasses();
-			
-
-
-
-			System.out.println("RULES:");
-			for( RuleTable r:ont.rules.values() ) {
-				System.out.println(r);
-			}
-			System.out.println("Localization");
-			
-			for( Localization lu:ont.places.values()) {
-				System.out.println(lu);
-			}
-			System.out.println("WaterMasses");
-			for( WaterMass wm:ont.waterMasses.values()) {
-				System.out.println(wm);
-			}
-
-			
-			
-			ont.write("onto/prova.owl");
-
-			
-			
-			
-		}catch(Exception e) {System.out.println("Err");throw e;}
-	}
-	*/
-	
-	
 	private String file;
 	private OntModel ont;
 	private String PREF = "http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#";
@@ -135,16 +36,7 @@ public class Ontology {
 	public LinkedHashMap<String,RuleTable> rules = new LinkedHashMap<String,RuleTable>();
 
 	
-	public OntModel aux(){
-		return ont;
 		
-	}
-	public String aux2(){
-		return PREF;
-		
-	}
-	
-	
 	public void ClassifyWaterMasses()
 	{
 		String cPrefix = PREF + "_waterregulatedclass_";
@@ -184,13 +76,6 @@ public class Ontology {
 			FileReader frd = new FileReader(dont);
 			this.ont = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
 			this.ont.read(frd,null,"RDF/XML");
-			/*Codi per exemple
-			//System.out.println(getClassFromLabel("WaterMass"));
-			Iterator<Individual> it = ont.listIndividuals();
-			while(it.hasNext()) {
-				//System.out.println(it.next().getLocalName());
-			}
-			*/
 			} catch (Exception e) {throw e;}
 	}
 	
@@ -217,19 +102,13 @@ public class Ontology {
 	
 	
 	private String removePrefix(String s) {
-		////System.out.println("EEERRR " +s);
 		return s.substring(PREF.length(),s.length());
 	}
 	
 	public Pollutant getPollutantRelation(Individual polRel) {
 		
-		//Busquem tipus i quantiat
-		//String rel = s.getObject().toString();
-		//Individual polRel = ont.getIndividual(rel);
 		Property p = ont.getProperty(PREF+"pollutantType");
-		////System.out.println("BABABAB" +polRel.getProperty(p).toString());
 		String poll = removePrefix(polRel.getProperty(p).getObject().toString());
-		//System.out.println(poll);
 		p = ont.getProperty(PREF+"pollutionAmount");
 		Double d = polRel.getProperty(p).getDouble();
 		//Busquem unitat
@@ -237,10 +116,8 @@ public class Ontology {
 		p = ont.getProperty(PREF+"pollutionUnit");
 		String unit = pi.getProperty(p).getString();
 		String id = removePrefix(polRel.toString());
-		//System.out.println(id +" "+unit +" "+poll+" "+d);
 		Pollutant polly = new Pollutant(id,unit,poll,d);
 		return polly;
-		//pollutants.put(id,polly);
 	}
 	
 	public void loadPermitsRegulations()
@@ -282,7 +159,6 @@ public class Ontology {
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					Pollutant polly = this.getPollutantRelation(polRel);
-					double amount = polly.getAmount();
 					String pollutant = polly.getType();
 					p.getMaxAllowed().put(pollutant, polly);
 				}
@@ -353,7 +229,6 @@ public class Ontology {
 	{
 		waterMasses = new LinkedHashMap<String,WaterMass>();
 		OntClass classe = ont.getOntClass(PREF + "WaterMass");
-		//System.out.println(classe);
 		
 		
 		
@@ -363,7 +238,6 @@ public class Ontology {
 		while( iter.hasNext() ) {
 			Individual i = iter.next();
 			String name = i.getLocalName();
-			//System.out.println("Massa:"+name);
 			this.waterMasses.put(name, new WaterMass(name));
 		}
 		iter = ont.listIndividuals(classe);
@@ -376,22 +250,18 @@ public class Ontology {
 				Statement s = it.next();
 				if( s.getPredicate().toString().equals(PREF+"originMass")) {
 					String ori = removePrefix(s.getObject().toString());
-					//System.out.println(ori);
 					WaterMass wmo = waterMasses.get(ori);
 					waterMasses.get(name).pushOriginMass(wmo);
 					waterMasses.get(ori).setSonMass(wmo);
 				} else if( s.getPredicate().toString().equals(PREF+"hasLocalization") ){
 					
 					String loc = removePrefix(s.getObject().toString());
-					//System.out.println("LALALALALA "  + loc);
 					waterMasses.get(name).setPlace(this.places.get(loc));
-					//System.out.println(loc);
 				} else if( s.getPredicate().toString().equals(PREF+"hasPollutant") ){
 					//Busquem tipus i quantiat
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					
-					//System.out.println("LALALALALA "  + rel);				
 					Pollutant polly = this.getPollutantRelation(polRel);
 					String id = polly.getId();
 					pollutants.put(id,polly);
@@ -399,7 +269,6 @@ public class Ontology {
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeStart") ){
 					Long l = s.getLong();
 					waterMasses.get(name).setExistanceTimeStart(l);
-					//System.out.println(l);
 				} else if( s.getPredicate().toString().equals(PREF+"existanceTimeEnd") ){
 					Long l = s.getLong();
 					waterMasses.get(name).setExistanceTimeEnd(l);
@@ -411,15 +280,12 @@ public class Ontology {
 			
 			
 		}
-		/*
-		for( WaterMass wm1:waterMasses.values()) {
-			String id = wm1.getIdentificador();
-		}*/
 		
 	}
 
 	
-	public void addWaterMass(String id,WaterMass mw) {
+	public void addWaterMass(WaterMass mw) {
+		String id = mw.getIdentificador();
 		OntClass waterMass = ont.getOntClass(PREF + "WaterMass");
 		OntClass classPolRelation = ont.getOntClass(PREF + "PollutantRelation");
 		Individual instWaterMass = ont.createIndividual(PREF+id,waterMass);
@@ -428,43 +294,26 @@ public class Ontology {
 		if(mw.getPlace()!= null){
 			Individual instLocation = ont.getIndividual(PREF +mw.getPlace().getId());
 	
-			//System.out.println("HII fjsdilajflasjdilajfsldkjfdlkfsdjfadjfsdalkfsda "+ instLocation.getLocalName() );
 	
-			//instWaterMass.addLiteral(L, instLocation.getURI());
 			instWaterMass.addProperty(L, instLocation);
 		}
 		Property prHasPollutant = ont.getProperty(PREF+"hasPollutant");
-		//System.out.println("A1 " );
 
 		for(Pollutant p:mw.getPollutants()){
 			String urirelation = PREF+UUID.randomUUID();
 			Individual instPolRelation = ont.createIndividual(urirelation,classPolRelation);
-			//System.out.println("A2 " +urirelation + " maybe "+ instPolRelation.getLocalName() + " class "+ instPolRelation.getOntClass().getLocalName());
 			
 			Individual instPollutant = ont.getIndividual(PREF+p.getType());
 			
-			//System.out.println("A3 " +instPollutant.getLocalName() +  " " + instPollutant.getOntClass().getLocalName());
-			
 			Property prPollutantType = ont.getProperty(PREF+"pollutantType");
 			
-			//System.out.println("A4 "+ prPollutantType.getLocalName() );
-			
-			//instPolRelation.addLiteral(prPollutantType,  instPollutant.getURI());
 			instPolRelation.addProperty(prPollutantType,  instPollutant);
 
-			
 			Property prPollutantAmount = ont.getProperty(PREF+"pollutionAmount");
 			
-			
-			//instPolRelation.addLiteral(prPollutantAmount, p.getAmount());
 			instPolRelation.addLiteral(prPollutantAmount, p.getAmount());
 			
-
-			
-			//instWaterMass.addLiteral(prHasPollutant, instPolRelation.getURI());
-			//
 			instWaterMass.addProperty(prHasPollutant, instPolRelation);
-			//
 
 			
 		}
@@ -489,15 +338,11 @@ public class Ontology {
 		Individual in = ont.getIndividual(PREF+id);
 
 		Property pr = ont.getProperty(PREF+Property);
-		////System.out.println(" hii " + in.getPropertyValue(pr));
 		if(in.hasProperty(pr)){
 		    in.removeProperty(pr, in.getPropertyValue(pr));
 		}
 		in.addLiteral(pr, updated);
 		
-		
-		
-	//	ont.get
 	}
 	
 	public void ontoMergeWater(Vector<WaterMass> wms,Localization l ) {
@@ -508,8 +353,9 @@ public class Ontology {
 				updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
 			}
 			
-			addWaterMass(mw.getIdentificador(),mw);	
+			addWaterMass(mw);	
 			waterMasses.put(mw.getIdentificador(), mw);
+			
 		}catch (Exception e) {System.out.println(e.getMessage());}
 		
 		
@@ -519,7 +365,7 @@ public class Ontology {
 	public void ontogenerateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ){
 		try{
 			WaterMass mw=Methods.generateWaterMass(pollutants, originMass, liters, existanceTime, l);
-			addWaterMass(mw.getIdentificador(),mw);
+			addWaterMass(mw);
 			waterMasses.put(mw.getIdentificador(), mw);
 		}
 		catch (Exception e) {System.out.println(e.getMessage());}
@@ -547,13 +393,34 @@ public class Ontology {
 		try {
 			WaterMass mwnew=Methods.depureMass(waterMasses,w, tp, p, existanceTime);
 		    updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
-			addWaterMass(mwnew.getIdentificador(),mwnew);
+			addWaterMass(mwnew);
 			waterMasses.put(mwnew.getIdentificador(), mwnew);
 		} 
 		catch (Exception e) {System.out.println(e.getMessage());}
 		
 		
 		
+	}
+
+
+
+	public OntModel getOnt() {
+		return ont;
+	}
+
+
+	public void setOnt(OntModel ont) {
+		this.ont = ont;
+	}
+
+
+	public String getPREF() {
+		return PREF;
+	}
+
+
+	public void setPREF(String pREF) {
+		PREF = pREF;
 	} 
 	
 	
