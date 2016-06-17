@@ -84,7 +84,13 @@ public class Methods {
 			
 	//	}
 		
-		f.
+   ArrayList<Pollutant> pollutant = new ArrayList<>();
+		
+	for(Entry ws: f.getP().getMaxAllowed().entrySet()){
+		
+		ws.getValue()
+		
+	}
 		
 		
 		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
