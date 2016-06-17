@@ -16,11 +16,11 @@ import java.util.Vector;
 
 
 public class Methods {
-	public static WaterMass proofmergeWaterMasses( Vector<WaterMass> wms, Long currTime )
+	public static WaterMass proofmergeWaterMasses( Vector<WaterMass> wms )
 	{
 		LinkedHashMap<String,Pollutant> lm = new LinkedHashMap<>();
 		double amount = 0.;
-		//long currTime = java.lang.System.currentTimeMillis();
+	    Long currTime = java.lang.System.currentTimeMillis();
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
 				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );

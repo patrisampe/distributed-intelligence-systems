@@ -41,18 +41,110 @@ public class PracticaSID {
 			
 			switch(r){
 			
+			
 			case 1: 
+			{
+				System.out.println("Afegeix un identificadors, per les masses per fer el merge. Mentre que afegeixis identificador diferents a 'fi' s'afegiran aquestes masses d'aigua com masses per fer el merge");
+				
+				
+				String id = entrada.nextLine();
+				Vector<WaterMass> og = new Vector<>();
+				
+				while(!id.equals("fi")){
+					og.addElement(ont.waterMasses.get(id));
+					id = entrada.nextLine();
+				}
+				
+				System.out.println(" El temps de la massa sera l'actual ");
+				
+				
+				System.out.println("La massa d'aigua resultant es");
+				
+				Methods.proofmergeWaterMasses(og).toString();
+				
+				break;
+			}
+				
+				
+			case 2:
+			{
+				System.out.println("Afegeix un identificadors, per les masses per fer el merge. Mentre que afegeixis identificador diferents a 'fi' s'afegiran aquestes masses d'aigua com masses per fer el merge");
+				
+				
+				String id = entrada.nextLine();
+				Vector<WaterMass> og = new Vector<>();
+				
+				while(!id.equals("fi")){
+					og.addElement(ont.waterMasses.get(id));
+					id = entrada.nextLine();
+				}
+				
+				System.out.println(" El temps de la massa sera l'actual ");
+				
+				System.out.println("Afegeix una localitzacio");
+				
+				String loc= entrada.nextLine();
+				
+				Localization l= ont.places.get(loc);
+				
+				System.out.println("La massa d'aigua resultant es");
+				
+				ont.ontoMergeWater(og, l);
+				
+				
+				
+				break;
+			}	
+				
+			case 4:{
+				
+				System.out.println("Afegeix un identificadors, per les masses que seran masses pare. Mentre que afegeixis identificador diferents a 'fi' s'afegiran aquestes masses d'aigua com masses pare");
+				
+				
+				String id = entrada.nextLine();
+				Vector<WaterMass> og = new Vector<>();
+				
+				while(!id.equals("fi")){
+					og.addElement(ont.waterMasses.get(id));
+					id = entrada.nextLine();
+				}
+				
+				System.out.println(" El temps de la massa sera l'actual ");
+				Long t = java.lang.System.currentTimeMillis();
+				
+				System.out.println("Afegeix una localitzacio");
+				
+				String loc= entrada.nextLine();
+				
+				Localization l= ont.places.get(loc);
+				
+				System.out.println("Afegeix litres");
+				
+				Integer lit= Integer.parseInt(entrada.nextLine());
+				
+				System.out.println("Afegeix parelles de (identificador, quantitat), pels contaminants de la massa. Mentre que afegeixis identificador diferents a 'fi' s'afegiran com contaminants d'aquesta massa");
+				
+				String idp = entrada.nextLine();
+				ArrayList<Pollutant> p = new ArrayList<>();
+				
+				while(!idp.equals("fi")){
+					og.addElement(ont.waterMasses.get(id));
+					idp = entrada.nextLine();
+				}
+				
+				
+				System.out.println("La massa d'aigua resultant es");
+				
+				ont.ontoMergeWater(og, l);
 				
 				
 				
 				break;
 				
 				
+			}
 				
-			case 2:
 				
-				
-			case 3:
 			
 			}
 			
@@ -96,11 +188,11 @@ public class PracticaSID {
 		
 		System.out.println("1. provem d'unificar dues masses d'aigua sense modificar ontologia ");
 		
-		System.out.println("2. unifiquem dues masses d'aigua modificant ontologia donant el temps");
+	//	System.out.println("2. unifiquem dues masses d'aigua modificant ontologia donant el temps");
 		
 		System.out.println("3. unifiquem dues masses d'aigua modificant ontologia sense donar el temps");
 		
-		System.out.println("4. provem de generar una massa d'aigua sense modificar l'ontologia");
+//r		System.out.println("4. provem de generar una massa d'aigua sense modificar l'ontologia");
 		
 		System.out.println("5. Generem una massa d'aigua modificant ontologia");
 	
