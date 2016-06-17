@@ -26,7 +26,7 @@ import java.util.UUID;
 public class Ontology {
 	
 	
-	
+	/*
 	public static void main(String[] args) throws Exception {
 		try {
 			Ontology ont = new Ontology();
@@ -122,6 +122,8 @@ public class Ontology {
 			
 		}catch(Exception e) {System.out.println("Err");throw e;}
 	}
+	*/
+	
 	
 	private String file;
 	private OntModel ont;
