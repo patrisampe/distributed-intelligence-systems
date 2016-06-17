@@ -76,6 +76,10 @@ public class Ontology {
 			FileReader frd = new FileReader(dont);
 			this.ont = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
 			this.ont.read(frd,null,"RDF/XML");
+			this.loadPermitsRegulations();
+			this.loadLocalizations();
+			this.loadWaterMasses();
+			
 			} catch (Exception e) {throw e;}
 	}
 	
