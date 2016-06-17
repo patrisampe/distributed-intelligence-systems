@@ -491,6 +491,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Regulation1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;Regulation1">
+        <rdf:type rdf:resource="&riusSID;Regulation"/>
+        <riusSID:hasRule rdf:resource="&riusSID;rule1"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#polRel1 -->
 
     <owl:NamedIndividual rdf:about="&riusSID;polRel1">
@@ -507,6 +516,16 @@
         <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
         <riusSID:pollutionAmount>64</riusSID:pollutionAmount>
         <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#rule1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;rule1">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount>10.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
     </owl:NamedIndividual>
     
 
