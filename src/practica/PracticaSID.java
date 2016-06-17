@@ -44,7 +44,7 @@ public class PracticaSID {
 		Integer r = Integer.parseInt(entrada.nextLine());
 		
 	
-		while(r!=10){
+		while(r<13){
 			
 			switch(r){
 			
@@ -390,7 +390,10 @@ public class PracticaSID {
 				
 				WaterMass result= Methods.mostProbablyGuiltedaux(m, rt);
 				
-				System.out.println(" La massa d'aigua que es mes probablement que ho causi es  "+result.toString() );
+				if(result == null){
+					System.out.println("Aquesta massa no esta contaminada");
+				}
+				else System.out.println(" La massa d'aigua que es mes probablement que ho causi es  "+result.toString() );
 				
 				
 				break;
@@ -430,7 +433,7 @@ public class PracticaSID {
 				
 				ont.write(pathi);
 				 
-				
+				System.out.println("GRACIES PER UTILITZAR AQUEST PROGRAMA. ENS VEIEM AVIAT!  ");
 				System.out.close();
 				
 			}
