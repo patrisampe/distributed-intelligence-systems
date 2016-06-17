@@ -23,26 +23,11 @@ public class PracticaSID {
 		ont.validateTreatmentPlants();
 		
 
+		writeOntology(ont);
+		writeOptions();
+		
 
-		System.out.println("Escrivim la ontologia :");
 		
-		System.out.println("RULES:");
-		for( RuleTable r:ont.rules.values() ) {
-			System.out.println(r.getId());
-		}
-		System.out.println("Localization");
-		
-		for( Localization lu:ont.places.values()) {
-			System.out.println(lu.getId());
-		}
-		System.out.println("WaterMasses");
-		for( WaterMass wm:ont.waterMasses.values()) {
-			System.out.println(wm.getIdentificador());
-		}
-
-		System.out.println("Escull la funcio que vulguis fer: ");
-		
-		System.out.println("1. ");
 		
 		int r =0;
 		while(r!=10){
@@ -70,6 +55,39 @@ public class PracticaSID {
 		
 		
 	}
+	
+	
+	private static void writeOntology(Ontology ont){
+		
+
+		System.out.println("Escrivim la ontologia :");
+		
+		System.out.println("RULES:");
+		for( RuleTable r:ont.rules.values() ) {
+			System.out.println(r.getId());
+		}
+		System.out.println("Localization");
+		
+		for( Localization lu:ont.places.values()) {
+			System.out.println(lu.getId());
+		}
+		System.out.println("WaterMasses");
+		for( WaterMass wm:ont.waterMasses.values()) {
+			System.out.println(wm.getIdentificador());
+		}
+		
+	}
+	
+	private static void writeOptions(){
+		
+		System.out.println("Escull la funcio que vulguis fer: ");
+		
+		System.out.println("1. ");
+		
+	}
+	
+	
+	
 	
 	
 	
