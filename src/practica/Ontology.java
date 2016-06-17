@@ -514,7 +514,20 @@ public class Ontology {
 		
 		
 	}
-	
+	public void ontoMergeWater(Vector<WaterMass> wms,Localization l , long time) {
+		try{
+			WaterMass mw=Methods.mergeWaterMasses(wms,time);
+			mw.setPlace(l);
+			for(WaterMass w: wms){
+				updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
+			}
+			
+			addWaterMass(mw.getIdentificador(),mw);	
+			waterMasses.put(mw.getIdentificador(), mw);
+		}catch (Exception e) {System.out.println(e.getMessage());}
+		
+		
+	}
 	
 	public void ontogenerateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ){
 		try{
@@ -525,6 +538,16 @@ public class Ontology {
 		catch (Exception e) {System.out.println(e.getMessage());}
 		
 	} 
+	
+	
+	public void ontogenerateWaterMass(  long existanceTime, Factory f,double liters ){
+	
+			WaterMass mw=Methods.generateWaterMass(existanceTime,f,liters);
+			addWaterMass(mw.getIdentificador(),mw);
+			waterMasses.put(mw.getIdentificador(), mw);
+
+	} 
+	
 	
 	public void validateTreatmentPlants(){
 		
