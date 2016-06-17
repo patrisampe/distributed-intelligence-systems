@@ -56,7 +56,7 @@ public class Methods {
 				lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
-			if(wm.getSonMass().equals(null)){
+			if(!wm.getSonMass().equals(null)){
 				 throw new Exception("La massa d'aigua amb id "+ wm.getIdentificador() + " ja té fills ");
 					
 			}
@@ -78,6 +78,19 @@ public class Methods {
 	}
 	
 
+	public static WaterMass generateFactoryWaterMass( long existanceTime, Factory f ) {
+		//if(l.getClass().equals(TreatmentPlant.class)){
+			//throw new Exception("si vols generara una massa d'aigua d'una depuradora utilitzar la funcio de depure");
+			
+	//	}
+		
+		f.
+		
+		
+		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
+	}
+	
+	
 	
 	public static Double calculateTime(WaterMass wm, TreatmentPlant tp, RuleTable p){
 
@@ -211,30 +224,9 @@ public class Methods {
 		return new WaterMass(poNew,originMass, wm.getLiters(),existanceTime,end,tp);
 	}
 	
-	public static boolean permited(WaterMass wm, RuleTable p){
-		
-		
+
 	
-		for( Pollutant po:wm.getPollutants() ){
-			
-		    Double allowed =p.getMaxAmountPollutant(po.getType());
-		    
-		    if(allowed < po.getAmount()) return false;
-		    
-		}
-		return true;
-	}
-	
-	public static RuleTable whatpermision(WaterMass wm, Vector<RuleTable> vp){
-		
-		for( RuleTable p:vp){
-			
-		    if(permited(wm,p))return p;
-		    
-		}
-		return null;
-	}
-	
+
 
 	private static LinkedHashMap<String,Pollutant> pollutantsCaused(WaterMass wm, RuleTable r){
 
