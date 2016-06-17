@@ -147,6 +147,23 @@ public class Ontology {
 	
 	public void ClassifyWaterMasses()
 	{
+		String cPrefix = PREF + "_waterregulatedclass_";
+		for(RuleTable rt:this.rules.values()) {
+			if(rt.getClass().equals(Regulation.class)) {
+				Regulation r = (Regulation)rt;
+				OntClass oc = ont.createClass(cPrefix+r);
+				for( WaterMass wm: waterMasses.values() ) {
+					boolean complies = true;
+					if( !r.compliant(wm) ) {
+						complies = false;
+					}
+					if(complies) {
+						Individual ind = ont.getIndividual(wm.getIdentificador());
+						ind.addOntClass(oc);
+					}
+				}
+			}
+		}
 		
 	}
 	
@@ -198,9 +215,6 @@ public class Ontology {
 	
 
 	
-	public Class getClass( String name ) {
-		return null;
-	}
 	
 	private String removePrefix(String s) {
 		////System.out.println("EEERRR " +s);
