@@ -26,16 +26,17 @@ public class RuleTable {
 		return maxAllowed.get(pt).getAmount();		
 	}
 
-	public Boolean compliant( Pollutant p ) {
+	public Boolean compliant( Pollutant p, double liters ) {
 		
-		if( ( this.maxAllowed.containsKey(p.getType())) && (p.getAmount() < this.getMaxAmountPollutant(p.getType())))
+		if( ( this.maxAllowed.containsKey(p.getType())) && ((p.getAmount()/liters) < this.getMaxAmountPollutant(p.getType())))
 			return true;
 		return false;
 	}
 	
 	public Boolean compliant( WaterMass wm ) {
+		Double liters = wm.getLiters();
 		for( Pollutant p:wm.getPollutants()) {
-			if( !this.compliant(p)) return false;
+			if( !this.compliant(p,liters)) return false;
 		}
 		return true;
 	}

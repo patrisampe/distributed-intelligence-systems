@@ -1,7 +1,7 @@
 package practica.objects;
 //2000/60/EC
 public class Factory extends Localization{
-	private Permit p;
+	private Permit p = null;
 
 	public Factory(String id) {
 		super(id);

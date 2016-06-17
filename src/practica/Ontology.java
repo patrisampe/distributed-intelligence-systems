@@ -47,17 +47,13 @@ public class Ontology {
 				Regulation r = (Regulation)rt;
 				OntClass oc = ont.createClass(cPrefix+r.getId());
 				og.addSubClass(oc);
-				System.out.println(oc);
 				for( WaterMass wm: waterMasses.values() ) {
-					System.out.println(wm);
-					System.out.println(r.compliant(wm));
 					boolean complies = true;
 					if( !r.compliant(wm) ) {
 						complies = false;
 					}
 					if(complies) {
 						Individual ind = ont.getIndividual(PREF+wm.getIdentificador());
-						System.out.println(oc);
 						ind.addOntClass(oc);
 					}
 				}
@@ -66,17 +62,7 @@ public class Ontology {
 		
 	}
 	
-	
-	private OntClass getClassFromLabel(String label) {
-		Iterator<OntClass> it = ont.listClasses();
-		while(it.hasNext()) {
-			OntClass loc = it.next();
-			if( label.equals(loc.getLabel("en")))
-				return loc;
-		}
-		return null;
-	}
-	
+
 	public void read(String dont) throws Exception{
 		try {
 			this.file = dont;
@@ -147,7 +133,6 @@ public class Ontology {
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					Pollutant polly = this.getPollutantRelation(polRel);
-					double amount = polly.getAmount();
 					String pollutant = polly.getType();
 					p.getMaxAllowed().put(pollutant, polly);
 				}
@@ -188,7 +173,15 @@ public class Ontology {
 		while( iter.hasNext() ) {
 			Individual i = iter.next();
 			String id = i.getLocalName();
-			this.places.put(id, new Factory(id));
+			Property hp = ont.getProperty(PREF+"hasPermit");
+			Factory fact = new Factory(id);
+			if( i.getProperty(hp) != null ) {
+				System.out.println(i.getProperty(hp).getObject().toString());
+				String perm = removePrefix(i.getProperty(hp).getObject().toString());
+				fact.setP((Permit)this.rules.get(perm));
+				System.out.println(this.rules.get(perm));
+			}
+			this.places.put(id, fact);
 		}
 		//////
 		classe = ont.getOntClass(PREF + "River");
@@ -208,6 +201,7 @@ public class Ontology {
 		while( iter.hasNext() ) {
 			Individual i = iter.next();
 			String id = i.getLocalName();
+			//System.out.println(id);
 			TreatmentPlant tp = new TreatmentPlant(id);
 			
 			StmtIterator it = i.listProperties();
@@ -217,11 +211,11 @@ public class Ontology {
 					String rel = s.getObject().toString();
 					Individual polRel = ont.getIndividual(rel);
 					Pollutant polly = this.getPollutantRelation(polRel);
-					double amount = polly.getAmount();
 					String pollutant = polly.getId();
 					tp.getPe().put(pollutant, polly);
 				}
 			}
+			this.places.put(tp.getId(), tp);
 		}
 		//////
 		classe = ont.getOntClass(PREF + "Sewage");
@@ -297,6 +291,7 @@ public class Ontology {
 	
 	public void addWaterMass(WaterMass mw) {
 		String id = mw.getIdentificador();
+		this.waterMasses.put(mw.getIdentificador(),mw);
 		OntClass waterMass = ont.getOntClass(PREF + "WaterMass");
 		OntClass classPolRelation = ont.getOntClass(PREF + "PollutantRelation");
 		Individual instWaterMass = ont.createIndividual(PREF+id,waterMass);
@@ -370,81 +365,64 @@ public class Ontology {
 		
 	}
 	
-	public void ontoMergeWater(Vector<WaterMass> wms,Localization l ) {
-		try{
-			WaterMass mw=Methods.mergeWaterMasses(wms);
-			mw.setPlace(l);
-			for(WaterMass w: wms){
-				updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
-			}
-			
-			addWaterMass(mw);	
-			waterMasses.put(mw.getIdentificador(), mw);
-			
-		}catch (Exception e) {System.out.println(e.getMessage());}
+	public void ontoMergeWater(Vector<WaterMass> wms,Localization l ) throws Exception {
+		WaterMass mw=Methods.mergeWaterMasses(wms);
+		mw.setPlace(l);
+		for(WaterMass w: wms){
+			updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
+		}
 		
+		addWaterMass(mw);	
+		waterMasses.put(mw.getIdentificador(), mw);
 		
 	}
-	public void ontoMergeWater(Vector<WaterMass> wms,Localization l , long time) {
-		try{
-			WaterMass mw=Methods.mergeWaterMasses(wms,time);
-			mw.setPlace(l);
-			for(WaterMass w: wms){
-				updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
-			}
-			
-			addWaterMass(mw);	
-			waterMasses.put(mw.getIdentificador(), mw);
-		}catch (Exception e) {System.out.println(e.getMessage());}
+	public void ontoMergeWater(Vector<WaterMass> wms,Localization l , long time) throws Exception {
+		WaterMass mw=Methods.mergeWaterMasses(wms,time);
+		mw.setPlace(l);
+		for(WaterMass w: wms){
+			updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
+		}
 		
+		addWaterMass(mw);	
+		waterMasses.put(mw.getIdentificador(), mw);
 		
 	}
 	
-	public void ontogenerateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ){
-		try{
-			WaterMass mw=Methods.generateWaterMass(pollutants, originMass, liters, existanceTime, l);
-			addWaterMass(mw);
-			waterMasses.put(mw.getIdentificador(), mw);
-		}
-		catch (Exception e) {System.out.println(e.getMessage());}
+	public void ontogenerateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) throws Exception{
+		WaterMass mw=Methods.generateWaterMass(pollutants, originMass, liters, existanceTime, l);
+		addWaterMass(mw);
+		waterMasses.put(mw.getIdentificador(), mw);
 		
 	} 
 	
 	
 	public void ontogenerateWaterMass(  long existanceTime, Factory f,double liters ){
 	
-			WaterMass mw=Methods.generateWaterMass(existanceTime,f,liters);
-			addWaterMass(mw);
-			waterMasses.put(mw.getIdentificador(), mw);
+		WaterMass mw=Methods.generateWaterMass(existanceTime,f,liters);
+		addWaterMass(mw);
+		waterMasses.put(mw.getIdentificador(), mw);
 
 	} 
 	
 	
-	public void validateTreatmentPlants(){
+	public void validateTreatmentPlants() throws Exception{
 		
 		for(Localization l:places.values()){
 			
 			if(l.getClass().equals(TreatmentPlant.class)){
-				try{
-					Methods.validTreatmentPlant(waterMasses, (TreatmentPlant) l);
-				}
-				catch (Exception e) {System.out.println(e.getMessage());System.exit(1);}
+				Methods.validTreatmentPlant(waterMasses, (TreatmentPlant) l);
 			}
 			
 		}
 		
 	}
 	
-	public void ontodepureMass(WaterMass w, TreatmentPlant tp, RuleTable p,long existanceTime) {
+	public void ontodepureMass(WaterMass w, TreatmentPlant tp, RuleTable p,long existanceTime) throws Exception {
 	    
-		
-		try {
-			WaterMass mwnew=Methods.depureMass(waterMasses,w, tp, p, existanceTime);
-		    updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
-			addWaterMass(mwnew);
-			waterMasses.put(mwnew.getIdentificador(), mwnew);
-		} 
-		catch (Exception e) {System.out.println(e.getMessage());}
+		WaterMass mwnew=Methods.depureMass(waterMasses,w, tp, p, existanceTime);
+		updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
+		addWaterMass(mwnew);
+		waterMasses.put(mwnew.getIdentificador(), mwnew);
 		
 		
 		

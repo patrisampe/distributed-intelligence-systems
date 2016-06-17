@@ -64,6 +64,15 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#hasPermit -->
+
+    <owl:ObjectProperty rdf:about="&riusSID;hasPermit">
+        <rdfs:domain rdf:resource="&riusSID;Factory"/>
+        <rdfs:range rdf:resource="&riusSID;Permit"/>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#hasPollutant -->
 
     <owl:ObjectProperty rdf:about="&riusSID;hasPollutant">
@@ -444,6 +453,7 @@
 
     <owl:NamedIndividual rdf:about="&riusSID;Fact1">
         <rdf:type rdf:resource="&riusSID;Factory"/>
+        <riusSID:hasPermit rdf:resource="&riusSID;Permit1"/>
     </owl:NamedIndividual>
     
 
@@ -500,11 +510,30 @@
     
 
 
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Riu1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;Riu1">
+        <rdf:type rdf:resource="&riusSID;River"/>
+        <riusSID:km>3</riusSID:km>
+        <riusSID:name>Revardit</riusSID:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#TreatPlant1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;TreatPlant1">
+        <rdf:type rdf:resource="&riusSID;TreatmentPlant"/>
+        <riusSID:reducesPollutant rdf:resource="&riusSID;treatrule1"/>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#polRel1 -->
 
     <owl:NamedIndividual rdf:about="&riusSID;polRel1">
         <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
-        <riusSID:pollutionAmount>10</riusSID:pollutionAmount>
+        <riusSID:pollutionAmount>1</riusSID:pollutionAmount>
         <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
     </owl:NamedIndividual>
     
@@ -524,7 +553,17 @@
 
     <owl:NamedIndividual rdf:about="&riusSID;rule1">
         <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
-        <riusSID:pollutionAmount>10.0</riusSID:pollutionAmount>
+        <riusSID:pollutionAmount>1</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#treatrule1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;treatrule1">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount>100</riusSID:pollutionAmount>
         <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
     </owl:NamedIndividual>
     

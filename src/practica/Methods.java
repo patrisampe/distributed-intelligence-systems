@@ -80,8 +80,12 @@ public class Methods {
 	
 
 	public static WaterMass generateWaterMass( long existanceTime, Factory f,double liters )  {
-
-		return new WaterMass(new ArrayList<Pollutant>(f.getP().getMaxAllowed().values()),new Vector<WaterMass>(),liters,existanceTime, f );
+		System.out.println(f.getP());
+		ArrayList<Pollutant> as = new ArrayList<Pollutant>();
+		for(Pollutant p: (f.getP().getMaxAllowed().values())) {
+			as.add(new Pollutant(p.getUnit(),p.getType(),p.getAmount()*liters));
+		}
+		return new WaterMass(as,new Vector<WaterMass>(),liters,existanceTime, f );
 	}
 	
 	
@@ -97,22 +101,21 @@ public class Methods {
 		    Double unitpertime = tp.amountPollutant(po);
 		    
 		    Double diff= (po.getAmount()/wm.getLiters()) - allowed;
-		    
-		    if( !p.compliant(po) ){
-		    	long timeaux=Math.round(diff/unitpertime);
+		    if( !p.compliant(po,wm.getLiters()) ){
+		    	long timeaux=Math.round((diff*wm.getLiters())/unitpertime);
 		    	
 		    	if(timeaux>time){
 		    		time=timeaux;   		
 		    	}
 		    }
 		}
-		return time*wm.getLiters();
+		return new Double(time);
 	}
 	
 	
 	public static WaterMass proofdepureMass(LinkedHashMap<String,WaterMass> waterMasses,WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime){
 		
-		if(wm.getSonMass() == null){
+		if(wm.getSonMass() != null){
 			System.out.println("USUARI VOLEM QUE SAPIGA QUE AQUESTA MASSA D'AIGUA JA ES PARE D'ALGUNA MASSA D'AIGUA");
 			
 		}
@@ -148,11 +151,9 @@ public class Methods {
 		
 		Double amout=0.0;
 		for(WaterMass w: waterMasses.values()){
-			
-			if(w.getPlace().equals(t)){
+			if( w.getPlace() != null && w.getPlace().equals(t)){
 				if(w.getExistanceTimeStart() != null){
 					if(w.getExistanceTimeStart().compareTo(time)<=0){
-						
 						if(w.getExistanceTimeStart() != null){
 							if(w.getExistanceTimeStart().compareTo(time)>=0){
 								amout+=w.getLiters();
@@ -185,8 +186,10 @@ public class Methods {
 		
 	
 	public static WaterMass depureMass(LinkedHashMap<String,WaterMass> waterMasses,WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime) throws Exception{
-		
-		if(wm.getSonMass() == null){
+		//System.out.println(wm);
+		//System.out.println(waterMasses);
+		//System.out.println(tp);
+		if(wm.getSonMass() != null){
 			 throw new Exception("HEU DE POSAR UNA MASSA QUE NO SIGUI PARE DE CAP MASSA");
 			
 		}
@@ -231,7 +234,7 @@ public class Methods {
 
 		for( Pollutant po:wm.getPollutants() ){
 		    //revisar, retorno els que no compleixen?
-		    if( !r.compliant( po )) lm.put(po.getType(), po);
+		    if( !r.compliant( po, wm.getLiters() )) lm.put(po.getType(), po);
 		    
 		}
 		
@@ -240,23 +243,12 @@ public class Methods {
 	}
 	
 
-	public static boolean breaksRegulation(WaterMass wm, RuleTable r, LinkedHashMap<String,Pollutant> whatPollutans){
-		
-		for(Pollutant po:wm.getPollutants()){
-			if(whatPollutans.get(po.getType()) != null ){
-				if(!r.compliant(po)) return true;
-			}
-		}
-		
-		return false;
-	}
-	
 
 	//Retorna true si ell esta net, fals en cas contrari
 	public static boolean needInspection(WaterMass wm, HashSet<WaterMass> swm, Regulation r){
 		boolean net = true;
 		for( Pollutant p: wm.getPollutants()) {
-			if(!r.compliant(p)) {
+			if(!r.compliant(p,wm.getLiters())) {
 				net = false;
 				break;
 			}
@@ -295,7 +287,7 @@ public class Methods {
 					Double allowed =p.getMaxAmountPollutant(po.getType());
 					
 					if(whatPollutans.get(po.getType()) != null ){	
-						if( p.compliant( po) ) auxamount += (po.getAmount()-allowed);
+						if( p.compliant(po,wm.getLiters()) ) auxamount += (po.getAmount()-allowed);
 					}
 				}
 				

@@ -4,7 +4,7 @@ import java.util.LinkedHashMap;
 
 public class TreatmentPlant extends Localization{
 	private LinkedHashMap<String,Pollutant> pe = new LinkedHashMap<>(); //pollution eliminate per unit time per liter
-	private Double maxWater;
+	private Double maxWater = 1000000.;//Per defecte
 	
 	public Double getMaxWater() {
 		return maxWater;
@@ -32,8 +32,11 @@ public class TreatmentPlant extends Localization{
 	}
 	
 	public Double amountPollutant(Pollutant pt){
-		
-		return pe.get(pt).getAmount();		
+		String type = pt.getType();
+		for( Pollutant p:pe.values()) {
+			if(type.equals(pt.getType())) return p.getAmount();
+		}
+		return 0.;
 		
 	}
 	public String toString() {
