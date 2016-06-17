@@ -24,7 +24,7 @@ public class Methods {
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
 				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );
-				lm.get(p.getType()).incAmount(p.getAmount());
+				else lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
 			if(wm.getSonMass() == null){
@@ -54,7 +54,7 @@ public class Methods {
 		for( WaterMass wm:wms) {
 			for( Pollutant p:wm.getPollutants() ){
 				if(lm.get(p.getType()) == null ) lm.put(p.getType(), new Pollutant(p) );
-				lm.get(p.getType()).incAmount(p.getAmount());
+				else lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
 			if(wm.getSonMass() == null){

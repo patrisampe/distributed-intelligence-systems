@@ -39,18 +39,25 @@ public class Ontology {
 		
 	public void ClassifyWaterMasses()
 	{
+		OntClass og = ont.getOntClass(PREF+"RegulatedWaterMass");
+		
 		String cPrefix = PREF + "_waterregulatedclass_";
 		for(RuleTable rt:this.rules.values()) {
 			if(rt.getClass().equals(Regulation.class)) {
 				Regulation r = (Regulation)rt;
-				OntClass oc = ont.createClass(cPrefix+r);
+				OntClass oc = ont.createClass(cPrefix+r.getId());
+				og.addSubClass(oc);
+				System.out.println(oc);
 				for( WaterMass wm: waterMasses.values() ) {
+					System.out.println(wm);
+					System.out.println(r.compliant(wm));
 					boolean complies = true;
 					if( !r.compliant(wm) ) {
 						complies = false;
 					}
 					if(complies) {
-						Individual ind = ont.getIndividual(wm.getIdentificador());
+						Individual ind = ont.getIndividual(PREF+wm.getIdentificador());
+						System.out.println(oc);
 						ind.addOntClass(oc);
 					}
 				}
@@ -76,6 +83,10 @@ public class Ontology {
 			FileReader frd = new FileReader(dont);
 			this.ont = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_TRANS_INF);
 			this.ont.read(frd,null,"RDF/XML");
+			this.loadPermitsRegulations();
+			this.loadLocalizations();
+			this.loadWaterMasses();
+			
 			} catch (Exception e) {throw e;}
 	}
 	
