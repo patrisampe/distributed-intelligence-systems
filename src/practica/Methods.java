@@ -273,30 +273,40 @@ public class Methods {
 	}
 	
 	
-	public static WaterMass mostProbablyGuiltedaux(WaterMass wm, RuleTable p){
+	public static WaterMass mostProbablyGuiltedaux(WaterMass wm, Regulation p){
 		
-	    LinkedHashMap<String,Pollutant> whatPollutans=pollutantsCaused(wm,p);
+	    LinkedHashMap<String,Pollutant> whatPollutans=p.getMaxAllowed();
 		
-		Double amountilegal=0.0;
-		WaterMass m= null;
-		
-	
-		
-		for(WaterMass aw:wm.getOriginMass()){
+	    HashSet<WaterMass> swm= new HashSet<>();
+	    
+	    if(needInspection(wm,swm,p)){
+
+			Double amountilegal=0.0;
+			WaterMass m= null;
 			
-			Double auxamount = 0.0;
-			for(Pollutant po:aw.getPollutants()){
-				Double allowed =p.getMaxAmountPollutant(po.getType());
+		
+			
+			for(WaterMass aw:swm){
 				
-				if(whatPollutans.get(po.getType()) != null ){	
-					if( p.compliant( po) ) auxamount += (po.getAmount()-allowed);
+				Double auxamount = 0.0;
+				for(Pollutant po:aw.getPollutants()){
+					Double allowed =p.getMaxAmountPollutant(po.getType());
+					
+					if(whatPollutans.get(po.getType()) != null ){	
+						if( p.compliant( po) ) auxamount += (po.getAmount()-allowed);
+					}
 				}
+				
+				if(auxamount>amountilegal)m=aw;
 			}
 			
-			if(auxamount>amountilegal)m=aw;
-		}
-		
-		return m;
+			return m;
+	    	
+	    }
+	    return null;
+	    
+	    
+	    
 	}
 	
 	
