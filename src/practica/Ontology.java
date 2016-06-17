@@ -257,6 +257,12 @@ public class Ontology {
 	}
 	
 	
+	public void ClassifyWaterMasses()
+	{
+		
+	}
+	
+	
 	private OntClass getClassFromLabel(String label) {
 		Iterator<OntClass> it = ont.listClasses();
 		while(it.hasNext()) {
