@@ -1,13 +1,18 @@
 package practica;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Vector;
 
 import practica.objects.Localization;
 import practica.objects.Pollutant;
+import practica.objects.Regulation;
 import practica.objects.RuleTable;
+import practica.objects.TreatmentPlant;
 import practica.objects.WaterMass;
+import practica.objects.Factory;
+
 
 public class PracticaSID {
 
@@ -58,9 +63,7 @@ public class PracticaSID {
 				System.out.println(" El temps de la massa sera l'actual ");
 				
 				
-				System.out.println("La massa d'aigua resultant es");
-				
-				Methods.proofmergeWaterMasses(og).toString();
+				System.out.println("La massa d'aigua resultant es"+ Methods.proofmergeWaterMasses(og).toString());
 				
 				break;
 			}
@@ -87,16 +90,17 @@ public class PracticaSID {
 				
 				Localization l= ont.places.get(loc);
 				
-				System.out.println("La massa d'aigua resultant es");
+				//System.out.println("La massa d'aigua resultant es");
 				
 				ont.ontoMergeWater(og, l);
 				
-				
+				System.out.println("Ya s'ha generat la barreja de les masses d'aigua");	
 				
 				break;
 			}	
 				
-			case 4:{
+			case 3:
+			{
 				
 				System.out.println("Afegeix un identificadors, per les masses que seran masses pare. Mentre que afegeixis identificador diferents a 'fi' s'afegiran aquestes masses d'aigua com masses pare");
 				
@@ -122,20 +126,25 @@ public class PracticaSID {
 				
 				Integer lit= Integer.parseInt(entrada.nextLine());
 				
-				System.out.println("Afegeix parelles de (identificador, quantitat), pels contaminants de la massa. Mentre que afegeixis identificador diferents a 'fi' s'afegiran com contaminants d'aquesta massa");
+				System.out.println("Afegeix parelles de (identificador, quantitat, unitat (en lineas diferents)), pels contaminants de la massa. Mentre que afegeixis identificador diferents a 'fi' s'afegiran com contaminants d'aquesta massa");
 				
 				String idp = entrada.nextLine();
 				ArrayList<Pollutant> p = new ArrayList<>();
 				
 				while(!idp.equals("fi")){
-					og.addElement(ont.waterMasses.get(id));
+					Double quant= Double.parseDouble(entrada.nextLine());
+					String unit = entrada.nextLine();
+					Pollutant pinst = new Pollutant(unit, idp,quant);
+					p.add(pinst);
 					idp = entrada.nextLine();
+					
 				}
 				
+				ont.ontogenerateWaterMass(p, og, lit,t, l );
+					
 				
-				System.out.println("La massa d'aigua resultant es");
-				
-				ont.ontoMergeWater(og, l);
+				System.out.println("Ya se generat la massa d'aigua");	
+
 				
 				
 				
@@ -143,10 +152,219 @@ public class PracticaSID {
 				
 				
 			}
+			case 4:
+			{
+				
+				System.out.println(" El temps de la massa sera l'actual ");
+				Long t = java.lang.System.currentTimeMillis();
+				
+				System.out.println("Afegeix una fabrica");
+				
+				String loc= entrada.nextLine();
+				
+				Factory l= (Factory) ont.places.get(loc);
+				
+				System.out.println("Afegeix litres");
+				
+				Integer lit= Integer.parseInt(entrada.nextLine());
+				
+				ont.ontogenerateWaterMass(  t, l,lit );
 				
 				
+				System.out.println("Ya se generat la massa d'aigua");			
+				
+				
+				break;
+				
+				
+			}
+			
+			case 5:
+			{
+	
+				System.out.println(" Afegeix una water mass ");
+				
+				String wms= entrada.nextLine();
+				
+				WaterMass m = ont.waterMasses.get(wms);
+				
+				
+				
+				System.out.println("Afegeix una depuradora");
+				
+				String loc= entrada.nextLine();
+				
+				TreatmentPlant l= (TreatmentPlant) ont.places.get(loc);
+				
+				System.out.println("Afegeix un permis");
+				
+				String ru= entrada.nextLine();
+				
+				RuleTable rt= ont.rules.get(ru);
+				
+				
+				Double time = Methods.calculateTime(m, l,rt );
+				
+				System.out.println(" El time que tarda (en unitats de temps que esta la planta de tractament) es "+ time.toString());
+				
+				
+				break;
+				
+				
+			}
+			
+			case 6:
+			{
+	
+				System.out.println(" Afegeix una water mass ");
+				
+				String wms= entrada.nextLine();
+				
+				WaterMass m = ont.waterMasses.get(wms);
+				
+				System.out.println(" El temps de la massa sera l'actual ");
+				Long t = java.lang.System.currentTimeMillis();
+				
+				System.out.println("Afegeix una depuradora");
+				
+				String loc= entrada.nextLine();
+				
+				TreatmentPlant l= (TreatmentPlant) ont.places.get(loc);
+				
+				System.out.println("Afegeix un permis");
+				
+				String ru= entrada.nextLine();
+				
+				RuleTable rt= ont.rules.get(ru);
+				
+				ont.ontodepureMass(m, l, rt, t);
+				
+				System.out.println(" Ya hem depurat la massa d'aigua" );
+				
+				break;
+				
+				
+			}
+			
+			
+			
+			case 7:
+			{
+	
+				ont.validateTreatmentPlants();
+				
+				System.out.println(" Ya hem validat totes les plantes de tractament" );
+				
+				break;
+				
+				
+			}
+			
+			
+			case 8:
+			{
+	
+				ont.validateTreatmentPlants();
+				
+				System.out.println(" Ya hem validat totes les plantes de tractament" );
+				
+				break;
+				
+				
+			}
+			case 9:
+			{
+	
+				System.out.println(" Afegeix una water mass ");
+				
+				String wms= entrada.nextLine();
+				
+				WaterMass m = ont.waterMasses.get(wms);
+				
+				
+				HashSet<WaterMass> swm= new HashSet<>();
+				
+				
+				System.out.println("Afegeix una regulacio ");
+				
+				String ru= entrada.nextLine();
+				
+				Regulation rt= (Regulation)ont.rules.get(ru);
+				
+
+				
+				Methods.needInspection(m, swm, rt);
+				
+				System.out.println(" Les masses d'aigua que necessiten inspeccio son " );
+				
+				for(WaterMass c: swm){
+					
+					c.toString();
+					
+				}
+				
+				break;
+				
+				
+			}
+			
+			case 10:
+			{
+	
+				System.out.println(" Afegeix una water mass ");
+				
+				String wms= entrada.nextLine();
+				
+				WaterMass m = ont.waterMasses.get(wms);
+				
+				
+				
+				
+				System.out.println("Afegeix una regulacio ");
+				
+				String ru= entrada.nextLine();
+				
+				Regulation rt= (Regulation)ont.rules.get(ru);
+				
+
+				
+				WaterMass result= Methods.mostProbablyGuiltedaux(m, rt);
+				
+				System.out.println(" La massa d'aigua que es mes probablement que ho causi es  "+result.toString() );
+				
+				
+				break;
+				
+				
+			}
+			
+			case 11:
+			{
+	
+				
+				
+
+				System.out.println("Afegeix una depuradora");
+				
+				String loc= entrada.nextLine();
+				
+				TreatmentPlant l= (TreatmentPlant) ont.places.get(loc);
+				
+				Double result=Methods.efficiency(l);
+				
+				
+				
+				
+				System.out.println(" La eficiencia de la depuradora es "+ result );
+				
+				
+				break;
+				
+				
+			}
 			
 			}
+			writeOptions();
 			
 		}
 		
@@ -190,17 +408,17 @@ public class PracticaSID {
 		
 	//	System.out.println("2. unifiquem dues masses d'aigua modificant ontologia donant el temps");
 		
-		System.out.println("3. unifiquem dues masses d'aigua modificant ontologia sense donar el temps");
+		System.out.println("2. unifiquem dues masses d'aigua modificant ontologia sense donar el temps");
 		
 //r		System.out.println("4. provem de generar una massa d'aigua sense modificar l'ontologia");
 		
-		System.out.println("5. Generem una massa d'aigua modificant ontologia");
+		System.out.println("3. Generem una massa d'aigua modificant ontologia");
 	
-		System.out.println("6. Generem una massa d'aigua d'un proceso industrial");
+		System.out.println("4. Generem una massa d'aigua d'un proceso industrial");
 		
 		System.out.println("7. Calculem temps que tarda en depurar una massa d'aigua en una depuradora concreta");
 		
-		System.out.println("8. Provem depurar una massa d'aigua sense modificar ontologia");
+	//	System.out.println("8. Provem depurar una massa d'aigua sense modificar ontologia");
 		
 		System.out.println("9. Depurar una massa d'aigua modificant ontologia");
 		
@@ -210,9 +428,7 @@ public class PracticaSID {
 		
 		System.out.println("12. Donat una massa d'aigua et diu la massa d'aigua que es mes probable que sigui culpable de la contaminacio, ja que els seus pares estan nets o be no te pares, si ella esta contaminada");
 		
-		System.out.println("13. Donat una massa d'aigua et diu la massa d'aigua que es mes probable que sigui culpable de la contaminacio, ja que els seus pares estan nets o be no te pares, si ella esta contaminada");
-		
-		System.out.println("14. Eficiencia d'una planta de tractament");
+		System.out.println("13. Eficiencia d'una planta de tractament");
 		
 		
 		

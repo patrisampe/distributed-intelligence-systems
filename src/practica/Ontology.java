@@ -370,7 +370,7 @@ public class Ontology {
 			addWaterMass(mw);	
 			waterMasses.put(mw.getIdentificador(), mw);
 			
-		}catch (Exception e) {System.out.println(e.getMessage());}
+		}catch (Exception e) {System.out.println("ERROR :"+e.getMessage());}
 		
 		
 	}
@@ -384,7 +384,7 @@ public class Ontology {
 			
 			addWaterMass(mw);	
 			waterMasses.put(mw.getIdentificador(), mw);
-		}catch (Exception e) {System.out.println(e.getMessage());}
+		}catch (Exception e) {System.out.println("ERROR :"+e.getMessage());}
 		
 		
 	}
@@ -395,7 +395,7 @@ public class Ontology {
 			addWaterMass(mw);
 			waterMasses.put(mw.getIdentificador(), mw);
 		}
-		catch (Exception e) {System.out.println(e.getMessage());}
+		catch (Exception e) {System.out.println("ERROR :"+e.getMessage());}
 		
 	} 
 	
@@ -417,7 +417,7 @@ public class Ontology {
 				try{
 					Methods.validTreatmentPlant(waterMasses, (TreatmentPlant) l);
 				}
-				catch (Exception e) {System.out.println(e.getMessage());System.exit(1);}
+				catch (Exception e) {System.out.println("ERROR :"+e.getMessage());System.exit(1);}
 			}
 			
 		}
@@ -433,7 +433,7 @@ public class Ontology {
 			addWaterMass(mwnew);
 			waterMasses.put(mwnew.getIdentificador(), mwnew);
 		} 
-		catch (Exception e) {System.out.println(e.getMessage());}
+		catch (Exception e) {System.out.println("ERROR :"+e.getMessage());}
 		
 		
 		
