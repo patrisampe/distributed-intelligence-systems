@@ -56,7 +56,7 @@ public class Methods {
 				lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
-			if(wm.getSonMass().equals(null)){
+			if(!wm.getSonMass().equals(null)){
 				 throw new Exception("La massa d'aigua amb id "+ wm.getIdentificador() + " ja té fills ");
 					
 			}
@@ -78,6 +78,19 @@ public class Methods {
 	}
 	
 
+	public static WaterMass generateFactoryWaterMass( long existanceTime, Factory f ) throws Exception {
+		//if(l.getClass().equals(TreatmentPlant.class)){
+			//throw new Exception("si vols generara una massa d'aigua d'una depuradora utilitzar la funcio de depure");
+			
+	//	}
+		
+		
+		
+		
+		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
+	}
+	
+	
 	
 	public static Double calculateTime(WaterMass wm, TreatmentPlant tp, RuleTable p){
 
