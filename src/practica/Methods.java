@@ -79,7 +79,7 @@ public class Methods {
 	}
 	
 
-	public static WaterMass generateFactoryWaterMass( long existanceTime, Factory f,double liters )  {
+	public static WaterMass generateWaterMass( long existanceTime, Factory f,double liters )  {
 
 		return new WaterMass(new ArrayList<Pollutant>(f.getP().getMaxAllowed().values()),new Vector<WaterMass>(),liters,existanceTime, f );
 	}
@@ -172,8 +172,10 @@ public class Methods {
 	
 	public static void validTreatmentPlant(LinkedHashMap<String,WaterMass> waterMasses, TreatmentPlant tp) throws Exception{
 		for(WaterMass w: waterMasses.values()){
+
 			if(w.getExistanceTimeEnd() != null){
 				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha m�s aigua a la depuradora de la permesa ");};
+
 			}
 		}
 		

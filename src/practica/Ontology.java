@@ -301,6 +301,20 @@ public class Ontology {
 	
 			instWaterMass.addProperty(L, instLocation);
 		}
+		
+		Property  propOM= ont.getProperty(PREF+"originMass");
+		
+		if(!mw.getOriginMass().isEmpty()){
+			
+			for(WaterMass ow: mw.getOriginMass()){	
+				
+				Individual instLocation = ont.getIndividual(PREF +ow.getIdentificador());
+				
+				
+				instWaterMass.addProperty(propOM, instLocation);
+			}
+		}
+		
 		Property prHasPollutant = ont.getProperty(PREF+"hasPollutant");
 
 		for(Pollutant p:mw.getPollutants()){
@@ -364,7 +378,20 @@ public class Ontology {
 		
 		
 	}
-	
+	public void ontoMergeWater(Vector<WaterMass> wms,Localization l , long time) {
+		try{
+			WaterMass mw=Methods.mergeWaterMasses(wms,time);
+			mw.setPlace(l);
+			for(WaterMass w: wms){
+				updateWaterMass(w.getIdentificador(),"existanceTimeEnd",w.getExistanceTimeEnd());
+			}
+			
+			addWaterMass(mw);	
+			waterMasses.put(mw.getIdentificador(), mw);
+		}catch (Exception e) {System.out.println(e.getMessage());}
+		
+		
+	}
 	
 	public void ontogenerateWaterMass( ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ){
 		try{
@@ -375,6 +402,16 @@ public class Ontology {
 		catch (Exception e) {System.out.println(e.getMessage());}
 		
 	} 
+	
+	
+	public void ontogenerateWaterMass(  long existanceTime, Factory f,double liters ){
+	
+			WaterMass mw=Methods.generateWaterMass(existanceTime,f,liters);
+			addWaterMass(mw);
+			waterMasses.put(mw.getIdentificador(), mw);
+
+	} 
+	
 	
 	public void validateTreatmentPlants(){
 		
