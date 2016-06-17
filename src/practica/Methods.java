@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 import java.util.UUID;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Collection;
 import java.util.Vector;
 import java.util.AbstractCollection;
@@ -262,14 +263,28 @@ public class Methods {
 		
 		return wpaux;
 	}
+	//Pre: wm esta brut
+	//Retorna true si tots els seus pares estan nets, fals en cas contrari
+	public static boolean needInspeccionrec(WaterMass wm, HashSet<WaterMass> swm, Regulation r){
+		boolean ret = true;
+		
+				for(WaterMass fm:wm.getOriginMass()) {
+					if( needInspeccionrec(fm,swm,r) ) {
+				swm.add(wm);
+		}
+		return false;
+		
+	}
 	
 	
-	public static WaterMass mostProbablyGuilted(WaterMass wm, RuleTable p){
+	public static WaterMass mostProbablyGuiltedaux(WaterMass wm, RuleTable p){
 		
 	    LinkedHashMap<String,Pollutant> whatPollutans=pollutantsCaused(wm,p);
 		
 		Double amountilegal=0.0;
 		WaterMass m= null;
+		
+	
 		
 		for(WaterMass aw:wm.getOriginMass()){
 			
@@ -287,6 +302,10 @@ public class Methods {
 		
 		return m;
 	}
+	
+	
+	
+	
 	
 	public static Double efficiency(TreatmentPlant tp){
 		
