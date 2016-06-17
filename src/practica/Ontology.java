@@ -245,7 +245,7 @@ public class Ontology {
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
 					String pollutant = polly.getType();
-					p.getMaxAllowed().put(pollutant, amount);
+					p.getMaxAllowed().put(pollutant, polly);
 				}
 			}
 			this.rules.put(id, p);
@@ -268,7 +268,7 @@ public class Ontology {
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
 					String pollutant = polly.getType();
-					p.getMaxAllowed().put(pollutant, amount);
+					p.getMaxAllowed().put(pollutant, polly);
 				}
 			}
 			this.rules.put(id, p);
@@ -316,7 +316,7 @@ public class Ontology {
 					Pollutant polly = this.getPollutantRelation(polRel);
 					double amount = polly.getAmount();
 					String pollutant = polly.getId();
-					tp.getPe().put(pollutant, amount);
+					tp.getPe().put(pollutant, polly);
 				}
 			}
 		}

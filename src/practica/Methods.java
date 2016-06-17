@@ -78,22 +78,9 @@ public class Methods {
 	}
 	
 
-	public static WaterMass generateFactoryWaterMass( long existanceTime, Factory f ) {
-		//if(l.getClass().equals(TreatmentPlant.class)){
-			//throw new Exception("si vols generara una massa d'aigua d'una depuradora utilitzar la funcio de depure");
-			
-	//	}
-		
-   ArrayList<Pollutant> pollutant = new ArrayList<>();
-		
-	for(Entry ws: f.getP().getMaxAllowed().entrySet()){
-		
-		ws.getValue()
-		
-	}
-		
-		
-		return new WaterMass( pollutants, originMass, liters, existanceTime,l);
+	public static WaterMass generateFactoryWaterMass( long existanceTime, Factory f,double liters )  {
+
+		return new WaterMass(new ArrayList<Pollutant>(f.getP().getMaxAllowed().values()),new Vector<WaterMass>(),liters,existanceTime, f );
 	}
 	
 	
@@ -106,7 +93,7 @@ public class Methods {
 			
 		    Double allowed = p.getMaxAmountPollutant( po.getType() );
 		    		
-		    Double unitpertime = tp.amountPollutant(po.getType());
+		    Double unitpertime = tp.amountPollutant(po);
 		    
 		    Double diff= (po.getAmount()/wm.getLiters()) - allowed;
 		    
@@ -139,7 +126,7 @@ public class Methods {
 
 		for( Pollutant po:wm.getPollutants() ){
 			
-		    Double unitpertime=tp.amountPollutant(po.getType());
+		    Double unitpertime=tp.amountPollutant(po);
 		    Double newAmount= po.getAmount() - unitpertime*time;
 		    
 		    Pollutant newPo = new Pollutant("pollutant"+UUID.randomUUID(),po.getUnit(),po.getType(),newAmount);
@@ -213,7 +200,7 @@ public class Methods {
 
 		for( Pollutant po:wm.getPollutants() ){
 			
-		    Double unitpertime=tp.amountPollutant(po.getType());
+		    Double unitpertime=tp.amountPollutant(po);
 		    Double newAmount= po.getAmount() - unitpertime*time;
 		    
 		    Pollutant newPo = new Pollutant("pollutant"+UUID.randomUUID(),po.getUnit(),po.getType(),newAmount);
@@ -305,9 +292,9 @@ public class Methods {
 		
 		Double mean=0.0;
 		Integer howmany=0;
-		for (Double p: tp.getPe().values() ) {
+		for (Pollutant p: tp.getPe().values() ) {
 		    // entry.getValue() is of type User now
-			mean+=p;
+			mean+=p.getAmount();
 			++howmany;
 		}
 		return mean/howmany;

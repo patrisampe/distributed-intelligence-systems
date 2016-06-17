@@ -3,7 +3,7 @@ package practica.objects;
 import java.util.LinkedHashMap;
 
 public class TreatmentPlant extends Localization{
-	private LinkedHashMap<String,Double> pe = new LinkedHashMap<>(); //pollution eliminate per unit time per liter
+	private LinkedHashMap<String,Pollutant> pe = new LinkedHashMap<>(); //pollution eliminate per unit time per liter
 	private Double maxWater;
 	
 	public Double getMaxWater() {
@@ -14,11 +14,11 @@ public class TreatmentPlant extends Localization{
 		this.maxWater = maxWater;
 	}
 
-	public LinkedHashMap<String, Double> getPe() {
+	public LinkedHashMap<String, Pollutant> getPe() {
 		return pe;
 	}
 
-	public void setPe(LinkedHashMap<String, Double> pe) {
+	public void setPe(LinkedHashMap<String, Pollutant> pe) {
 		this.pe = pe;
 	}
 
@@ -26,14 +26,14 @@ public class TreatmentPlant extends Localization{
 		super(id);
 	}
 	
-	public void addType(String pt, Double i){
+	public void addType(String pt, Pollutant i){
 		this.pe.put(pt, i);
 		
 	}
 	
-	public Double amountPollutant(String pt){
+	public Double amountPollutant(Pollutant pt){
 		
-		return pe.get(pt);		
+		return pe.get(pt).getAmount();		
 		
 	}
 	
