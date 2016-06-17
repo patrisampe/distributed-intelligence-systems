@@ -33,6 +33,13 @@ public class RuleTable {
 		return false;
 	}
 	
+	public Boolean compliant( WaterMass wm ) {
+		for( Pollutant p:wm.getPollutants()) {
+			if( !this.compliant(p)) return false;
+		}
+		return true;
+	}
+	
 	public RuleTable(String id) {
 		this.id = id;
 	} 
