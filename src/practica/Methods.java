@@ -27,7 +27,7 @@ public class Methods {
 				lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
-			if(wm.getSonMass().equals(null)){
+			if(wm.getSonMass() != null){
 				 System.out.println("La massa d'aigua amb id "+ wm.getIdentificador() + " ja t� fills ");
 					
 			}
@@ -57,7 +57,7 @@ public class Methods {
 				lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
-			if(!wm.getSonMass().equals(null)){
+			if(wm.getSonMass() != null){
 				 throw new Exception("La massa d'aigua amb id "+ wm.getIdentificador() + " ja t� fills ");
 					
 			}
@@ -112,7 +112,7 @@ public class Methods {
 	
 	public static WaterMass proofdepureMass(LinkedHashMap<String,WaterMass> waterMasses,WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime){
 		
-		if(wm.getSonMass().equals(null)){
+		if(wm.getSonMass() == null){
 			System.out.println("USUARI VOLEM QUE SAPIGA QUE AQUESTA MASSA D'AIGUA JA ES PARE D'ALGUNA MASSA D'AIGUA");
 			
 		}
@@ -150,10 +150,10 @@ public class Methods {
 		for(WaterMass w: waterMasses.values()){
 			
 			if(w.getPlace().equals(t)){
-				if(!w.getExistanceTimeStart().equals(null)){
+				if(w.getExistanceTimeStart() != null){
 					if(w.getExistanceTimeStart().compareTo(time)<=0){
 						
-						if(!w.getExistanceTimeStart().equals(null)){
+						if(w.getExistanceTimeStart() != null){
 							if(w.getExistanceTimeStart().compareTo(time)>=0){
 								amout+=w.getLiters();
 							}
@@ -172,8 +172,10 @@ public class Methods {
 	
 	public static void validTreatmentPlant(LinkedHashMap<String,WaterMass> waterMasses, TreatmentPlant tp) throws Exception{
 		for(WaterMass w: waterMasses.values()){
-			if(!w.getExistanceTimeEnd().equals(null)){
-				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha mes aigua a la depuradora de la permesa ");};
+
+			if(w.getExistanceTimeEnd() != null){
+				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha m�s aigua a la depuradora de la permesa ");};
+
 			}
 		}
 		
@@ -184,7 +186,7 @@ public class Methods {
 	
 	public static WaterMass depureMass(LinkedHashMap<String,WaterMass> waterMasses,WaterMass wm, TreatmentPlant tp, RuleTable p,long existanceTime) throws Exception{
 		
-		if(wm.getSonMass().equals(null)){
+		if(wm.getSonMass() == null){
 			 throw new Exception("HEU DE POSAR UNA MASSA QUE NO SIGUI PARE DE CAP MASSA");
 			
 		}

@@ -37,7 +37,6 @@ public class WaterMass {
 
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
 		this.identificador= "wm" +UUID.randomUUID().toString();
-		System.out.println("BUUUUUUUUUUUUUUUUUU " +identificador);
 		
 		this.pollutants = pollutants;
 		this.originMass = originMass;
@@ -50,7 +49,6 @@ public class WaterMass {
 
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime,long endTime, Localization l ) {
 		this.identificador= "wm" +UUID.randomUUID().toString();
-		System.out.println("BUUUUUUUUUUUUUUUUUU " +identificador);
 		
 		this.pollutants = pollutants;
 		this.originMass = originMass;
@@ -62,7 +60,6 @@ public class WaterMass {
 	
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime ) {
 		this.identificador= "wm" +UUID.randomUUID().toString();
-		System.out.println("BUUUUUUUUUUUUUUUUUU " +identificador);
 		this.pollutants = pollutants;
 		this.originMass = originMass;
 		this.existanceTimeStart = existanceTime;
@@ -74,7 +71,6 @@ public class WaterMass {
 		
 		
 		this.identificador= "wm" +UUID.randomUUID().toString();
-		System.out.println("BUUUUUUUUUUUUUUUUUU " +identificador);
 		this.pollutants = pollutants;
 		this.originMass = originMass;
 		this.existanceTimeStart = existanceTimeStart;
