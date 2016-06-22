@@ -298,15 +298,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#MeteorogicalWaterMass -->
-
-    <owl:Class rdf:about="&riusSID;MeteorogicalWaterMass">
-        <rdfs:label xml:lang="en">MeteorogicalWaterMass</rdfs:label>
-        <rdfs:subClassOf rdf:resource="&riusSID;LocalizedWaterMass"/>
-    </owl:Class>
-    
-
-
     <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Permit -->
 
     <owl:Class rdf:about="&riusSID;Permit">
@@ -449,19 +440,31 @@
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Fact1 -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#EWRegulation -->
 
-    <owl:NamedIndividual rdf:about="&riusSID;Fact1">
-        <rdf:type rdf:resource="&riusSID;Factory"/>
-        <riusSID:hasPermit rdf:resource="&riusSID;Permit1"/>
+    <owl:NamedIndividual rdf:about="&riusSID;EWRegulation">
+        <rdf:type rdf:resource="&riusSID;Regulation"/>
+        <riusSID:hasRule rdf:resource="&riusSID;RegR1"/>
+        <riusSID:hasRule rdf:resource="&riusSID;RegR2"/>
+        <riusSID:hasRule rdf:resource="&riusSID;RegR3"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Fact2 -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#FabricaFertilitzants -->
 
-    <owl:NamedIndividual rdf:about="&riusSID;Fact2">
+    <owl:NamedIndividual rdf:about="&riusSID;FabricaFertilitzants">
         <rdf:type rdf:resource="&riusSID;Factory"/>
+        <riusSID:hasPermit rdf:resource="&riusSID;PermitFert"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#FabricaQuimica -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;FabricaQuimica">
+        <rdf:type rdf:resource="&riusSID;Factory"/>
+        <riusSID:hasPermit rdf:resource="&riusSID;PermitQuimic"/>
     </owl:NamedIndividual>
     
 
@@ -484,11 +487,50 @@
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Permit1 -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PerRF1 -->
 
-    <owl:NamedIndividual rdf:about="&riusSID;Permit1">
+    <owl:NamedIndividual rdf:about="&riusSID;PerRF1">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">5.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Phosphorus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PerRF2 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;PerRF2">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">4.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PerRQ1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;PerRQ1">
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">80.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PermitFert -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;PermitFert">
         <rdf:type rdf:resource="&riusSID;Permit"/>
-        <riusSID:hasRule rdf:resource="&riusSID;polRel2"/>
+        <riusSID:hasRule rdf:resource="&riusSID;PerRF1"/>
+        <riusSID:hasRule rdf:resource="&riusSID;PerRF2"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PermitQuimic -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;PermitQuimic">
+        <rdf:type rdf:resource="&riusSID;Permit"/>
+        <riusSID:hasRule rdf:resource="&riusSID;PerRQ1"/>
     </owl:NamedIndividual>
     
 
@@ -497,15 +539,87 @@
 
     <owl:NamedIndividual rdf:about="&riusSID;Phosphorus">
         <rdf:type rdf:resource="&riusSID;Pollutant"/>
+        <riusSID:pollutionUnit rdf:datatype="&xsd;string">gr</riusSID:pollutionUnit>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Regulation1 -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PolR1 -->
 
-    <owl:NamedIndividual rdf:about="&riusSID;Regulation1">
-        <rdf:type rdf:resource="&riusSID;Regulation"/>
-        <riusSID:hasRule rdf:resource="&riusSID;rule1"/>
+    <owl:NamedIndividual rdf:about="&riusSID;PolR1">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">20000.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PolR2 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;PolR2">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">45000.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PolR3 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;PolR3">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">45000.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#PolRR -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;PolRR">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">25000.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#RegR1 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;RegR1">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">3.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#RegR2 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;RegR2">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">3.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#RegR3 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;RegR3">
+        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
+        <riusSID:pollutionAmount rdf:datatype="&xsd;double">3.0</riusSID:pollutionAmount>
+        <riusSID:pollutantType rdf:resource="&riusSID;Phosphorus"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Riera -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;Riera">
+        <rdf:type rdf:resource="&riusSID;River"/>
+        <riusSID:km rdf:datatype="&xsd;int">0</riusSID:km>
+        <riusSID:name rdf:datatype="&xsd;string">La Riera</riusSID:name>
     </owl:NamedIndividual>
     
 
@@ -514,109 +628,76 @@
 
     <owl:NamedIndividual rdf:about="&riusSID;Riu1">
         <rdf:type rdf:resource="&riusSID;River"/>
+        <riusSID:km rdf:datatype="&xsd;int">1</riusSID:km>
+        <riusSID:name rdf:datatype="&xsd;string">El Riu</riusSID:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Riu2 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;Riu2">
+        <rdf:type rdf:resource="&riusSID;River"/>
+        <riusSID:km rdf:datatype="&xsd;int">2</riusSID:km>
+        <riusSID:name rdf:datatype="&xsd;string">El Riu</riusSID:name>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#Riu3 -->
+
+    <owl:NamedIndividual rdf:about="&riusSID;Riu3">
+        <rdf:type rdf:resource="&riusSID;River"/>
         <riusSID:km rdf:datatype="&xsd;int">3</riusSID:km>
-        <riusSID:name>Revardit</riusSID:name>
+        <riusSID:name rdf:datatype="&xsd;string">El Riu</riusSID:name>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#TreatPlant1 -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#WM1 -->
 
-    <owl:NamedIndividual rdf:about="&riusSID;TreatPlant1">
-        <rdf:type rdf:resource="&riusSID;TreatmentPlant"/>
-        <riusSID:reducesPollutant rdf:resource="&riusSID;treatrule1"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#polRel1 -->
-
-    <owl:NamedIndividual rdf:about="&riusSID;polRel1">
-        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
-        <riusSID:pollutionAmount>1</riusSID:pollutionAmount>
-        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#polRel2 -->
-
-    <owl:NamedIndividual rdf:about="&riusSID;polRel2">
-        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
-        <riusSID:pollutionAmount>64</riusSID:pollutionAmount>
-        <riusSID:pollutantType rdf:resource="&riusSID;Nitrogen"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#rule1 -->
-
-    <owl:NamedIndividual rdf:about="&riusSID;rule1">
-        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
-        <riusSID:pollutionAmount>1</riusSID:pollutionAmount>
-        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#treatrule1 -->
-
-    <owl:NamedIndividual rdf:about="&riusSID;treatrule1">
-        <rdf:type rdf:resource="&riusSID;PollutantRelation"/>
-        <riusSID:pollutionAmount>100</riusSID:pollutionAmount>
-        <riusSID:pollutantType rdf:resource="&riusSID;Lead"/>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#wm1 -->
-
-    <owl:NamedIndividual rdf:about="&riusSID;wm1">
+    <owl:NamedIndividual rdf:about="&riusSID;WM1">
         <rdf:type rdf:resource="&riusSID;WaterMass"/>
-        <riusSID:existanceTimeStart rdf:datatype="&xsd;long">1234</riusSID:existanceTimeStart>
-        <riusSID:hasLiters>100.6</riusSID:hasLiters>
-        <riusSID:hasLocalization rdf:resource="&riusSID;Fact1"/>
-        <riusSID:hasPollutant rdf:resource="&riusSID;polRel1"/>
-        <riusSID:originMass rdf:resource="&riusSID;wm2"/>
-        <riusSID:originMass rdf:resource="&riusSID;wm3"/>
+        <riusSID:hasLiters rdf:datatype="&xsd;double">10000.0</riusSID:hasLiters>
+        <riusSID:hasPollutant rdf:resource="&riusSID;PolR1"/>
+        <riusSID:hasLocalization rdf:resource="&riusSID;Riu1"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#wm2 -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#WM2 -->
 
-    <owl:NamedIndividual rdf:about="&riusSID;wm2">
+    <owl:NamedIndividual rdf:about="&riusSID;WM2">
         <rdf:type rdf:resource="&riusSID;WaterMass"/>
+        <riusSID:hasLiters rdf:datatype="&xsd;double">13000.0</riusSID:hasLiters>
+        <riusSID:hasPollutant rdf:resource="&riusSID;PolR2"/>
+        <riusSID:hasLocalization rdf:resource="&riusSID;Riu2"/>
+        <riusSID:originMass rdf:resource="&riusSID;WM1"/>
+        <riusSID:originMass rdf:resource="&riusSID;WMR"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#wm3 -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#WM3 -->
 
-    <owl:NamedIndividual rdf:about="&riusSID;wm3">
+    <owl:NamedIndividual rdf:about="&riusSID;WM3">
         <rdf:type rdf:resource="&riusSID;WaterMass"/>
+        <riusSID:hasLiters rdf:datatype="&xsd;double">13000.0</riusSID:hasLiters>
+        <riusSID:hasPollutant rdf:resource="&riusSID;PolR3"/>
+        <riusSID:hasLocalization rdf:resource="&riusSID;Riu3"/>
+        <riusSID:originMass rdf:resource="&riusSID;WM2"/>
     </owl:NamedIndividual>
     
 
 
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
-    // General axioms
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
+    <!-- http://www.semanticweb.org/miquel.jubert/ontologies/2016/3/riusSID#WMR -->
 
-    <rdf:Description>
-        <rdf:type rdf:resource="&owl;AllDisjointClasses"/>
-        <owl:members rdf:parseType="Collection">
-            <rdf:Description rdf:about="&riusSID;FactoryWaterMass"/>
-            <rdf:Description rdf:about="&riusSID;MeteorogicalWaterMass"/>
-            <rdf:Description rdf:about="&riusSID;RiverWaterMass"/>
-            <rdf:Description rdf:about="&riusSID;SewageWaterMass"/>
-            <rdf:Description rdf:about="&riusSID;TreatedWaterMass"/>
-        </owl:members>
-    </rdf:Description>
+    <owl:NamedIndividual rdf:about="&riusSID;WMR">
+        <rdf:type rdf:resource="&riusSID;WaterMass"/>
+        <riusSID:hasLiters rdf:datatype="&xsd;double">3000.0</riusSID:hasLiters>
+        <riusSID:hasPollutant rdf:resource="&riusSID;PolRR"/>
+        <riusSID:hasLocalization rdf:resource="&riusSID;Riera"/>
+    </owl:NamedIndividual>
 </rdf:RDF>
 
 

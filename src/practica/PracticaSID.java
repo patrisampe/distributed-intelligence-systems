@@ -359,7 +359,7 @@ public class PracticaSID {
 				
 				for(WaterMass c: swm){
 					
-					c.toString();
+					System.out.println(c.toString());
 					
 				}
 				
@@ -376,7 +376,6 @@ public class PracticaSID {
 				String wms= entrada.nextLine();
 				
 				WaterMass m = ont.waterMasses.get(wms);
-				
 				
 				
 				
