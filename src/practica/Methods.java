@@ -246,22 +246,26 @@ public class Methods {
 
 	//Retorna true si ell esta net, fals en cas contrari
 	public static boolean needInspection(WaterMass wm, HashSet<WaterMass> swm, Regulation r){
+		//System.out.println(wm);
 		boolean net = true;
 		for( Pollutant p: wm.getPollutants()) {
+			//System.out.println(r.compliant(p,wm.getLiters()));
 			if(!r.compliant(p,wm.getLiters())) {
 				net = false;
 				break;
 			}
 		}
 		
-		if(!net) {
+		if(!net && wm.getOriginMass() != null) {
 			boolean guilty = true;
 			for(WaterMass fm:wm.getOriginMass()) {
 				if(!needInspection(fm,swm,r)) {
 					guilty = false;
 				}
 			}
+			//System.out.println(guilty);
 			if(guilty) swm.add(wm);
+			//System.out.println(swm);
 		}
 		return net;
 	}
@@ -290,7 +294,6 @@ public class Methods {
 						if( p.compliant(po,wm.getLiters()) ) auxamount += (po.getAmount()-allowed);
 					}
 				}
-				
 				if(auxamount>amountilegal)m=aw;
 			}
 			
