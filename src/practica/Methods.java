@@ -175,7 +175,8 @@ public class Methods {
 		for(WaterMass w: waterMasses.values()){
 
 			if(w.getExistanceTimeEnd() != null){
-				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha m�s aigua a la depuradora de la permesa ");};
+				if(howmanyliters(waterMasses,w.getExistanceTimeStart(),tp)>tp.getMaxWater()){
+					throw new Exception("La planta de tractament en el moment "+ w.getExistanceTimeStart() + " hi ha mes aigua a la depuradora de la permesa ");};
 
 			}
 		}
@@ -222,6 +223,7 @@ public class Methods {
 		wm.setExistanceTimeEnd(end);
 		return new WaterMass(poNew,originMass, wm.getLiters(),existanceTime,end,tp);
 	}
+	
 	
 
 	

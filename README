@@ -1,37 +1,9 @@
 ﻿PRACTICA DE SID
 ----------------
-Segueix una estructura de TODO, organitzat per punts.
-Probablement es bona idea posar "subpunts" a les coses mes complexes
 
-[ ] La ontologia es pot passar de owl a classes i de classes a owl sense problemes
-	AKA es representable en forma de les nostres classes i en forma de ontologia 
-                
-	(Afegir subpunts si acabes / comences una part)
+A la carpeta /src hi ha el codi en java.
 
-[ ] Representacio de Depuradores:
-	Idea que tinc(M): Simplement tenen un seguit de aributs amount, amb unitat
-		(unitatPolucio)/temps que indica quantes unitats de polucio elimina per
-		unitat de temps. De moment nomes faria aixo --> em sembla b�! :D--> patri ho comenso a fer
-
-[ ] Eficiencia: Com ja vam parlar amb el profe, costa de decidir, no recordo
-	si vam arribar a alguna conclusio. En qualsevol cas podem inventarnos
-	qualsevol mesura mes o menys logica i andando---> fet
-
-
-COSES A FER:
-
-[ ] Control Errors:
-
-	- Una massa no pot tenir dos fills o bé fer una funció que divideixi una massa d'aigua en dos.--> de moment he fet primera opcio (X)
-	
-	- Una planta de tractament no pot tenir més una capacitat màxima en un instant de temps no pot tenir més litres que aixo (X)
-
-	- En les funcions proof, informar a l'usuari on es produirà un error (X)
-
-	- En les altres funcions, tirar excepcions. (X)
-
-	- Evitar poder posar una massa d'aigua dins d'un lloc que ja té capacitat màxima (planta tractament) (X)
-
+A la carpeta /onto hi ha la ontologia 
  
 
 
