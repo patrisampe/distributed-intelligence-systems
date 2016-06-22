@@ -27,7 +27,7 @@ public class Methods {
 				else lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
-			if(wm.getSonMass() == null){
+			if(wm.getSonMass() != null){
 				 System.out.println("La massa d'aigua amb id "+ wm.getIdentificador() + " ja te fills ");
 					
 			}
@@ -57,7 +57,7 @@ public class Methods {
 				else lm.get(p.getType()).incAmount(p.getAmount());
 			}
 			amount += wm.getLiters();
-			if(wm.getSonMass() == null){
+			if(wm.getSonMass() != null){
 				 throw new Exception("La massa d'aigua amb id "+ wm.getIdentificador() + " ja te fills ");
 					
 			}

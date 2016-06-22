@@ -37,7 +37,7 @@ public class WaterMass {
 
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime, Localization l ) {
 		this.identificador= "wm" +UUID.randomUUID().toString();
-		
+		sonMass = null;
 		this.pollutants = pollutants;
 		this.originMass = originMass;
 		this.existanceTimeStart = existanceTime;
@@ -49,7 +49,7 @@ public class WaterMass {
 
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,long existanceTime,long endTime, Localization l ) {
 		this.identificador= "wm" +UUID.randomUUID().toString();
-		
+		sonMass = null;
 		this.pollutants = pollutants;
 		this.originMass = originMass;
 		this.existanceTimeStart = existanceTime;
@@ -65,6 +65,7 @@ public class WaterMass {
 		this.existanceTimeStart = existanceTime;
 		this.existanceTimeEnd = null;
 		this.liters = liters;
+		sonMass = null;
 	}
 	public WaterMass(ArrayList<Pollutant> pollutants, Vector<WaterMass> originMass, double liters,
 			long existanceTimeStart, long existanceTimeEnd) {
@@ -76,6 +77,7 @@ public class WaterMass {
 		this.existanceTimeStart = existanceTimeStart;
 		this.existanceTimeEnd = existanceTimeEnd;
 		this.liters = liters;
+		sonMass = null;
 	}
 	public WaterMass(ArrayList<Pollutant> arrayList, Vector<WaterMass> originMass, double liters) {
 		this.identificador= "wm" +UUID.randomUUID().toString();
@@ -85,6 +87,7 @@ public class WaterMass {
 		this.liters = liters;
 		this.existanceTimeStart = java.lang.System.currentTimeMillis();
 		this.existanceTimeEnd = null;
+		sonMass = null;
 	}
 	public Localization getPlace() {
 		return place;

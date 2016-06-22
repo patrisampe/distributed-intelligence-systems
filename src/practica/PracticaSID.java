@@ -44,7 +44,7 @@ public class PracticaSID {
 		Integer r = Integer.parseInt(entrada.nextLine());
 		
 	
-		while(r!=10){
+		while(r<13){
 			
 			switch(r){
 			
@@ -84,10 +84,10 @@ public class PracticaSID {
 				}
 				
 				//System.out.println(" El temps de la massa sera l'actual ");
-				System.out.println("Introdueix la data en el format: dd-M-yyyy hh:mm:ss");
+				System.out.println("Introdueix la data en el format: dd-MM-yyyy hh:mm:ss");
 				
 				
-				SimpleDateFormat ft = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+				SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 				String tiempo= entrada.nextLine();
 				
 				Date date = ft.parse(tiempo);
@@ -158,10 +158,10 @@ public class PracticaSID {
 				}
 				
 
-				System.out.println("Introdueix la data en el format: dd-M-yyyy hh:mm:ss");
+				System.out.println("Introdueix la data en el format: dd-MM-yyyy hh:mm:ss");
 				
 				
-				SimpleDateFormat ft = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+				SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 				String tiempo= entrada.nextLine();
 				
 				Date date = ft.parse(tiempo);
@@ -208,10 +208,10 @@ public class PracticaSID {
 			case 5:
 			{
 				
-		System.out.println("Introdueix la data en el format: dd-M-yyyy hh:mm:ss");
+		System.out.println("Introdueix la data en el format: dd-MM-yyyy hh:mm:ss");
 				
 				
-				SimpleDateFormat ft = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+				SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 				
 				String tiempo= entrada.nextLine();
 				
@@ -284,10 +284,10 @@ public class PracticaSID {
 				WaterMass m = ont.waterMasses.get(wms);
 				
 
-				System.out.println("Introdueix la data en el format: dd-M-yyyy hh:mm:ss");
+				System.out.println("Introdueix la data en el format: dd-MM-yyyy hh:mm:ss");
 						
 						
-						SimpleDateFormat ft = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+						SimpleDateFormat ft = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
 				
 				String tiempo= entrada.nextLine();
 				
@@ -390,7 +390,10 @@ public class PracticaSID {
 				
 				WaterMass result= Methods.mostProbablyGuiltedaux(m, rt);
 				
-				System.out.println(" La massa d'aigua que es mes probablement que ho causi es  "+result.toString() );
+				if(result == null){
+					System.out.println("Aquesta massa no esta contaminada");
+				}
+				else System.out.println(" La massa d'aigua que es mes probablement que ho causi es  "+result.toString() );
 				
 				
 				break;
@@ -425,19 +428,24 @@ public class PracticaSID {
 			case 12:
 			{
 				
-				System.out.println("FI DE L'APLICACIO! ");
+				System.out.println("FI DE L'APLICACIO! escriu path d'on vols escriurela ");
+				String pathi = entrada.nextLine();
 				
+				ont.write(pathi);
+				 
+				System.out.println("GRACIES PER UTILITZAR AQUEST PROGRAMA. ENS VEIEM AVIAT!  ");
 				System.out.close();
 				
 			}
 			
 			}
 			writeOptions();
+			r = Integer.parseInt(entrada.nextLine());
 			
 		}
 		
 		
-		ont.write("onto/prova.owl");
+	//	ont.write("sid/onto/prova.owl");
 		 
 		
 		
@@ -498,6 +506,7 @@ public class PracticaSID {
 		
 		System.out.println("11. Eficiencia d'una planta de tractament");
 		
+		System.out.println("12. Acabar i escriure ontologia");
 		
 		
 		//generateWaterMass
