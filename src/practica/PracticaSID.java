@@ -426,7 +426,7 @@ public class PracticaSID {
 			}
 			case 12:
 			{
-				
+				ont.ClassifyWaterMasses();
 				System.out.println("FI DE L'APLICACIO! escriu path d'on vols escriurela ");
 				String pathi = entrada.nextLine();
 				
