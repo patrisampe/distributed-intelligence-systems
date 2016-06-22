@@ -35,7 +35,7 @@ public class PracticaSID {
 		ont.loadPermitsRegulations();
 		ont.loadLocalizations();
 		ont.loadWaterMasses();
-		ont.validateTreatmentPlants();
+		//ont.validateTreatmentPlants();
 		
 
 		writeOntology(ont);
@@ -321,9 +321,9 @@ public class PracticaSID {
 			case 8:
 			{
 	
-				ont.validateTreatmentPlants();
+				//ont.validateTreatmentPlants();
 				
-				System.out.println(" Ya hem validat totes les plantes de tractament" );
+				//System.out.println(" Ya hem validat totes les plantes de tractament" );
 				
 				break;
 				
@@ -497,7 +497,7 @@ public class PracticaSID {
 		
 		System.out.println("7. Depurar una massa d'aigua modificant ontologia");
 		
-		System.out.println("8. Totes les depuradores en qualsevol moment no superen la seva capacitat maxima? ");
+		//System.out.println("8. Totes les depuradores en qualsevol moment no superen la seva capacitat maxima? ");
 		
 		System.out.println("9. Donat una massa d'aigua et diu les masses d'aigua que necessiten inspeccio, ja que els seus pares estan nets o be no te pares, si ella esta contaminada");
 		
