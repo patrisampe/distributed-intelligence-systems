@@ -514,7 +514,7 @@
 
     <owl:NamedIndividual rdf:about="&riusSID;Riu1">
         <rdf:type rdf:resource="&riusSID;River"/>
-        <riusSID:km>3</riusSID:km>
+        <riusSID:km rdf:datatype="&xsd;int">3</riusSID:km>
         <riusSID:name>Revardit</riusSID:name>
     </owl:NamedIndividual>
     
@@ -573,8 +573,8 @@
 
     <owl:NamedIndividual rdf:about="&riusSID;wm1">
         <rdf:type rdf:resource="&riusSID;WaterMass"/>
+        <riusSID:existanceTimeStart rdf:datatype="&xsd;long">1234</riusSID:existanceTimeStart>
         <riusSID:hasLiters>100.6</riusSID:hasLiters>
-        <riusSID:existanceTimeStart>1234</riusSID:existanceTimeStart>
         <riusSID:hasLocalization rdf:resource="&riusSID;Fact1"/>
         <riusSID:hasPollutant rdf:resource="&riusSID;polRel1"/>
         <riusSID:originMass rdf:resource="&riusSID;wm2"/>
