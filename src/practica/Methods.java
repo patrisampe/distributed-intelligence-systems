@@ -137,7 +137,7 @@ public class Methods {
 		    poNew.add(newPo);
 		    
 		}
-		Vector<WaterMass> originMass = wm.getOriginMass();
+		Vector<WaterMass> originMass = new Vector();//wm.getOriginMass();
 		originMass.add(wm);
 		
 		
@@ -215,7 +215,8 @@ public class Methods {
 		    
 		}
 		
-		Vector<WaterMass> originMass = wm.getOriginMass();
+		//Vector<WaterMass> originMass = wm.getOriginMass();
+		Vector<WaterMass> originMass = new Vector<WaterMass>();//wm.getOriginMass();
 		originMass.add(wm);
 		long end = (long) (existanceTime+time);
 		
